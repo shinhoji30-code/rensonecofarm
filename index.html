@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Renson Ecopark WiFi</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #000;
+    color: #fff;
+    text-align: center;
+}
+
+.container {
+    padding: 20px;
+}
+
+video {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 10px;
+}
+
+button {
+    margin-top: 20px;
+    padding: 12px 25px;
+    font-size: 16px;
+    background: #00c853;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+
+button:disabled {
+    background: gray;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Welcome to Renson Ecopark WiFi</h2>
+<p>Watch muna bago makaconnect</p>
+
+<video id="adsVideo" autoplay muted>
+    <source src="video.mp4" type="video/mp4">
+</video>
+
+<br>
+
+<button id="connectBtn" disabled>CONNECT</button>
+
+<form id="loginForm" action="$(link-login-only)" method="post">
+    <input type="hidden" name="username" value="user">
+    <input type="hidden" name="password" value="user">
+</form>
+
+</div>
+
+<script>
+let video = document.getElementById("adsVideo");
+let btn = document.getElementById("connectBtn");
+
+video.onended = function() {
+    btn.disabled = false;
+};
+
+btn.onclick = function() {
+    document.getElementById("loginForm").submit();
+};
+</script>
+
+</body>
+</html>
