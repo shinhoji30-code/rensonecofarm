@@ -5,7 +5,7 @@
 <title>Renson Ecopark WiFi</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- MONETAG (OK pero optional) -->
+<!-- MONETAG (optional) -->
 <script src="https://quge5.com/88/tag.min.js" data-zone="233397" async data-cfasync="false"></script>
 
 <style>
@@ -77,9 +77,9 @@ setTimeout(function(){
     btn.disabled = false;
 }, 10000);
 
-// IMPORTANT: redirect to MikroTik login page
+// FIXED REDIRECT (IMPORTANT)
 function goLogin(){
-    window.location.href = "192.168.22.1/login2.html";
+    window.location.href = "http://192.168.22.1/login";
 }
 </script>
 
