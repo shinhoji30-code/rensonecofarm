@@ -67,19 +67,19 @@ button:disabled {
 let video = document.getElementById("adsVideo");
 let btn = document.getElementById("connectBtn");
 
-// enable button after video ends
+// Enable button after video ends
 video.onended = function() {
     btn.disabled = false;
 };
 
-// fallback timer (para di ma-stuck)
+// Fallback timer (para hindi ma-stuck user)
 setTimeout(function(){
     btn.disabled = false;
 }, 10000);
 
-// FIXED REDIRECT (IMPORTANT)
+// FIXED + STABLE MIKROTIK REDIRECT
 function goLogin(){
-    window.location.href = "http://192.168.22.1/login";
+    window.location.href = "http://192.168.22.1/login2.html";
 }
 </script>
 
