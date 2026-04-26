@@ -5,8 +5,7 @@
 <title>Renson Ecopark WiFi</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- MONETAG SCRIPT (separate properly) -->
-<script src="//plxxxxxx.highcpmrevenuegate.com/xxxxx.js" async></script>
+<!-- MONETAG (OK pero optional) -->
 <script src="https://quge5.com/88/tag.min.js" data-zone="233397" async data-cfasync="false"></script>
 
 <style>
@@ -20,6 +19,7 @@ body {
 
 .container {
     padding: 20px;
+    margin-top: 60px;
 }
 
 video {
@@ -53,19 +53,13 @@ button:disabled {
 <h2>Welcome to Renson Ecopark WiFi</h2>
 <p>Watch muna bago makaconnect</p>
 
-<video id="adsVideo" autoplay muted>
+<video id="adsVideo" autoplay muted playsinline>
     <source src="ad.mp4" type="video/mp4">
 </video>
 
 <br>
 
-<button id="connectBtn" disabled>CONNECT</button>
-
-<!-- MikroTik login form -->
-<form id="loginForm" action="$(link-login-only)" method="post">
-    <input type="hidden" name="username" value="user">
-    <input type="hidden" name="password" value="user">
-</form>
+<button id="connectBtn" disabled onclick="goLogin()">CONNECT</button>
 
 </div>
 
@@ -73,13 +67,20 @@ button:disabled {
 let video = document.getElementById("adsVideo");
 let btn = document.getElementById("connectBtn");
 
+// enable button after video ends
 video.onended = function() {
     btn.disabled = false;
 };
 
-btn.onclick = function() {
-    document.getElementById("loginForm").submit();
-};
+// fallback timer (para di ma-stuck)
+setTimeout(function(){
+    btn.disabled = false;
+}, 10000);
+
+// IMPORTANT: redirect to MikroTik login page
+function goLogin(){
+    window.location.href = "http://192.168.22.1/login2";
+}
 </script>
 
 </body>
