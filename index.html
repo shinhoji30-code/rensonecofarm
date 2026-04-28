@@ -78,6 +78,7 @@ button:disabled {
     <source src="ad.mp4" type="video/mp4">
 </video>
 
+<!-- ADS -->
 <script>
   atOptions = {
     'key' : 'b2f331153ebe7677a3e5f2d39f278655',
@@ -89,9 +90,7 @@ button:disabled {
 </script>
 <script src="https://www.highperformanceformat.com/b2f331153ebe7677a3e5f2d39f278655/invoke.js"></script>
 
-<div class="ad-box">
-    <!-- Banner ads will appear here -->
-</div>
+<div class="ad-box"></div>
 
 <!-- BUTTONS -->
 <button id="connectBtn" disabled onclick="goLogin()">
@@ -103,6 +102,11 @@ PLAY GAMES 🎮
 </button>
 
 </div>
+
+<!-- BACKGROUND MUSIC -->
+<audio id="bgmusic" loop>
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
 
 <script>
 let video = document.getElementById("adsVideo");
@@ -132,8 +136,15 @@ function goLogin(){
 // GAMES → GitHub page
 function goGames(){
     window.location.href = "https://rensonecoparkphil.com/snake/";
-
 }
+
+// BACKGROUND MUSIC (play on first click)
+document.body.addEventListener("click", function () {
+    let music = document.getElementById("bgmusic");
+    music.volume = 0.2; // low volume para hindi nakakainis
+    music.play().catch(()=>{});
+}, { once: true });
+
 </script>
 
 </body>
