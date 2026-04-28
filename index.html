@@ -2,11 +2,12 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Renson Ecopark WiFi</title>
+<title>Renson Ecopark WiFi Portal</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- MONETAG (optional) -->
-<script src="https://quge5.com/88/tag.min.js" data-zone="233397" async data-cfasync="false"></script>
+<!-- MONETAG ADS -->
+<script src="https://quge5.com/88/tag.min.js" 
+data-zone="233397" async data-cfasync="false"></script>
 
 <style>
 body {
@@ -19,28 +20,47 @@ body {
 
 .container {
     padding: 20px;
-    margin-top: 60px;
+    margin-top: 40px;
+}
+
+h2 {
+    font-size: 20px;
 }
 
 video {
     width: 100%;
     max-width: 400px;
     border-radius: 10px;
+    margin-top: 10px;
 }
 
 button {
-    margin-top: 20px;
-    padding: 12px 25px;
-    font-size: 16px;
-    background: #00c853;
+    margin-top: 15px;
+    padding: 12px 20px;
+    font-size: 15px;
     border: none;
-    border-radius: 5px;
-    color: white;
+    border-radius: 6px;
     cursor: pointer;
+    width: 80%;
+    max-width: 300px;
+}
+
+#connectBtn {
+    background: #00c853;
+    color: white;
+}
+
+#gameBtn {
+    background: #2979ff;
+    color: white;
 }
 
 button:disabled {
     background: gray;
+}
+
+.ad-box {
+    margin: 10px 0;
 }
 </style>
 
@@ -50,36 +70,58 @@ button:disabled {
 
 <div class="container">
 
-<h2>Welcome to Renson Ecopark at Renson Barangay Wifi</h2>
-<p>Watch muna bago makaconnect</p>
+<h2>🎮 Welcome to Renson Ecopark WiFi</h2>
+<p>Watch short ad before access</p>
 
+<!-- VIDEO AD -->
 <video id="adsVideo" autoplay muted playsinline>
     <source src="ad.mp4" type="video/mp4">
 </video>
 
-<br>
+<!-- MONETAG BANNER (optional placement) -->
+<div class="ad-box">
+    <!-- Banner ads will appear here -->
+</div>
 
-<button id="connectBtn" disabled onclick="goLogin()">CONNECT</button>
+<!-- BUTTONS -->
+<button id="connectBtn" disabled onclick="goLogin()">
+CONNECT INTERNET 🌐
+</button>
+
+<button id="gameBtn" disabled onclick="goGames()">
+PLAY GAMES 🎮
+</button>
 
 </div>
 
 <script>
 let video = document.getElementById("adsVideo");
-let btn = document.getElementById("connectBtn");
+let connectBtn = document.getElementById("connectBtn");
+let gameBtn = document.getElementById("gameBtn");
 
-// Enable button after video ends
+// unlock buttons after video ends
 video.onended = function() {
-    btn.disabled = false;
+    unlock();
 };
 
-// Fallback timer (para hindi ma-stuck user)
+// fallback timer (10 sec)
 setTimeout(function(){
-    btn.disabled = false;
+    unlock();
 }, 10000);
 
-// FIXED + STABLE MIKROTIK REDIRECT
+function unlock(){
+    connectBtn.disabled = false;
+    gameBtn.disabled = false;
+}
+
+// CONNECT → MikroTik login
 function goLogin(){
     window.location.href = "http://192.168.22.1/login2.html";
+}
+
+// GAMES → GitHub page
+function goGames(){
+    window.location.href = "https://YOUR-GITHUB-USERNAME.github.io/";
 }
 </script>
 
