@@ -4,8 +4,11 @@
 <meta charset="UTF-8">
 <title>Renson Ecopark WiFi Portal</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ADSENSE -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8490044720475534"
-     crossorigin="anonymous"></script>
+crossorigin="anonymous"></script>
+
 <!-- MONETAG ADS -->
 <script src="https://quge5.com/88/tag.min.js" 
 data-zone="233397" async data-cfasync="false"></script>
@@ -63,8 +66,31 @@ button:disabled {
 .ad-box {
     margin: 10px 0;
 }
-</style>
 
+/* NEW UI */
+#statusText {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #ccc;
+}
+
+#progressContainer {
+    width: 80%;
+    max-width: 300px;
+    height: 8px;
+    background: #333;
+    border-radius: 5px;
+    margin: 10px auto;
+    overflow: hidden;
+}
+
+#progressBar {
+    width: 0%;
+    height: 100%;
+    background: #00c853;
+    transition: width 1s linear;
+}
+</style>
 </head>
 
 <body>
@@ -78,6 +104,12 @@ button:disabled {
 <video id="adsVideo" autoplay muted playsinline>
     <source src="ad.mp4" type="video/mp4">
 </video>
+
+<!-- NEW UI -->
+<p id="statusText">Please wait 10 seconds...</p>
+<div id="progressContainer">
+  <div id="progressBar"></div>
+</div>
 
 <!-- ADS -->
 <script>
@@ -114,12 +146,11 @@ let video = document.getElementById("adsVideo");
 let connectBtn = document.getElementById("connectBtn");
 let gameBtn = document.getElementById("gameBtn");
 
-// unlock buttons after video ends
+// ORIGINAL LOGIC (UNCHANGED)
 video.onended = function() {
     unlock();
 };
 
-// fallback timer (10 sec)
 setTimeout(function(){
     unlock();
 }, 10000);
@@ -139,12 +170,33 @@ function goGames(){
     window.location.href = "https://rensonecoparkphil.com/snake/";
 }
 
-// BACKGROUND MUSIC (play on first click)
+// BACKGROUND MUSIC
 document.body.addEventListener("click", function () {
     let music = document.getElementById("bgmusic");
-    music.volume = 0.2; // low volume para hindi nakakainis
+    music.volume = 0.2;
     music.play().catch(()=>{});
 }, { once: true });
+
+/* NEW UI SCRIPT ONLY */
+let duration = 10;
+let timeLeft = duration;
+
+let progressBar = document.getElementById("progressBar");
+let statusText = document.getElementById("statusText");
+
+let intervalUI = setInterval(function(){
+    timeLeft--;
+
+    let progress = ((duration - timeLeft) / duration) * 100;
+    progressBar.style.width = progress + "%";
+
+    statusText.innerText = "Please wait " + timeLeft + " seconds...";
+
+    if(timeLeft <= 0){
+        clearInterval(intervalUI);
+        statusText.innerText = "You can now proceed!";
+    }
+}, 1000);
 
 </script>
 
