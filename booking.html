@@ -131,7 +131,7 @@ button{
 </select>
 
 <label>Number of Guests</label>
-<input id="pax" type="number" placeholder="Default 4 pax">
+<input id="pax" type="number" value="4" placeholder="Default 4 pax" oninput="computeTotal()">
 
 <label>Payment Method</label>
 <select id="payment">
@@ -141,16 +141,53 @@ button{
 </select>
 
 <label>
-<input type="checkbox" id="cook"> Add Cooking Fee (+₱200)
+<input type="checkbox" id="cook" onclick="computeTotal()"> Add Cooking Fee (+₱200)
 </label>
 
-<button onclick="submitBooking()">Reserve Now</button>
+</div>
 
+<!-- TOTAL -->
+<div class="card">
+    <div class="price">💵 Total Computation</div>
+    <div class="info" id="totalDisplay">
+        Total: ₱0
+    </div>
+</div>
+
+<!-- BUTTON -->
+<div class="card">
+<button onclick="submitBooking()">Reserve Now</button>
 </div>
 
 </div>
 
 <script>
+
+// AUTO COMPUTE TOTAL
+function computeTotal(){
+
+    let room = document.getElementById("room").value;
+    let pax = parseInt(document.getElementById("pax").value || 4);
+    let cook = document.getElementById("cook").checked;
+
+    let basePrice = 0;
+
+    if(room.includes("500")) basePrice = 500;
+    if(room.includes("800")) basePrice = 800;
+
+    let extraPax = (pax > 4) ? (pax - 4) * 100 : 0;
+    let cookingFee = cook ? 200 : 0;
+
+    let total = basePrice + extraPax + cookingFee;
+
+    document.getElementById("totalDisplay").innerText =
+        "Total Payment: ₱" + total;
+
+    return total;
+}
+
+
+// SUBMIT BOOKING
 function submitBooking(){
 
     let name = document.getElementById("name").value;
@@ -158,7 +195,9 @@ function submitBooking(){
     let room = document.getElementById("room").value;
     let pax = document.getElementById("pax").value || 4;
     let payment = document.getElementById("payment").value;
-    let cook = document.getElementById("cook").checked ? "Yes (+₱200)" : "No";
+    let cook = document.getElementById("cook").checked;
+
+    let total = computeTotal();
 
     emailjs.send("service_43fy2w9", "template_fj8bq3s", {
         name: name,
@@ -166,10 +205,11 @@ function submitBooking(){
         room: room,
         pax: pax,
         payment: payment,
-        cook: cook
+        cook: cook ? "Yes (+₱200)" : "No",
+        total: total
     })
     .then(function(){
-        alert("✅ Booking sent successfully to email!");
+        alert("✅ Booking sent successfully!\nTotal: ₱" + total);
     })
     .catch(function(error){
         alert("❌ Failed to send booking");
@@ -177,6 +217,10 @@ function submitBooking(){
     });
 
 }
+
+// initial compute
+computeTotal();
+
 </script>
 
 </body>
