@@ -31,7 +31,6 @@ h2 {
     font-size: 20px;
 }
 
-/* VIDEO AD */
 video {
     width: 100%;
     max-width: 400px;
@@ -50,31 +49,14 @@ button {
     max-width: 300px;
 }
 
-#connectBtn {
-    background: #00c853;
-    color: white;
-}
+#connectBtn { background: #00c853; color: white; }
+#gameBtn { background: #2979ff; color: white; }
+#bookBtn { background: #ff9800; color: white; }
 
-#gameBtn {
-    background: #2979ff;
-    color: white;
-}
+button:disabled { background: gray; }
 
-#bookBtn {
-    background: #ff9800;
-    color: white;
-}
+.ad-box { margin: 10px 0; }
 
-button:disabled {
-    background: gray;
-}
-
-/* ADS */
-.ad-box {
-    margin: 10px 0;
-}
-
-/* TIMER UI */
 #statusText {
     margin-top: 10px;
     font-size: 14px;
@@ -98,25 +80,20 @@ button:disabled {
     transition: width 1s linear;
 }
 
-/* TV MENU */
+/* TV */
 .tv-menu {
     margin-top: 20px;
-    padding: 10px;
 }
 
 .tv-menu h3 {
-    font-size: 16px;
     color: #ffcc00;
+    font-size: 16px;
 }
 
 .tv-menu button {
     background: #e53935;
     color: white;
     margin: 5px;
-    padding: 10px;
-    border-radius: 8px;
-    width: 80%;
-    max-width: 300px;
 }
 
 #tvscreen {
@@ -125,6 +102,7 @@ button:disabled {
     margin-top: 10px;
     border: none;
     border-radius: 10px;
+    background: black;
 }
 </style>
 </head>
@@ -133,67 +111,50 @@ button:disabled {
 
 <div class="container">
 
-<h2>🎮 Renson Ecopark & Barangay WiFi Access Portal</h2>
-<p>Watch short ad before access</p>
+<h2>🎮 Renson Ecopark WiFi Portal</h2>
 
-<!-- VIDEO AD -->
 <video id="adsVideo" autoplay muted playsinline>
     <source src="ad.mp4" type="video/mp4">
 </video>
 
-<!-- TIMER -->
 <p id="statusText">Please wait 10 seconds...</p>
+
 <div id="progressContainer">
   <div id="progressBar"></div>
 </div>
 
-<!-- ADS -->
 <div class="ad-box"></div>
 
-<script>
-  atOptions = {
-    'key' : 'b2f331153ebe7677a3e5f2d39f278655',
-    'format' : 'iframe',
-    'height' : 250,
-    'width' : 300,
-    'params' : {}
-  };
-</script>
-<script src="https://www.highperformanceformat.com/b2f331153ebe7677a3e5f2d39f278655/invoke.js"></script>
-
-<!-- TV MENU -->
+<!-- TV MENU FIXED -->
 <div class="tv-menu">
 
 <h3>📺 Watch Free TV</h3>
 
-<button onclick="playTV('https://www.youtube.com/embed/NwMT6vEGKJ8?autoplay=1&mute=1&controls=0')">
+<button onclick="playTV('https://www.youtube.com/embed/NwMT6vEGKJ8?autoplay=1&controls=0&rel=0&mute=1')">
 ABS-CBN LIVE
 </button>
 
-<button onclick="playTV('https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1')">
+<button onclick="playTV('https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&controls=0&mute=1')">
 Sample Channel
 </button>
 
-<iframe id="tvscreen"></iframe>
+<button onclick="enableSound()">
+🔊 TURN ON SOUND
+</button>
+
+<iframe id="tvscreen"
+allow="autoplay; fullscreen"
+allowfullscreen></iframe>
 
 </div>
 
 <!-- MAIN BUTTONS -->
-<button id="connectBtn" disabled onclick="goLogin()">
-CONNECT INTERNET 🌐
-</button>
-
-<button id="gameBtn" disabled onclick="goGames()">
-PLAY GAMES 🎮
-</button>
-
-<button id="bookBtn" disabled onclick="goBooking()">
-BOOK ROOMS 🏡
-</button>
+<button id="connectBtn" disabled onclick="goLogin()">CONNECT INTERNET 🌐</button>
+<button id="gameBtn" disabled onclick="goGames()">PLAY GAMES 🎮</button>
+<button id="bookBtn" disabled onclick="goBooking()">BOOK ROOMS 🏡</button>
 
 </div>
 
-<!-- BACKGROUND MUSIC -->
 <audio id="bgmusic" loop>
     <source src="music.mp3" type="audio/mpeg">
 </audio>
@@ -204,13 +165,8 @@ let connectBtn = document.getElementById("connectBtn");
 let gameBtn = document.getElementById("gameBtn");
 let bookBtn = document.getElementById("bookBtn");
 
-video.onended = function() {
-    unlock();
-};
-
-setTimeout(function(){
-    unlock();
-}, 10000);
+video.onended = unlock;
+setTimeout(unlock, 10000);
 
 function unlock(){
     connectBtn.disabled = false;
@@ -218,7 +174,7 @@ function unlock(){
     bookBtn.disabled = false;
 }
 
-/* NAVIGATION */
+/* NAV */
 function goLogin(){
     window.location.href = "http://192.168.22.1/login2.html";
 }
@@ -231,9 +187,15 @@ function goBooking(){
     window.location.href = "booking.html";
 }
 
-/* TV PLAYER */
+/* TV FIX */
 function playTV(url){
     document.getElementById("tvscreen").src = url;
+}
+
+/* SOUND FIX (browser limitation workaround) */
+function enableSound(){
+    let iframe = document.getElementById("tvscreen");
+    iframe.src = iframe.src.replace("mute=1","mute=0");
 }
 
 /* MUSIC */
@@ -243,7 +205,7 @@ document.body.addEventListener("click", function () {
     music.play().catch(()=>{});
 }, { once: true });
 
-/* TIMER UI */
+/* TIMER */
 let duration = 10;
 let timeLeft = duration;
 
@@ -253,9 +215,7 @@ let statusText = document.getElementById("statusText");
 let intervalUI = setInterval(function(){
     timeLeft--;
 
-    let progress = ((duration - timeLeft) / duration) * 100;
-    progressBar.style.width = progress + "%";
-
+    progressBar.style.width = ((duration - timeLeft) / duration) * 100 + "%";
     statusText.innerText = "Please wait " + timeLeft + " seconds...";
 
     if(timeLeft <= 0){
