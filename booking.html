@@ -2,99 +2,151 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>EcoFarm Booking</title>
+<title>Renson EcoFarm Booking</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
 body{
-    font-family: Arial;
-    background:#f4f4f4;
     margin:0;
-    padding:20px;
+    font-family: Arial, sans-serif;
+    background:#f7f7f7;
 }
 
+/* TOP BANNER */
+.header{
+    background:#00a86b;
+    color:white;
+    padding:25px;
+    text-align:center;
+}
+
+.header h1{
+    margin:0;
+    font-size:22px;
+}
+
+.header p{
+    margin:5px 0;
+    font-size:13px;
+    opacity:0.9;
+}
+
+/* CONTAINER */
 .container{
     max-width:500px;
     margin:auto;
-    background:#fff;
-    padding:20px;
+    padding:15px;
+}
+
+/* CARD STYLE */
+.card{
+    background:white;
+    padding:15px;
     border-radius:12px;
-    box-shadow:0 0 10px rgba(0,0,0,0.1);
+    margin-top:12px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.08);
 }
 
-h2{
-    text-align:center;
-}
-
-p{
-    text-align:center;
-    color:green;
-    font-weight:bold;
-}
-
+/* INPUTS */
 input, select{
     width:100%;
     padding:10px;
-    margin-top:10px;
+    margin-top:8px;
+    border:1px solid #ddd;
     border-radius:8px;
-    border:1px solid #ccc;
     box-sizing:border-box;
 }
 
+/* LABEL */
+label{
+    font-size:13px;
+    font-weight:bold;
+    margin-top:10px;
+    display:block;
+}
+
+/* BUTTON */
 button{
     width:100%;
-    padding:12px;
+    padding:14px;
     margin-top:15px;
-    background:green;
+    background:#ff5a5f;
     color:white;
     border:none;
-    border-radius:8px;
-    font-size:16px;
+    border-radius:10px;
+    font-size:15px;
+    font-weight:bold;
     cursor:pointer;
 }
 
-.note{
+/* INFO BOX */
+.info{
     font-size:12px;
-    text-align:center;
     color:#666;
-    margin-top:10px;
+    line-height:1.5;
+}
+
+/* PRICE TAG */
+.price{
+    font-size:14px;
+    color:#00a86b;
+    font-weight:bold;
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
-
-<h2>🏡 Renson EcoFarm Booking</h2>
-<p>📶 Free WiFi Available</p>
-
-<div class="note">
-🏠 Non-Aircon ₱500 | ❄️ Aircon ₱800 (good for 4 pax)<br>
-➕ Extra pax ₱100 each | 🍳 Cooking fee ₱200
+<div class="header">
+    <h1>🏡 Renson EcoFarm Stay</h1>
+    <p>Like Airbnb • Nature Escape • Free WiFi 📶</p>
 </div>
 
-<input id="name" type="text" placeholder="Full Name">
-<input id="phone" type="text" placeholder="Phone Number">
+<div class="container">
 
+<!-- ROOM INFO -->
+<div class="card">
+    <div class="price">💰 Rates</div>
+    <div class="info">
+        🏠 Non-Aircon: ₱500 (good for 4 pax)<br>
+        ❄️ Aircon: ₱800 (good for 4 pax)<br>
+        ➕ Extra pax: ₱100 each<br>
+        🍳 Cooking fee: ₱200
+    </div>
+</div>
+
+<!-- FORM -->
+<div class="card">
+
+<label>Full Name</label>
+<input id="name" type="text" placeholder="Enter your name">
+
+<label>Phone Number</label>
+<input id="phone" type="text" placeholder="09xxxxxxxxx">
+
+<label>Room Type</label>
 <select id="room">
-    <option value="Non-Aircon ₱500">Non-Aircon - ₱500 (4 pax)</option>
-    <option value="Aircon ₱800">Aircon - ₱800 (4 pax)</option>
+    <option value="Non-Aircon ₱500">Non-Aircon Room - ₱500</option>
+    <option value="Aircon ₱800">Aircon Room - ₱800</option>
 </select>
 
-<input id="pax" type="number" placeholder="Number of Guests">
+<label>Number of Guests</label>
+<input id="pax" type="number" placeholder="Default 4 pax">
 
-<label>
-<input type="checkbox" id="cook"> Add Cooking Fee (+₱200)
-</label>
-
+<label>Payment Method</label>
 <select id="payment">
     <option>Cash</option>
     <option>GCash</option>
     <option>Bank Transfer</option>
 </select>
 
-<button onclick="submitBooking()">Submit Booking</button>
+<label>
+<input type="checkbox" id="cook"> Add Cooking Fee (+₱200)
+</label>
+
+<button onclick="submitBooking()">Reserve Now</button>
+
+</div>
 
 </div>
 
@@ -111,21 +163,22 @@ function submitBooking(){
     let subject = "EcoFarm Booking Request";
 
     let body =
-`🌴 Renson EcoFarm Booking Request
+`🏡 Renson EcoFarm Booking (Airbnb Style)
 
 Name: ${name}
 Phone: ${phone}
 Room: ${room}
 Guests: ${pax}
 Cooking: ${cook}
-Payment Method: ${payment}
+Payment: ${payment}
 
 Please confirm booking.`;
 
-    let mailtoLink =
-`mailto:rensonfarmphilippines@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    let mailto = "mailto:rensonfarmphilippines@gmail.com"
+        + "?subject=" + encodeURIComponent(subject)
+        + "&body=" + encodeURIComponent(body);
 
-    window.location.href = mailtoLink;
+    window.location.href = mailto;
 }
 </script>
 
