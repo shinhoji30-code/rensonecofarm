@@ -59,6 +59,11 @@ button {
     color: white;
 }
 
+#bookBtn {
+    background: #ff9800;
+    color: white;
+}
+
 button:disabled {
     background: gray;
 }
@@ -134,6 +139,10 @@ CONNECT INTERNET 🌐
 PLAY GAMES 🎮
 </button>
 
+<button id="bookBtn" disabled onclick="goBooking()">
+BOOK ROOMS 🏡
+</button>
+
 </div>
 
 <!-- BACKGROUND MUSIC -->
@@ -145,6 +154,7 @@ PLAY GAMES 🎮
 let video = document.getElementById("adsVideo");
 let connectBtn = document.getElementById("connectBtn");
 let gameBtn = document.getElementById("gameBtn");
+let bookBtn = document.getElementById("bookBtn");
 
 // ORIGINAL LOGIC (UNCHANGED)
 video.onended = function() {
@@ -158,6 +168,7 @@ setTimeout(function(){
 function unlock(){
     connectBtn.disabled = false;
     gameBtn.disabled = false;
+    bookBtn.disabled = false;
 }
 
 // CONNECT → MikroTik login
@@ -168,6 +179,11 @@ function goLogin(){
 // GAMES → GitHub page
 function goGames(){
     window.location.href = "https://rensonecoparkphil.com/snake/";
+}
+
+// BOOKING → Booking page
+function goBooking(){
+    window.location.href = "booking.html";
 }
 
 // BACKGROUND MUSIC
