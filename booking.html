@@ -110,7 +110,7 @@ button{
     <div class="info">
         🏠 Non-Aircon: ₱500 (4 pax)<br>
         ❄️ Aircon: ₱800 (4 pax)<br>
-        ➕ Extra pax: ₱100 each<br>
+        ➕ Extra pax: ₱100 each / per night<br>
         🍳 Cooking fee: ₱200
     </div>
 </div>
@@ -130,7 +130,6 @@ button{
     <option value="Aircon ₱800">Aircon Room - ₱800</option>
 </select>
 
-<!-- NEW CALENDAR -->
 <label>Check-in Date</label>
 <input id="checkin" type="date">
 
@@ -138,7 +137,7 @@ button{
 <input id="checkout" type="date">
 
 <label>Number of Guests</label>
-<input id="pax" type="number" value="4" placeholder="Default 4 pax" oninput="computeTotal()">
+<input id="pax" type="number" value="4" oninput="computeTotal()">
 
 <label>Payment Method</label>
 <select id="payment">
@@ -170,25 +169,37 @@ button{
 
 <script>
 
-// AUTO COMPUTE TOTAL
+// COMPUTE TOTAL (PER DAY)
 function computeTotal(){
 
     let room = document.getElementById("room").value;
     let pax = parseInt(document.getElementById("pax").value || 4);
     let cook = document.getElementById("cook").checked;
 
+    let checkin = document.getElementById("checkin").value;
+    let checkout = document.getElementById("checkout").value;
+
     let basePrice = 0;
 
     if(room.includes("500")) basePrice = 500;
     if(room.includes("800")) basePrice = 800;
 
-    let extraPax = (pax > 4) ? (pax - 4) * 100 : 0;
+    // compute nights
+    let days = 1;
+    if(checkin && checkout){
+        let start = new Date(checkin);
+        let end = new Date(checkout);
+        let diff = (end - start) / (1000 * 60 * 60 * 24);
+        if(diff > 0) days = diff;
+    }
+
+    let extraPax = (pax > 4) ? (pax - 4) * 100 * days : 0;
     let cookingFee = cook ? 200 : 0;
 
-    let total = basePrice + extraPax + cookingFee;
+    let total = (basePrice * days) + extraPax + cookingFee;
 
     document.getElementById("totalDisplay").innerText =
-        "Total Payment: ₱" + total;
+        "Stay: " + days + " night(s)\nTotal Payment: ₱" + total;
 
     return total;
 }
@@ -218,10 +229,11 @@ function submitBooking(){
         cook: cook ? "Yes (+₱200)" : "No",
         total: total,
         checkin: checkin,
-        checkout: checkout
+        checkout: checkout,
+        time: new Date().toLocaleString()
     })
     .then(function(){
-        alert("✅ Booking sent successfully!\nTotal: ₱" + total);
+        alert("✅ Booking sent!\nTotal: ₱" + total);
     })
     .catch(function(error){
         alert("❌ Failed to send booking");
@@ -230,14 +242,18 @@ function submitBooking(){
 
 }
 
-// DATE LIMITS
+
+// DATE LIMIT
 let today = new Date().toISOString().split("T")[0];
-document.getElementById("checkin").setAttribute("min", today);
-document.getElementById("checkout").setAttribute("min", today);
+document.getElementById("checkin").min = today;
+document.getElementById("checkout").min = today;
 
 document.getElementById("checkin").addEventListener("change", function(){
     document.getElementById("checkout").min = this.value;
+    computeTotal();
 });
+
+document.getElementById("checkout").addEventListener("change", computeTotal);
 
 // initial compute
 computeTotal();
