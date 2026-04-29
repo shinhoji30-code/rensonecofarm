@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Watch Free TV</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+    margin: 0;
+    background: black;
+    color: white;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+/* HEADER */
+.header {
+    padding: 12px;
+    background: #111;
+    font-size: 18px;
+    letter-spacing: 1px;
+}
+
+/* BUTTONS */
+button {
+    width: 90%;
+    max-width: 320px;
+    padding: 12px;
+    margin: 6px;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.channel-btn {
+    background: #e53935;
+    color: white;
+}
+
+.sound-btn {
+    background: #00c853;
+    color: white;
+}
+
+/* TV SCREEN */
+#tv {
+    width: 100%;
+    height: 70vh;
+    border: none;
+    margin-top: 10px;
+    background: black;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+📺 WATCH FREE TV
+</div>
+
+<!-- CHANNEL BUTTONS -->
+<button class="channel-btn" onclick="playTV('https://www.youtube.com/embed/NwMT6vEGKJ8?autoplay=1&controls=0&mute=1&rel=0')">
+ABS-CBN LIVE
+</button>
+
+<button class="channel-btn" onclick="playTV('https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&controls=0&mute=1')">
+Sample Channel
+</button>
+
+<!-- SOUND CONTROL -->
+<button class="sound-btn" onclick="enableSound()">
+🔊 TURN ON SOUND
+</button>
+
+<!-- TV PLAYER -->
+<iframe id="tv"
+allow="autoplay; fullscreen"
+allowfullscreen></iframe>
+
+<script>
+
+/* LOAD CHANNEL */
+function playTV(url){
+    document.getElementById("tv").src = url;
+}
+
+/* SOUND FIX (browser limitation workaround) */
+function enableSound(){
+    let tv = document.getElementById("tv");
+
+    if(tv.src.includes("mute=1")){
+        tv.src = tv.src.replace("mute=1","mute=0");
+    } else {
+        tv.src = tv.src + "&mute=0";
+    }
+}
+
+</script>
+
+</body>
+</html>
