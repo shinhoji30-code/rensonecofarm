@@ -31,6 +31,7 @@ h2 {
     font-size: 20px;
 }
 
+/* VIDEO AD */
 video {
     width: 100%;
     max-width: 400px;
@@ -68,11 +69,12 @@ button:disabled {
     background: gray;
 }
 
+/* ADS */
 .ad-box {
     margin: 10px 0;
 }
 
-/* NEW UI */
+/* TIMER UI */
 #statusText {
     margin-top: 10px;
     font-size: 14px;
@@ -95,6 +97,35 @@ button:disabled {
     background: #00c853;
     transition: width 1s linear;
 }
+
+/* TV MENU */
+.tv-menu {
+    margin-top: 20px;
+    padding: 10px;
+}
+
+.tv-menu h3 {
+    font-size: 16px;
+    color: #ffcc00;
+}
+
+.tv-menu button {
+    background: #e53935;
+    color: white;
+    margin: 5px;
+    padding: 10px;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 300px;
+}
+
+#tvscreen {
+    width: 90%;
+    height: 220px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 10px;
+}
 </style>
 </head>
 
@@ -110,13 +141,15 @@ button:disabled {
     <source src="ad.mp4" type="video/mp4">
 </video>
 
-<!-- NEW UI -->
+<!-- TIMER -->
 <p id="statusText">Please wait 10 seconds...</p>
 <div id="progressContainer">
   <div id="progressBar"></div>
 </div>
 
 <!-- ADS -->
+<div class="ad-box"></div>
+
 <script>
   atOptions = {
     'key' : 'b2f331153ebe7677a3e5f2d39f278655',
@@ -128,9 +161,24 @@ button:disabled {
 </script>
 <script src="https://www.highperformanceformat.com/b2f331153ebe7677a3e5f2d39f278655/invoke.js"></script>
 
-<div class="ad-box"></div>
+<!-- TV MENU -->
+<div class="tv-menu">
 
-<!-- BUTTONS -->
+<h3>📺 Watch Free TV</h3>
+
+<button onclick="playTV('https://www.youtube.com/embed/NwMT6vEGKJ8?autoplay=1&mute=1&controls=0')">
+ABS-CBN LIVE
+</button>
+
+<button onclick="playTV('https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1')">
+Sample Channel
+</button>
+
+<iframe id="tvscreen"></iframe>
+
+</div>
+
+<!-- MAIN BUTTONS -->
 <button id="connectBtn" disabled onclick="goLogin()">
 CONNECT INTERNET 🌐
 </button>
@@ -156,7 +204,6 @@ let connectBtn = document.getElementById("connectBtn");
 let gameBtn = document.getElementById("gameBtn");
 let bookBtn = document.getElementById("bookBtn");
 
-// ORIGINAL LOGIC (UNCHANGED)
 video.onended = function() {
     unlock();
 };
@@ -171,29 +218,32 @@ function unlock(){
     bookBtn.disabled = false;
 }
 
-// CONNECT → MikroTik login
+/* NAVIGATION */
 function goLogin(){
     window.location.href = "http://192.168.22.1/login2.html";
 }
 
-// GAMES → GitHub page
 function goGames(){
     window.location.href = "https://rensonecoparkphil.com/snake/";
 }
 
-// BOOKING → Booking page
 function goBooking(){
     window.location.href = "booking.html";
 }
 
-// BACKGROUND MUSIC
+/* TV PLAYER */
+function playTV(url){
+    document.getElementById("tvscreen").src = url;
+}
+
+/* MUSIC */
 document.body.addEventListener("click", function () {
     let music = document.getElementById("bgmusic");
     music.volume = 0.2;
     music.play().catch(()=>{});
 }, { once: true });
 
-/* NEW UI SCRIPT ONLY */
+/* TIMER UI */
 let duration = 10;
 let timeLeft = duration;
 
