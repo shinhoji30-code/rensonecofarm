@@ -130,6 +130,13 @@ button{
     <option value="Aircon ₱800">Aircon Room - ₱800</option>
 </select>
 
+<!-- NEW CALENDAR -->
+<label>Check-in Date</label>
+<input id="checkin" type="date">
+
+<label>Check-out Date</label>
+<input id="checkout" type="date">
+
 <label>Number of Guests</label>
 <input id="pax" type="number" value="4" placeholder="Default 4 pax" oninput="computeTotal()">
 
@@ -197,6 +204,9 @@ function submitBooking(){
     let payment = document.getElementById("payment").value;
     let cook = document.getElementById("cook").checked;
 
+    let checkin = document.getElementById("checkin").value;
+    let checkout = document.getElementById("checkout").value;
+
     let total = computeTotal();
 
     emailjs.send("service_43fy2w9", "template_fj8bq3s", {
@@ -206,7 +216,9 @@ function submitBooking(){
         pax: pax,
         payment: payment,
         cook: cook ? "Yes (+₱200)" : "No",
-        total: total
+        total: total,
+        checkin: checkin,
+        checkout: checkout
     })
     .then(function(){
         alert("✅ Booking sent successfully!\nTotal: ₱" + total);
@@ -217,6 +229,15 @@ function submitBooking(){
     });
 
 }
+
+// DATE LIMITS
+let today = new Date().toISOString().split("T")[0];
+document.getElementById("checkin").setAttribute("min", today);
+document.getElementById("checkout").setAttribute("min", today);
+
+document.getElementById("checkin").addEventListener("change", function(){
+    document.getElementById("checkout").min = this.value;
+});
 
 // initial compute
 computeTotal();
