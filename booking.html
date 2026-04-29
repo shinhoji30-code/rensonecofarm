@@ -160,10 +160,9 @@ function submitBooking(){
     let payment = document.getElementById("payment").value;
     let cook = document.getElementById("cook").checked ? "Yes (+₱200)" : "No";
 
-    let subject = "EcoFarm Booking Request";
-
-    let body =
-`🏡 Renson EcoFarm Booking (Airbnb Style)
+    // formatted message (optional reference)
+    let message =
+`🏡 Renson EcoFarm Booking Request
 
 Name: ${name}
 Phone: ${phone}
@@ -174,11 +173,8 @@ Payment: ${payment}
 
 Please confirm booking.`;
 
-    let mailto = "mailto:rensonfarmphilippines@gmail.com"
-        + "?subject=" + encodeURIComponent(subject)
-        + "&body=" + encodeURIComponent(body);
-
-    window.location.href = mailto;
+    // OPEN MESSENGER (FINAL FIX)
+    window.location.href = "https://m.me/rey.yanzon";
 }
 </script>
 
