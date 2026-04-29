@@ -7,38 +7,57 @@
 
 <style>
 body{
-  font-family: Arial;
-  background:#f4f4f4;
-  margin:0;
-  padding:20px;
+    font-family: Arial;
+    background:#f4f4f4;
+    margin:0;
+    padding:20px;
 }
 
 .container{
-  max-width:500px;
-  margin:auto;
-  background:#fff;
-  padding:20px;
-  border-radius:12px;
+    max-width:500px;
+    margin:auto;
+    background:#fff;
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0 0 10px rgba(0,0,0,0.1);
 }
 
-h2{text-align:center}
+h2{
+    text-align:center;
+}
+
+p{
+    text-align:center;
+    color:green;
+    font-weight:bold;
+}
 
 input, select{
-  width:100%;
-  padding:10px;
-  margin-top:10px;
-  border-radius:8px;
-  border:1px solid #ccc;
+    width:100%;
+    padding:10px;
+    margin-top:10px;
+    border-radius:8px;
+    border:1px solid #ccc;
+    box-sizing:border-box;
 }
 
 button{
-  width:100%;
-  padding:12px;
-  margin-top:15px;
-  background:green;
-  color:white;
-  border:none;
-  border-radius:8px;
+    width:100%;
+    padding:12px;
+    margin-top:15px;
+    background:green;
+    color:white;
+    border:none;
+    border-radius:8px;
+    font-size:16px;
+    cursor:pointer;
+}
+
+.note{
+    font-size:12px;
+    text-align:center;
+    color:#666;
+    margin-top:10px;
 }
 </style>
 </head>
@@ -47,32 +66,68 @@ button{
 
 <div class="container">
 
-<h2>🏡 EcoFarm Booking</h2>
-<p style="text-align:center;">📶 Free WiFi Available</p>
+<h2>🏡 Renson EcoFarm Booking</h2>
+<p>📶 Free WiFi Available</p>
 
-<input placeholder="Full Name">
-<input placeholder="Phone Number">
+<div class="note">
+🏠 Non-Aircon ₱500 | ❄️ Aircon ₱800 (good for 4 pax)<br>
+➕ Extra pax ₱100 each | 🍳 Cooking fee ₱200
+</div>
 
-<select>
-  <option>Non-Aircon - ₱500 (4 pax)</option>
-  <option>Aircon - ₱800 (4 pax)</option>
+<input id="name" type="text" placeholder="Full Name">
+<input id="phone" type="text" placeholder="Phone Number">
+
+<select id="room">
+    <option value="Non-Aircon ₱500">Non-Aircon - ₱500 (4 pax)</option>
+    <option value="Aircon ₱800">Aircon - ₱800 (4 pax)</option>
 </select>
 
-<input type="number" placeholder="Number of Guests">
+<input id="pax" type="number" placeholder="Number of Guests">
 
 <label>
-<input type="checkbox"> Cooking Fee (+₱200)
+<input type="checkbox" id="cook"> Add Cooking Fee (+₱200)
 </label>
 
-<select>
-  <option>Cash</option>
-  <option>GCash</option>
-  <option>Bank Transfer</option>
+<select id="payment">
+    <option>Cash</option>
+    <option>GCash</option>
+    <option>Bank Transfer</option>
 </select>
 
-<button onclick="alert('Booking Sent!')">Submit Booking</button>
+<button onclick="submitBooking()">Submit Booking</button>
 
 </div>
+
+<script>
+function submitBooking(){
+
+    let name = document.getElementById("name").value;
+    let phone = document.getElementById("phone").value;
+    let room = document.getElementById("room").value;
+    let pax = document.getElementById("pax").value || 4;
+    let payment = document.getElementById("payment").value;
+    let cook = document.getElementById("cook").checked ? "Yes (+₱200)" : "No";
+
+    let subject = "EcoFarm Booking Request";
+
+    let body =
+`🌴 Renson EcoFarm Booking Request
+
+Name: ${name}
+Phone: ${phone}
+Room: ${room}
+Guests: ${pax}
+Cooking: ${cook}
+Payment Method: ${payment}
+
+Please confirm booking.`;
+
+    let mailtoLink =
+`mailto:rensonfarmphilippines@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+    window.location.href = mailtoLink;
+}
+</script>
 
 </body>
 </html>
