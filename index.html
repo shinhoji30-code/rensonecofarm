@@ -31,6 +31,7 @@ h2 {
     font-size: 20px;
 }
 
+/* AD VIDEO */
 video {
     width: 100%;
     max-width: 400px;
@@ -57,6 +58,7 @@ button:disabled { background: gray; }
 
 .ad-box { margin: 10px 0; }
 
+/* TIMER */
 #statusText {
     margin-top: 10px;
     font-size: 14px;
@@ -80,29 +82,10 @@ button:disabled { background: gray; }
     transition: width 1s linear;
 }
 
-/* TV */
-.tv-menu {
-    margin-top: 20px;
-}
-
-.tv-menu h3 {
-    color: #ffcc00;
-    font-size: 16px;
-}
-
-.tv-menu button {
+/* WATCH TV BUTTON */
+.watchTV {
     background: #e53935;
     color: white;
-    margin: 5px;
-}
-
-#tvscreen {
-    width: 90%;
-    height: 220px;
-    margin-top: 10px;
-    border: none;
-    border-radius: 10px;
-    background: black;
 }
 </style>
 </head>
@@ -125,36 +108,19 @@ button:disabled { background: gray; }
 
 <div class="ad-box"></div>
 
-<!-- TV MENU FIXED -->
-<div class="tv-menu">
-
-<h3>📺 Watch Free TV</h3>
-
-<button onclick="playTV('https://www.youtube.com/embed/NwMT6vEGKJ8?autoplay=1&controls=0&rel=0&mute=1')">
-ABS-CBN LIVE
-</button>
-
-<button onclick="playTV('https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&controls=0&mute=1')">
-Sample Channel
-</button>
-
-<button onclick="enableSound()">
-🔊 TURN ON SOUND
-</button>
-
-<iframe id="tvscreen"
-allow="autoplay; fullscreen"
-allowfullscreen></iframe>
-
-</div>
-
 <!-- MAIN BUTTONS -->
 <button id="connectBtn" disabled onclick="goLogin()">CONNECT INTERNET 🌐</button>
 <button id="gameBtn" disabled onclick="goGames()">PLAY GAMES 🎮</button>
 <button id="bookBtn" disabled onclick="goBooking()">BOOK ROOMS 🏡</button>
 
+<!-- WATCH TV (NEW PAGE) -->
+<button class="watchTV" onclick="goWatch()">
+📺 WATCH FREE TV
+</button>
+
 </div>
 
+<!-- MUSIC -->
 <audio id="bgmusic" loop>
     <source src="music.mp3" type="audio/mpeg">
 </audio>
@@ -174,7 +140,7 @@ function unlock(){
     bookBtn.disabled = false;
 }
 
-/* NAV */
+/* NAVIGATION */
 function goLogin(){
     window.location.href = "http://192.168.22.1/login2.html";
 }
@@ -187,15 +153,9 @@ function goBooking(){
     window.location.href = "booking.html";
 }
 
-/* TV FIX */
-function playTV(url){
-    document.getElementById("tvscreen").src = url;
-}
-
-/* SOUND FIX (browser limitation workaround) */
-function enableSound(){
-    let iframe = document.getElementById("tvscreen");
-    iframe.src = iframe.src.replace("mute=1","mute=0");
+/* WATCH TV PAGE */
+function goWatch(){
+    window.location.href = "watch.html";
 }
 
 /* MUSIC */
