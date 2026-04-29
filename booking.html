@@ -160,7 +160,6 @@ function submitBooking(){
     let payment = document.getElementById("payment").value;
     let cook = document.getElementById("cook").checked ? "Yes (+₱200)" : "No";
 
-    // formatted message (optional reference)
     let message =
 `🏡 Renson EcoFarm Booking Request
 
@@ -173,8 +172,13 @@ Payment: ${payment}
 
 Please confirm booking.`;
 
-    // OPEN MESSENGER (FINAL FIX)
+    // COPY BOOKING DETAILS
+    navigator.clipboard.writeText(message);
+
+    // OPEN MESSENGER
     window.location.href = "https://m.me/rey.yanzon";
+
+    alert("📋 Booking details copied! Paste mo sa Messenger chat.");
 }
 </script>
 
