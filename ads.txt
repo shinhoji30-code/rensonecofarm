@@ -1,2 +1,2 @@
 google.com, pub-8490044720475534, DIRECT, f08c47fec0942fa0
-monetag.com, XXXXX, DIRECT
+monetag.com, 10923681, DIRECT
