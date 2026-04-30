@@ -13,9 +13,6 @@
   })();
 </script>
 
-<!-- 🔥 POPUNDER (IMPORTANT: HEAD AREA) -->
-<script src="https://pl29277695.profitablecpmratenetwork.com/42/41/08/42410870818cf5e9122a44b1d901a0c0.js"></script>
-
 <style>
 body{
     margin:0;
@@ -28,6 +25,17 @@ body{
     color:white;
     padding:25px;
     text-align:center;
+}
+
+.header h1{
+    margin:0;
+    font-size:22px;
+}
+
+.header p{
+    margin:5px 0;
+    font-size:13px;
+    opacity:0.9;
 }
 
 .container{
@@ -50,6 +58,7 @@ input, select{
     margin-top:8px;
     border:1px solid #ddd;
     border-radius:8px;
+    box-sizing:border-box;
 }
 
 label{
@@ -72,18 +81,16 @@ button{
     cursor:pointer;
 }
 
-/* ADS BOX */
-.adbox{
-    margin:10px 0;
-    text-align:center;
+.info{
+    font-size:12px;
+    color:#666;
+    line-height:1.5;
 }
 
-/* layout ads */
-.flex-ads{
-    display:flex;
-    gap:10px;
-    justify-content:center;
-    flex-wrap:wrap;
+.price{
+    font-size:14px;
+    color:#00a86b;
+    font-weight:bold;
 }
 </style>
 </head>
@@ -92,85 +99,65 @@ button{
 
 <div class="header">
     <h1>🏡 Renson EcoFarm Stay</h1>
-    <p>Nature Escape • WiFi • Booking System</p>
+    <p>Like Airbnb • Nature Escape • Free WiFi 📶</p>
 </div>
 
 <div class="container">
 
-<!-- 🔥 SMARTLINK BUTTON -->
-<div class="card" style="text-align:center;">
-    <a href="https://www.profitablecpmratenetwork.com/h0y6m67m?key=25d256a0d0bff07a5412d2b0884bc169"
-       style="text-decoration:none;">
-        <button style="background:#2979ff;">🎯 Special Offer / Promo</button>
-    </a>
-</div>
-
-<!-- 🔥 NATIVE BANNER -->
-<div class="card adbox">
-    <script async="async" data-cfasync="false" src="https://pl29277696.profitablecpmratenetwork.com/5c4700ac9eae024cb6836736505147c9/invoke.js"></script>
-    <div id="container-5c4700ac9eae024cb6836736505147c9"></div>
-</div>
-
 <!-- INFO -->
 <div class="card">
-    <h3>💰 Rates</h3>
-    <p>Non-Aircon ₱500 | Aircon ₱800 | Extra ₱100/pax | Cooking ₱200</p>
+    <div class="price">💰 Rates</div>
+    <div class="info">
+        🏠 Non-Aircon: ₱500 (4 pax)<br>
+        ❄️ Aircon: ₱800 (4 pax)<br>
+        ➕ Extra pax: ₱100 each / per night<br>
+        🍳 Cooking fee: ₱200
+    </div>
 </div>
 
 <!-- FORM -->
 <div class="card">
 
-<label>Name</label>
-<input id="name" type="text">
+<label>Full Name</label>
+<input id="name" type="text" placeholder="Enter your name">
 
-<label>Phone</label>
-<input id="phone" type="text">
+<label>Phone Number</label>
+<input id="phone" type="text" placeholder="09xxxxxxxxx">
 
-<label>Room</label>
+<label>Room Type</label>
 <select id="room">
-    <option value="Non-Aircon ₱500">Non-Aircon ₱500</option>
-    <option value="Aircon ₱800">Aircon ₱800</option>
+    <option value="Non-Aircon ₱500">Non-Aircon Room - ₱500</option>
+    <option value="Aircon ₱800">Aircon Room - ₱800</option>
 </select>
 
-<label>Check-in</label>
+<label>Check-in Date</label>
 <input id="checkin" type="date">
 
-<label>Check-out</label>
+<label>Check-out Date</label>
 <input id="checkout" type="date">
 
-<label>Guests</label>
+<label>Number of Guests</label>
 <input id="pax" type="number" value="4" oninput="computeTotal()">
 
-<label>Payment</label>
+<label>Payment Method</label>
 <select id="payment">
     <option>Cash</option>
     <option>GCash</option>
+    <option>Bank Transfer</option>
 </select>
 
 <label>
-<input type="checkbox" id="cook" onclick="computeTotal()"> Cooking Fee
+<input type="checkbox" id="cook" onclick="computeTotal()"> Add Cooking Fee (+₱200)
 </label>
 
 </div>
 
-<!-- 🔥 300x250 BANNER -->
-<div class="card adbox">
-<script>
-  atOptions = {
-    'key' : 'b2f331153ebe7677a3e5f2d39f278655',
-    'format' : 'iframe',
-    'height' : 250,
-    'width' : 300,
-    'params' : {}
-  };
-</script>
-<script src="https://www.highperformanceformat.com/b2f331153ebe7677a3e5f2d39f278655/invoke.js"></script>
-</div>
-
 <!-- TOTAL -->
 <div class="card">
-    <h3>Total</h3>
-    <p id="totalDisplay">₱0</p>
+    <div class="price">💵 Total Computation</div>
+    <div class="info" id="totalDisplay">
+        Total: ₱0
+    </div>
 </div>
 
 <!-- BUTTON -->
@@ -178,53 +165,43 @@ button{
 <button onclick="submitBooking()">Reserve Now</button>
 </div>
 
-<!-- 🔥 160x300 SIDE AD -->
-<div class="card adbox">
-<script>
-  atOptions = {
-    'key' : 'c47c1f01991eef3f74d64a9d67aa2b2a',
-    'format' : 'iframe',
-    'height' : 300,
-    'width' : 160,
-    'params' : {}
-  };
-</script>
-<script src="https://www.highperformanceformat.com/c47c1f01991eef3f74d64a9d67aa2b2a/invoke.js"></script>
-</div>
-
 </div>
 
 <script>
 
-// TOTAL CALC
+// COMPUTE TOTAL
 function computeTotal(){
 
     let room = document.getElementById("room").value;
     let pax = parseInt(document.getElementById("pax").value || 4);
     let cook = document.getElementById("cook").checked;
 
-    let base = room.includes("800") ? 800 : 500;
-
     let checkin = document.getElementById("checkin").value;
     let checkout = document.getElementById("checkout").value;
 
+    let basePrice = room.includes("800") ? 800 : 500;
+
     let days = 1;
     if(checkin && checkout){
-        let d1 = new Date(checkin);
-        let d2 = new Date(checkout);
-        let diff = (d2 - d1) / (1000*60*60*24);
+        let start = new Date(checkin);
+        let end = new Date(checkout);
+        let diff = (end - start) / (1000 * 60 * 60 * 24);
         if(diff > 0) days = diff;
     }
 
-    let total = (base * days) + (pax > 4 ? (pax-4)*100*days : 0) + (cook ? 200 : 0);
+    let extraPax = (pax > 4) ? (pax - 4) * 100 * days : 0;
+    let cookingFee = cook ? 200 : 0;
 
-    document.getElementById("totalDisplay").innerText = "₱" + total;
+    let total = (basePrice * days) + extraPax + cookingFee;
+
+    document.getElementById("totalDisplay").innerText =
+        "Stay: " + days + " night(s)\nTotal Payment: ₱" + total;
 
     return total;
 }
 
 
-// SUBMIT
+// SUBMIT BOOKING
 function submitBooking(){
 
     let total = computeTotal();
@@ -235,15 +212,36 @@ function submitBooking(){
         room: document.getElementById("room").value,
         pax: document.getElementById("pax").value,
         payment: document.getElementById("payment").value,
-        cook: document.getElementById("cook").checked ? "Yes" : "No",
+        cook: document.getElementById("cook").checked ? "Yes (+₱200)" : "No",
         total: total,
         checkin: document.getElementById("checkin").value,
         checkout: document.getElementById("checkout").value,
         time: new Date().toLocaleString()
     })
-    .then(()=> alert("Booking sent! ₱" + total))
-    .catch(err => console.log(err));
+    .then(function(){
+        alert("✅ Booking sent!");
+    })
+    .catch(function(error){
+        alert("❌ Failed to send booking");
+        console.log(error);
+    });
+
 }
+
+
+// DATE LIMIT
+let today = new Date().toISOString().split("T")[0];
+document.getElementById("checkin").min = today;
+document.getElementById("checkout").min = today;
+
+document.getElementById("checkin").addEventListener("change", function(){
+    document.getElementById("checkout").min = this.value;
+    computeTotal();
+});
+
+document.getElementById("checkout").addEventListener("change", computeTotal);
+
+computeTotal();
 
 </script>
 
