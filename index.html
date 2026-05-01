@@ -42,7 +42,7 @@ body {
     color: #00c853;
 }
 
-/* MAIN CONTAINER */
+/* MAIN */
 .container {
     padding: 20px;
     margin-top: 80px;
@@ -59,6 +59,7 @@ video {
     margin-top: 10px;
 }
 
+/* BUTTONS */
 button {
     margin-top: 15px;
     padding: 12px 20px;
@@ -73,12 +74,9 @@ button {
 #connectBtn { background: #00c853; color: white; }
 #gameBtn { background: #2979ff; color: white; }
 #bookBtn { background: #ff9800; color: white; }
+.watchTV { background: #e53935; color: white; }
 
 button:disabled { background: gray; }
-
-.ad-box {
-    margin: 10px 0;
-}
 
 /* TIMER */
 #statusText {
@@ -102,12 +100,6 @@ button:disabled { background: gray; }
     height: 100%;
     background: #00c853;
     transition: width 1s linear;
-}
-
-/* WATCH TV BUTTON */
-.watchTV {
-    background: #e53935;
-    color: white;
 }
 </style>
 </head>
@@ -137,6 +129,7 @@ button:disabled { background: gray; }
   <div id="progressBar"></div>
 </div>
 
+<!-- ADS SPACE -->
 <div class="ad-box"></div>
 
 <!-- MAIN BUTTONS -->
@@ -146,6 +139,23 @@ button:disabled { background: gray; }
 
 <button class="watchTV" onclick="goWatch()">📺 WATCH FREE TV</button>
 
+<!-- 🔥 FREE WIFI BUTTON -->
+<button style="
+background:#00c853;
+color:white;
+margin-top:15px;
+padding:12px 20px;
+font-size:15px;
+border:none;
+border-radius:6px;
+cursor:pointer;
+width:80%;
+max-width:300px;
+"
+onclick="goTrial()">
+⚡ FREE WIFI (15 MIN)
+</button>
+
 </div>
 
 <!-- MUSIC -->
@@ -154,6 +164,7 @@ button:disabled { background: gray; }
 </audio>
 
 <script>
+
 let video = document.getElementById("adsVideo");
 let connectBtn = document.getElementById("connectBtn");
 let gameBtn = document.getElementById("gameBtn");
@@ -185,6 +196,11 @@ function goWatch(){
     window.location.href = "watch.html";
 }
 
+/* 🔥 FREE WIFI (TRIAL) */
+function goTrial(){
+    window.location.href = "http://192.168.22.1/login?username=T-$(mac-esc)&dst=$(link-orig-esc)";
+}
+
 /* MUSIC */
 document.body.addEventListener("click", function () {
     let music = document.getElementById("bgmusic");
@@ -200,6 +216,7 @@ let progressBar = document.getElementById("progressBar");
 let statusText = document.getElementById("statusText");
 
 let intervalUI = setInterval(function(){
+
     timeLeft--;
 
     progressBar.style.width = ((duration - timeLeft) / duration) * 100 + "%";
@@ -209,7 +226,9 @@ let intervalUI = setInterval(function(){
         clearInterval(intervalUI);
         statusText.innerText = "You can now proceed!";
     }
-}, 1000);
+
+},1000);
+
 </script>
 
 </body>
