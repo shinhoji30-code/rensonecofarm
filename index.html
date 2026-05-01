@@ -5,7 +5,7 @@
 <title>Renson Barangay WiFi & EcoFarm Services</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- MONETAG ADS (KEPT) -->
+<!-- MONETAG ADS -->
 <script src="https://quge5.com/88/tag.min.js"
 data-zone="233397" async data-cfasync="false"></script>
 
@@ -18,9 +18,34 @@ body {
     text-align: center;
 }
 
+/* TOP MENU */
+.top-menu {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(0,0,0,0.9);
+    display: flex;
+    justify-content: space-around;
+    padding: 12px 0;
+    z-index: 999;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.top-menu a {
+    color: white;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.top-menu a:hover {
+    color: #00c853;
+}
+
+/* MAIN CONTAINER */
 .container {
     padding: 20px;
-    margin-top: 40px;
+    margin-top: 80px;
 }
 
 h2 {
@@ -79,7 +104,7 @@ button:disabled { background: gray; }
     transition: width 1s linear;
 }
 
-/* WATCH TV */
+/* WATCH TV BUTTON */
 .watchTV {
     background: #e53935;
     color: white;
@@ -89,11 +114,19 @@ button:disabled { background: gray; }
 
 <body>
 
+<!-- TOP MENU -->
+<div class="top-menu">
+    <a href="index.html">🏠 Home</a>
+    <a href="watch.html">📺 Watch</a>
+    <a href="rensonchatroom.html">💬 Chat</a>
+    <a href="booking.html">🏡 Booking</a>
+</div>
+
 <div class="container">
 
-<h2>🎮 Renson Barangay WiFi & EcoFarm Services </h2>
+<h2>🎮 Renson Barangay WiFi & EcoFarm Services</h2>
 
-<!-- VIDEO (OPTIONAL AD CONTENT) -->
+<!-- VIDEO -->
 <video id="adsVideo" autoplay playsinline>
     <source src="ad.mp4" type="video/mp4">
 </video>
@@ -103,8 +136,6 @@ button:disabled { background: gray; }
 <div id="progressContainer">
   <div id="progressBar"></div>
 </div>
-
-<!-- MONETAG AD SPACE AUTO LOADS -->
 
 <div class="ad-box"></div>
 
@@ -179,7 +210,6 @@ let intervalUI = setInterval(function(){
         statusText.innerText = "You can now proceed!";
     }
 }, 1000);
-
 </script>
 
 </body>
