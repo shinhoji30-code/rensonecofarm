@@ -105,6 +105,7 @@ video {
     margin-top:10px;
 }
 
+/* BUTTONS */
 .btn-group {
     display:flex;
     flex-direction:column;
@@ -134,6 +135,39 @@ video {
 .btn:disabled {
     background:gray;
     opacity:0.6;
+}
+
+/* 🔥 NEW TIMER STYLE */
+#statusText {
+    margin-top: 12px;
+    font-size: 15px;
+    font-weight: bold;
+    color: #00e676;
+    animation: pulseText 1.2s infinite;
+}
+
+@keyframes pulseText {
+    0% { opacity: 0.6; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.03); }
+    100% { opacity: 0.6; transform: scale(1); }
+}
+
+#progressContainer {
+    width: 90%;
+    max-width: 320px;
+    height: 10px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 50px;
+    margin: 12px auto;
+    overflow: hidden;
+}
+
+#progressBar {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, #00c853, #00e676);
+    border-radius: 50px;
+    transition: width 0.3s ease;
 }
 </style>
 </head>
@@ -171,6 +205,13 @@ video {
     <source src="ad.mp4" type="video/mp4">
 </video>
 
+<!-- 🔥 TIMER UI ADDED -->
+<p id="statusText">Please wait 10 seconds...</p>
+
+<div id="progressContainer">
+  <div id="progressBar"></div>
+</div>
+
 <div class="btn-group">
 
 <button class="btn connect" id="connectBtn" disabled>CONNECT INTERNET 🌐</button>
@@ -189,7 +230,7 @@ video {
     <source src="music.mp3" type="audio/mpeg">
 </audio>
 
-<!-- ✅ MONETAG SCRIPT (FIXED) -->
+<!-- ✅ MONETAG SCRIPT (UNCHANGED) -->
 <script src="https://n6wxm.com/vignette.min.js" data-zone="10950262" async></script>
 
 <script>
@@ -200,6 +241,30 @@ setTimeout(() => {
     gameBtn.disabled = false;
     bookBtn.disabled = false;
 }, 10000);
+
+/* TIMER LOGIC */
+let duration = 10;
+let timeLeft = duration;
+
+let progressBar = document.getElementById("progressBar");
+let statusText = document.getElementById("statusText");
+
+let intervalUI = setInterval(() => {
+
+    timeLeft--;
+
+    progressBar.style.width =
+    ((duration - timeLeft) / duration) * 100 + "%";
+
+    statusText.innerText =
+    "System loading... " + timeLeft + "s";
+
+    if(timeLeft <= 0){
+        clearInterval(intervalUI);
+        statusText.innerText = "System Ready!";
+    }
+
+}, 1000);
 
 /* music */
 document.body.addEventListener("click", function () {
