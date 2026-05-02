@@ -7,11 +7,11 @@
 
 <style>
 body {
-    margin: 0;
+    margin:0;
     font-family: Arial, sans-serif;
-    background: #000;
-    color: #fff;
-    text-align: center;
+    background: linear-gradient(to bottom, #000, #111);
+    color:white;
+    text-align:center;
 }
 
 /* TOP MENU */
@@ -24,7 +24,7 @@ body {
     justify-content: space-around;
     padding: 12px 0;
     z-index: 999;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    border-bottom:1px solid #222;
 }
 
 .top-menu a {
@@ -34,68 +34,88 @@ body {
     font-weight: bold;
 }
 
-.top-menu a:hover {
-    color: #00c853;
-}
-
 /* MAIN */
 .container {
-    padding: 20px;
-    margin-top: 80px;
+    padding:20px;
+    margin-top:80px;
 }
 
+/* TITLE */
 h2 {
-    font-size: 20px;
+    font-size:18px;
 }
 
+/* VIDEO */
 video {
-    width: 100%;
-    max-width: 400px;
-    border-radius: 10px;
-    margin-top: 10px;
+    width:100%;
+    max-width:420px;
+    border-radius:12px;
+    margin-top:10px;
+    box-shadow:0 0 10px rgba(0,0,0,0.6);
 }
 
-/* BUTTONS */
-button {
-    margin-top: 15px;
-    padding: 12px 20px;
-    font-size: 15px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    width: 80%;
-    max-width: 300px;
+/* BUTTON GROUP */
+.btn-group {
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    margin-top:20px;
 }
 
-#connectBtn { background: #00c853; color: white; }
-#gameBtn { background: #2979ff; color: white; }
-#bookBtn { background: #ff9800; color: white; }
-.watchTV { background: #e53935; color: white; }
+/* BUTTON STYLE */
+.btn {
+    padding:16px;
+    font-size:16px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:bold;
+    width:90%;
+    max-width:320px;
+    margin:auto;
+    transition:0.2s;
+}
 
-button:disabled { background: gray; }
+.btn:hover {
+    transform:scale(1.03);
+    opacity:0.9;
+}
 
-/* TIMER */
+/* COLORS */
+.connect { background:#00c853; }
+.games { background:#2979ff; }
+.booking { background:#ff9800; }
+.watch { background:#e53935; }
+.trial { background:#00e676; color:black; }
+
+/* DISABLED */
+.btn:disabled {
+    background:gray;
+    opacity:0.6;
+    cursor:not-allowed;
+}
+
+/* STATUS */
 #statusText {
-    margin-top: 10px;
-    font-size: 14px;
-    color: #ccc;
+    margin-top:10px;
+    font-size:14px;
+    color:#ccc;
 }
 
+/* PROGRESS BAR */
 #progressContainer {
-    width: 80%;
-    max-width: 300px;
-    height: 8px;
-    background: #333;
-    border-radius: 5px;
-    margin: 10px auto;
-    overflow: hidden;
+    width:90%;
+    max-width:320px;
+    height:8px;
+    background:#222;
+    border-radius:5px;
+    margin:10px auto;
 }
 
 #progressBar {
-    width: 0%;
-    height: 100%;
-    background: #00c853;
-    transition: width 1s linear;
+    width:0%;
+    height:100%;
+    background:#00c853;
 }
 </style>
 </head>
@@ -125,29 +145,20 @@ button:disabled { background: gray; }
   <div id="progressBar"></div>
 </div>
 
-<!-- MAIN BUTTONS -->
-<button id="connectBtn" disabled onclick="goLogin()">CONNECT INTERNET 🌐</button>
-<button id="gameBtn" disabled onclick="goGames()">PLAY GAMES 🎮</button>
-<button id="bookBtn" disabled onclick="goBooking()">BOOK ROOMS 🏡</button>
+<!-- BUTTONS -->
+<div class="btn-group">
 
-<button class="watchTV" onclick="goWatch()">📺 WATCH FREE TV</button>
+<button class="btn connect" id="connectBtn" disabled onclick="goLogin()">CONNECT INTERNET 🌐</button>
 
-<!-- FREE WIFI -->
-<button style="
-background:#00c853;
-color:white;
-margin-top:15px;
-padding:12px 20px;
-font-size:15px;
-border:none;
-border-radius:6px;
-cursor:pointer;
-width:80%;
-max-width:300px;
-"
-onclick="goTrial()">
-⚡ FREE WIFI (15 MIN)
-</button>
+<button class="btn games" id="gameBtn" disabled onclick="goGames()">PLAY GAMES 🎮</button>
+
+<button class="btn booking" id="bookBtn" disabled onclick="goBooking()">BOOK ROOMS 🏡</button>
+
+<button class="btn watch" onclick="goWatch()">WATCH FREE TV 📺</button>
+
+<button class="btn trial" onclick="goTrial()">FREE WIFI (15 MIN) ⚡</button>
+
+</div>
 
 </div>
 
@@ -190,7 +201,6 @@ function goWatch(){
     window.location.href = "watch.html";
 }
 
-/* FREE WIFI TRIAL */
 function goTrial(){
     window.location.href = "http://192.168.22.1/login?username=T-$(mac-esc)&dst=$(link-orig-esc)";
 }
@@ -223,14 +233,6 @@ let intervalUI = setInterval(function(){
 
 },1000);
 
-</script>
-
-<!-- ADS SCRIPT (SAFE POSITION - BOTTOM ONLY) -->
-<script>
-(function(s){
-    s.dataset.zone='10950262',
-    s.src='https://n6wxm.com/vignette.min.js'
-})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))
 </script>
 
 </body>
