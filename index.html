@@ -45,6 +45,37 @@ h2 {
     font-size:18px;
 }
 
+/* DATE & TIME */
+#dateTime{
+    margin-top:10px;
+    margin-bottom:10px;
+    color:#00e676;
+    font-size:15px;
+    font-weight:bold;
+}
+
+/* MARQUEE */
+marquee{
+    background:#111;
+    color:#00e676;
+    padding:10px;
+    border-radius:10px;
+    margin-bottom:15px;
+    font-size:14px;
+    border:1px solid #222;
+}
+
+/* WEATHER */
+.weather-box{
+    background:#111;
+    color:#ccc;
+    padding:10px;
+    border-radius:10px;
+    margin-bottom:15px;
+    border:1px solid #222;
+    font-size:14px;
+}
+
 /* VIDEO */
 video {
     width:100%;
@@ -133,6 +164,19 @@ video {
 <div class="container">
 
 <h2>🎮 Renson Barangay WiFi & EcoFarm Services</h2>
+
+<!-- DATE & TIME -->
+<div id="dateTime"></div>
+
+<!-- MARQUEE -->
+<marquee behavior="scroll" direction="left">
+🔥 Welcome to Renson Barangay WiFi • Fast Internet • EcoFarm Rooms • Free TV • Online Games • Enjoy Your Stay!
+</marquee>
+
+<!-- WEATHER -->
+<div class="weather-box">
+☀️ Weather Today: Sunny • 31°C
+</div>
 
 <!-- VIDEO -->
 <video id="adsVideo" autoplay muted playsinline loop>
@@ -230,6 +274,26 @@ let intervalUI = setInterval(function(){
         clearInterval(intervalUI);
         statusText.innerText = "You can now proceed!";
     }
+
+},1000);
+
+/* DATE & TIME */
+setInterval(function(){
+
+    let now = new Date();
+
+    let options = {
+        weekday:'long',
+        year:'numeric',
+        month:'long',
+        day:'numeric'
+    };
+
+    let date = now.toLocaleDateString('en-US', options);
+    let time = now.toLocaleTimeString();
+
+    document.getElementById("dateTime").innerHTML =
+    "📅 " + date + "<br>🕒 " + time;
 
 },1000);
 
