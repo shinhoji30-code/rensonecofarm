@@ -14,7 +14,7 @@ body {
     text-align:center;
 }
 
-/* TOP MENU FULL */
+/* TOP MENU */
 .top-menu {
     position: fixed;
     top: 0;
@@ -30,12 +30,9 @@ body {
     border-bottom:1px solid rgba(255,255,255,0.1);
 }
 
-.top-menu::-webkit-scrollbar{
-    display:none;
-}
+.top-menu::-webkit-scrollbar{ display:none; }
 
-.top-menu a,
-.top-menu button {
+.top-menu a {
     color: white;
     text-decoration: none;
     font-size: 13px;
@@ -43,19 +40,12 @@ body {
     padding:8px 14px;
     border-radius:20px;
     background: rgba(255,255,255,0.08);
-    border:none;
-    cursor:pointer;
-    transition:0.2s;
 }
 
-.top-menu a:hover,
-.top-menu button:hover {
+.top-menu a:hover {
     background:#00c853;
     color:black;
 }
-
-.connect { background:#00c853 !important; }
-.trial { background:#00e676 !important; color:black !important; }
 
 .container {
     padding:20px;
@@ -125,9 +115,9 @@ video {
 }
 
 @keyframes pulseText {
-    0% { opacity: 0.6; transform: scale(1); }
-    50% { opacity: 1; transform: scale(1.03); }
-    100% { opacity: 0.6; transform: scale(1); }
+    0% { opacity: 0.6; }
+    50% { opacity: 1; }
+    100% { opacity: 0.6; }
 }
 
 #progressContainer {
@@ -147,6 +137,37 @@ video {
     border-radius: 50px;
     transition: width 0.3s ease;
 }
+
+/* 🔥 BOTTOM BUTTONS */
+.bottom-buttons {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 12px;
+    z-index: 1000;
+}
+
+.connect, .trial {
+    padding: 14px 20px;
+    border-radius: 30px;
+    font-size: 15px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+}
+
+.connect {
+    background:#00c853 !important;
+    color:black;
+}
+
+.trial {
+    background:#00e676 !important;
+    color:black;
+}
 </style>
 </head>
 
@@ -154,7 +175,6 @@ video {
 
 <!-- TOP MENU -->
 <div class="top-menu">
-
 <a href="index.html">🏠 Home</a>
 <a href="watch.html">📺 Watch TV</a>
 <a href="games.html">🎮 Games</a>
@@ -162,15 +182,6 @@ video {
 <a href="rensonchatroom.html">💬 Chat</a>
 <a href="booking.html">🏡 Booking</a>
 <a href="vision.html">🌿 Vision</a>
-
-<button id="connectBtn" class="connect" disabled onclick="connectNet()">
-CONNECT 🌐
-</button>
-
-<button class="trial" onclick="freeWifi()">
-FREE WIFI ⚡
-</button>
-
 </div>
 
 <div class="container">
@@ -196,7 +207,6 @@ FREE WIFI ⚡
     <source src="ad.mp4" type="video/mp4">
 </video>
 
-<!-- TIMER -->
 <p id="statusText">Please wait 10 seconds...</p>
 
 <div id="progressContainer">
@@ -205,26 +215,33 @@ FREE WIFI ⚡
 
 </div>
 
+<!-- 🔥 BOTTOM BUTTONS -->
+<div class="bottom-buttons">
+
+<button id="connectBtn" class="connect" disabled onclick="connectNet()">
+CONNECT 🌐
+</button>
+
+<button class="trial" onclick="freeWifi()">
+FREE WIFI ⚡
+</button>
+
+</div>
+
 <audio id="bgmusic" loop>
     <source src="music.mp3" type="audio/mpeg">
 </audio>
 
-<!-- MONETAG -->
-<script src="https://n6wxm.com/vignette.min.js" data-zone="10950262" async></script>
-
 <script>
-
-/* CONNECT → FIXED REDIRECT */
 function connectNet(){
     window.location.href = "http://192.168.22.1/login2.html";
 }
 
-/* FREE WIFI */
 function freeWifi(){
     window.location.href = "http://192.168.22.1/login?trial=1";
 }
 
-/* ENABLE CONNECT BUTTON */
+/* enable CONNECT */
 setTimeout(() => {
     document.getElementById("connectBtn").disabled = false;
 }, 10000);
@@ -237,7 +254,6 @@ let progressBar = document.getElementById("progressBar");
 let statusText = document.getElementById("statusText");
 
 let intervalUI = setInterval(() => {
-
     timeLeft--;
 
     progressBar.style.width =
