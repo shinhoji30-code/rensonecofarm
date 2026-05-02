@@ -1,156 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<title>Renson HTML5 Mobile Gaming Pro</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<style>
-
-body{
-    margin:0;
-    font-family:Arial;
-    background:linear-gradient(to bottom,#000,#111);
-    color:white;
-    text-align:center;
-}
-
-.header{
-    padding:15px;
-    font-size:18px;
-    font-weight:bold;
-    color:#00e676;
-    background:#000;
-    border-bottom:2px solid #00e676;
-}
-
-.container{
-    padding:15px;
-}
-
-.card{
-    background:#111;
-    border:1px solid #222;
-    border-radius:15px;
-    margin-bottom:20px;
-    padding:15px;
-}
-
-canvas{
-    background:black;
-    border:1px solid #00e676;
-    border-radius:10px;
-    width:100%;
-    max-width:320px;
-}
-
-.btn{
-    background:#00c853;
-    color:white;
-    border:none;
-    padding:12px;
-    margin-top:10px;
-    border-radius:10px;
-    width:100%;
-    max-width:320px;
-    font-weight:bold;
-}
-
-.score{
-    margin-top:10px;
-}
-
-/* ADS SAFE SPACE */
-.ad-space{
-    margin:10px auto;
-    font-size:12px;
-    color:#777;
-}
-
-</style>
+  <title>Snake Game</title>
 </head>
-
 <body>
 
-<!-- 🔥 MONETAG TOP (HIGH VIEW IMPRESSION) -->
-<script src="https://quge5.com/88/tag.min.js" data-zone="233397" async data-cfasync="false"></script>
+  <h1>Snake Game</h1>
 
-<div class="header">🎮 MOBILE GAMING PRO</div>
+  <canvas id="gameCanvas" width="400" height="400"></canvas>
+  <p>Score: <span id="score">0</span></p>
 
-<div class="ad-space">📢 Ads help keep games FREE</div>
-
-<div class="container">
-
-<!-- SNAKE -->
-<div class="card">
-<h3>🐍 Snake Game</h3>
-<canvas id="snake" width="300" height="300"></canvas>
-<button class="btn" onclick="startSnake()">START</button>
-<div class="score">Score: <span id="snakeScore">0</span></div>
-</div>
-
-<!-- PONG -->
-<div class="card">
-<h3>🏓 Pong Game</h3>
-<canvas id="pong" width="300" height="200"></canvas>
-<button class="btn" onclick="startPong()">START</button>
-</div>
-
-<!-- TAP -->
-<div class="card">
-<h3>⚡ Tap Game</h3>
-<h2 id="score">0</h2>
-<button class="btn" onclick="tap()">TAP</button>
-<button class="btn" onclick="resetTap()">RESET</button>
-</div>
-
-</div>
-
-<!-- 🔥 MONETAG BOTTOM (POPUNDER + EXIT IMPACT) -->
-<script src="https://quge5.com/88/tag.min.js" data-zone="233397" async data-cfasync="false"></script>
-
-<script>
-
-/* TAP GAME */
-let score=0;
-let active=false;
-let timeLeft=10;
-
-function tap(){
-    if(!active){
-        active=true;
-        score=0;
-        timeLeft=10;
-
-        let timer=setInterval(()=>{
-            timeLeft--;
-            if(timeLeft<=0){
-                clearInterval(timer);
-                active=false;
-                alert("Score: "+score);
-            }
-        },1000);
-    }
-    if(active){
-        score++;
-        document.getElementById("score").innerText=score;
-    }
-}
-
-function resetTap(){
-    score=0;
-    document.getElementById("score").innerText=0;
-}
-
-function startSnake(){
-    alert("Snake loading...");
-}
-
-function startPong(){
-    alert("Pong loading...");
-}
-
-</script>
+  <script src="game.js"></script>
 
 </body>
 </html>
