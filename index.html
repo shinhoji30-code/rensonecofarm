@@ -54,19 +54,8 @@ h2 {
     font-weight:bold;
 }
 
-/* MARQUEE */
-marquee{
-    background:#111;
-    color:#00e676;
-    padding:10px;
-    border-radius:10px;
-    margin-bottom:15px;
-    font-size:14px;
-    border:1px solid #222;
-}
-
-/* WEATHER */
-.weather-box{
+/* BOX STYLE (weather/news/system) */
+.box{
     background:#111;
     color:#ccc;
     padding:10px;
@@ -74,6 +63,7 @@ marquee{
     margin-bottom:15px;
     border:1px solid #222;
     font-size:14px;
+    text-align:left;
 }
 
 /* VIDEO */
@@ -170,12 +160,24 @@ video {
 
 <!-- MARQUEE -->
 <marquee behavior="scroll" direction="left">
-🔥 Welcome to Renson Barangay WiFi • Fast Internet • EcoFarm Rooms • Free TV • Online Games • Enjoy Your Stay!
+🔥 Welcome to Renson Barangay WiFi • Fast Internet • EcoFarm Rooms • Free TV • Online Games
 </marquee>
 
 <!-- WEATHER -->
-<div class="weather-box">
+<div class="box">
 ☀️ Weather Today: Sunny • 31°C
+</div>
+
+<!-- 📰 NEWS PANEL -->
+<div class="box">
+📰 LATEST NEWS (Lopez / Calauag / Quezon)<br><br>
+
+🚧 Road rehabilitation ongoing (Maharlika Highway improvements)<br>
+🌾 Irrigation & agriculture support projects in Lopez<br>
+⚠️ Local security monitoring updates in Quezon province<br>
+🚨 Anti-cybercrime enforcement operations in Calauag<br><br>
+
+<small>Regional updates feed</small>
 </div>
 
 <!-- VIDEO -->
@@ -213,20 +215,16 @@ video {
 
 <script>
 
-/* VIDEO TIMER */
-let video = document.getElementById("adsVideo");
+/* UNLOCK BUTTONS */
 let connectBtn = document.getElementById("connectBtn");
 let gameBtn = document.getElementById("gameBtn");
 let bookBtn = document.getElementById("bookBtn");
 
-video.onended = unlock;
-setTimeout(unlock, 10000);
-
-function unlock(){
+setTimeout(() => {
     connectBtn.disabled = false;
     gameBtn.disabled = false;
     bookBtn.disabled = false;
-}
+}, 10000);
 
 /* NAVIGATION */
 function goLogin(){
@@ -234,7 +232,7 @@ function goLogin(){
 }
 
 function goGames(){
-    window.location.href = "https://rensonecoparkphil.com/snake/";
+    window.location.href = "gaming.html";
 }
 
 function goBooking(){
@@ -246,7 +244,7 @@ function goWatch(){
 }
 
 function goTrial(){
-    window.location.href = "http://192.168.22.1/login?username=T-$(mac-esc)&dst=$(link-orig-esc)";
+    window.location.href = "http://192.168.22.1/login?username=trial";
 }
 
 /* MUSIC */
@@ -256,14 +254,14 @@ document.body.addEventListener("click", function () {
     music.play().catch(()=>{});
 }, { once: true });
 
-/* TIMER */
+/* PROGRESS */
 let duration = 10;
 let timeLeft = duration;
 
 let progressBar = document.getElementById("progressBar");
 let statusText = document.getElementById("statusText");
 
-let intervalUI = setInterval(function(){
+let intervalUI = setInterval(() => {
 
     timeLeft--;
 
@@ -272,30 +270,19 @@ let intervalUI = setInterval(function(){
 
     if(timeLeft <= 0){
         clearInterval(intervalUI);
-        statusText.innerText = "You can now proceed!";
+        statusText.innerText = "System Ready!";
     }
 
-},1000);
+}, 1000);
 
 /* DATE & TIME */
-setInterval(function(){
-
+setInterval(() => {
     let now = new Date();
 
-    let options = {
-        weekday:'long',
-        year:'numeric',
-        month:'long',
-        day:'numeric'
-    };
-
-    let date = now.toLocaleDateString('en-US', options);
-    let time = now.toLocaleTimeString();
-
     document.getElementById("dateTime").innerHTML =
-    "📅 " + date + "<br>🕒 " + time;
-
-},1000);
+    "📅 " + now.toLocaleDateString() +
+    "<br>🕒 " + now.toLocaleTimeString();
+}, 1000);
 
 </script>
 
