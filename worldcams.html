@@ -14,7 +14,6 @@ body {
     text-align:center;
 }
 
-/* HEADER */
 h2 {
     margin-top:20px;
     font-size:18px;
@@ -27,12 +26,11 @@ h2 {
     margin-bottom:10px;
 }
 
-/* CONTAINER */
 .container {
     padding:15px;
 }
 
-/* MAP PANEL */
+/* PANEL */
 .map {
     width:100%;
     max-width:500px;
@@ -43,7 +41,6 @@ h2 {
     background:#111;
 }
 
-/* BUTTONS */
 .btn {
     background:#222;
     color:#fff;
@@ -68,7 +65,6 @@ h2 {
     padding:10px;
 }
 
-/* IFRAME */
 iframe {
     width:100%;
     height:230px;
@@ -76,11 +72,22 @@ iframe {
     border:1px solid #333;
 }
 
-/* TITLE */
 #title {
     font-size:14px;
     margin-bottom:10px;
     color:#00e676;
+}
+
+/* SOUND BUTTON */
+.soundBtn {
+    margin-top:10px;
+    background:#00c853;
+    color:#000;
+    border:none;
+    padding:10px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:bold;
 }
 </style>
 </head>
@@ -95,14 +102,17 @@ iframe {
 
 <div class="container">
 
-<!-- CITY SELECTOR -->
+<!-- SELECTOR -->
 <div class="map">
-    🗺️ Select Live Camera<br>
+    🗺️ Select Camera<br>
 
     <button class="btn" onclick="loadCam('newyork')">🇺🇸 New York</button>
     <button class="btn" onclick="loadCam('davao')">🇵🇭 Davao City</button>
     <button class="btn" onclick="loadCam('losangeles')">🇺🇸 Los Angeles</button>
     <button class="btn" onclick="loadCam('fremont')">🇺🇸 Fremont</button>
+
+    <br>
+    <button class="soundBtn" onclick="toggleSound()">🔊 SOUND</button>
 </div>
 
 <!-- SCREEN -->
@@ -111,7 +121,8 @@ iframe {
 <p id="title">📡 Live Feed: New York City</p>
 
 <iframe id="cam"
-src="https://www.youtube.com/embed/q-zthUJSghc?si=l0SjJOrqu6vXPdEB"
+src="https://www.youtube.com/embed/q-zthUJSghc?autoplay=1&mute=1"
+allow="autoplay; encrypted-media"
 allowfullscreen>
 </iframe>
 
@@ -119,33 +130,62 @@ allowfullscreen>
 
 </div>
 
+<!-- 🎧 BACKGROUND SOUND -->
+<audio id="bgSound" loop>
+    <source src="ambient.mp3" type="audio/mpeg">
+</audio>
+
 <script>
 
-/* CAM DATABASE */
+/* CAMS */
 const cams = {
     newyork: {
         title: "New York City Live",
-        url: "https://www.youtube.com/embed/q-zthUJSghc?si=l0SjJOrqu6vXPdEB"
+        url: "https://www.youtube.com/embed/q-zthUJSghc?autoplay=1&mute=1"
     },
     davao: {
         title: "Davao City Live",
-        url: "https://www.youtube.com/embed/I_pE-WeOvNs?si=Fz6BOT3EYiugHbT3"
+        url: "https://www.youtube.com/embed/I_pE-WeOvNs?autoplay=1&mute=1"
     },
     losangeles: {
         title: "Los Angeles Live",
-        url: "https://www.youtube.com/embed/EO_1LWqsCNE?si=IG6uUr1wQ_L1Ffdm"
+        url: "https://www.youtube.com/embed/EO_1LWqsCNE?autoplay=1&mute=1"
     },
     fremont: {
         title: "Fremont Live",
-        url: "https://www.youtube.com/embed/gDcfh-Wm0xE?si=mKkyIV7QpWtQeis-"
+        url: "https://www.youtube.com/embed/gDcfh-Wm0xE?autoplay=1&mute=1"
     }
 };
 
-/* SWITCH CAMERA */
+/* SWITCH CAM */
 function loadCam(city){
     document.getElementById("cam").src = cams[city].url;
-    document.getElementById("title").innerText = "📡 Live Feed: " + cams[city].title;
+    document.getElementById("title").innerText =
+    "📡 Live Feed: " + cams[city].title;
 }
+
+/* SOUND CONTROL */
+let soundOn = false;
+
+function toggleSound(){
+    let sound = document.getElementById("bgSound");
+
+    if(soundOn){
+        sound.pause();
+        soundOn = false;
+    } else {
+        sound.volume = 0.3;
+        sound.play().catch(()=>{});
+        soundOn = true;
+    }
+}
+
+/* AUTO SOUND START (after click anywhere) */
+document.body.addEventListener("click", function () {
+    let sound = document.getElementById("bgSound");
+    sound.volume = 0.2;
+    sound.play().catch(()=>{});
+}, { once: true });
 
 </script>
 
