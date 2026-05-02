@@ -19,12 +19,18 @@ body {
     position: fixed;
     top: 0;
     width: 100%;
-    background: rgba(0,0,0,0.9);
+    background: rgba(0,0,0,0.95);
     display: flex;
-    justify-content: space-around;
-    padding: 12px 0;
+    gap: 12px;
+    padding: 12px 10px;
+    overflow-x: auto;
+    white-space: nowrap;
     z-index: 999;
     border-bottom:1px solid #222;
+}
+
+.top-menu::-webkit-scrollbar{
+    display:none;
 }
 
 .top-menu a {
@@ -32,12 +38,21 @@ body {
     text-decoration: none;
     font-size: 13px;
     font-weight: bold;
+    padding:8px 12px;
+    border-radius:8px;
+    background:#111;
+    transition:0.2s;
+}
+
+.top-menu a:hover{
+    background:#00c853;
+    color:black;
 }
 
 /* MAIN */
 .container {
     padding:20px;
-    margin-top:80px;
+    margin-top:90px;
 }
 
 /* TITLE */
@@ -66,7 +81,7 @@ h2 {
     text-align:left;
 }
 
-/* 📰 NEWS TICKER */
+/* NEWS TICKER */
 .news-ticker {
     background:#111;
     border:1px solid #222;
@@ -133,6 +148,7 @@ video {
 .booking { background:#ff9800; }
 .watch { background:#e53935; }
 .trial { background:#00e676; color:black; }
+.vision { background:#8e24aa; }
 
 /* DISABLED */
 .btn:disabled {
@@ -174,6 +190,7 @@ video {
     <a href="watch.html">📺 Watch</a>
     <a href="rensonchatroom.html">💬 Chat</a>
     <a href="booking.html">🏡 Booking</a>
+    <a href="vision.html">🌿 Vision</a>
 </div>
 
 <div class="container">
@@ -219,18 +236,34 @@ video {
 <!-- BUTTONS -->
 <div class="btn-group">
 
-<button class="btn connect" id="connectBtn" disabled onclick="goLogin()">CONNECT INTERNET 🌐</button>
+<button class="btn connect" id="connectBtn" disabled onclick="goLogin()">
+CONNECT INTERNET 🌐
+</button>
 
-<button class="btn games" id="gameBtn" disabled onclick="goGames()">PLAY GAMES 🎮</button>
+<button class="btn games" id="gameBtn" disabled onclick="goGames()">
+PLAY GAMES 🎮
+</button>
 
-<button class="btn booking" id="bookBtn" disabled onclick="goBooking()">BOOK ROOMS 🏡</button>
+<button class="btn booking" id="bookBtn" disabled onclick="goBooking()">
+BOOK ROOMS 🏡
+</button>
 
-<button class="btn watch" onclick="goWatch()">WATCH FREE TV 📺</button>
+<button class="btn watch" onclick="goWatch()">
+WATCH FREE TV 📺
+</button>
 
-<button class="btn trial" onclick="goTrial()">FREE WIFI (15 MIN) ⚡</button>
+<button class="btn trial" onclick="goTrial()">
+FREE WIFI (15 MIN) ⚡
+</button>
 
-<!-- 🌍 NEW BUTTON -->
-<button class="btn watch" onclick="goCams()">🌍 WORLD CAMS</button>
+<button class="btn watch" onclick="goCams()">
+🌍 WORLD CAMS
+</button>
+
+<!-- NEW VISION BUTTON -->
+<button class="btn vision" onclick="goVision()">
+🌿 Renson Vision
+</button>
 
 </div>
 
@@ -254,29 +287,42 @@ setTimeout(() => {
 function goLogin(){
     window.location.href = "http://192.168.22.1/login2.html";
 }
+
 function goGames(){
     window.location.href = "games.html";
 }
+
 function goBooking(){
     window.location.href = "booking.html";
 }
+
 function goWatch(){
     window.location.href = "watch.html";
 }
+
 function goTrial(){
     window.location.href = "http://192.168.22.1/login?username=trial";
 }
 
-/* 🌍 WORLD CAMS */
+/* WORLD CAMS */
 function goCams(){
     window.location.href = "worldcams.html";
 }
 
+/* NEW VISION PAGE */
+function goVision(){
+    window.location.href = "vision.html";
+}
+
 /* MUSIC */
 document.body.addEventListener("click", function () {
+
     let music = document.getElementById("bgmusic");
+
     music.volume = 0.2;
+
     music.play().catch(()=>{});
+
 }, { once: true });
 
 /* PROGRESS */
@@ -290,42 +336,60 @@ let intervalUI = setInterval(() => {
 
     timeLeft--;
 
-    progressBar.style.width = ((duration - timeLeft) / duration) * 100 + "%";
-    statusText.innerText = "Please wait " + timeLeft + " seconds...";
+    progressBar.style.width =
+    ((duration - timeLeft) / duration) * 100 + "%";
+
+    statusText.innerText =
+    "Please wait " + timeLeft + " seconds...";
 
     if(timeLeft <= 0){
+
         clearInterval(intervalUI);
+
         statusText.innerText = "System Ready!";
+
     }
 
 }, 1000);
 
 /* DATE & TIME */
 setInterval(() => {
+
     let now = new Date();
 
     document.getElementById("dateTime").innerHTML =
     "📅 " + now.toLocaleDateString() +
     "<br>🕒 " + now.toLocaleTimeString();
+
 }, 1000);
 
 /* NEWS ROTATION */
 const newsList = [
+
     "Lopez: Road rehabilitation ongoing along Maharlika Highway",
+
     "Calauag: Cybercrime enforcement operations continue",
+
     "Quezon: Agriculture irrigation projects expanded",
+
     "Barangay WiFi system maintenance scheduled",
+
     "Local disaster preparedness monitoring active"
+
 ];
 
 let index = 0;
 
 function updateNews(){
-    document.getElementById("newsText").innerText = newsList[index];
+
+    document.getElementById("newsText").innerText =
+    newsList[index];
+
     index = (index + 1) % newsList.length;
 }
 
 updateNews();
+
 setInterval(updateNews, 6000);
 
 </script>
