@@ -183,7 +183,7 @@ video {
 <!-- DATE & TIME -->
 <div id="dateTime"></div>
 
-<!-- 📰 NEWS TICKER (REPLACED MARQUEE) -->
+<!-- NEWS TICKER -->
 <div class="news-ticker">
 📰 <span id="newsText">Loading local news...</span>
 </div>
@@ -229,6 +229,9 @@ video {
 
 <button class="btn trial" onclick="goTrial()">FREE WIFI (15 MIN) ⚡</button>
 
+<!-- 🌍 NEW BUTTON -->
+<button class="btn watch" onclick="goCams()">🌍 WORLD CAMS</button>
+
 </div>
 
 </div>
@@ -262,6 +265,11 @@ function goWatch(){
 }
 function goTrial(){
     window.location.href = "http://192.168.22.1/login?username=trial";
+}
+
+/* 🌍 WORLD CAMS */
+function goCams(){
+    window.location.href = "worldcams.html";
 }
 
 /* MUSIC */
@@ -301,7 +309,7 @@ setInterval(() => {
     "<br>🕒 " + now.toLocaleTimeString();
 }, 1000);
 
-/* 📰 AUTO NEWS ROTATION */
+/* NEWS ROTATION */
 const newsList = [
     "Lopez: Road rehabilitation ongoing along Maharlika Highway",
     "Calauag: Cybercrime enforcement operations continue",
