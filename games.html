@@ -2,14 +2,13 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Renson HTML5 Games</title>
+<title>Renson Gaming Hub</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-
 body{
     margin:0;
-    font-family:Arial, sans-serif;
+    font-family:Arial;
     background:linear-gradient(to bottom,#000,#111);
     color:white;
     text-align:center;
@@ -17,13 +16,12 @@ body{
 
 /* HEADER */
 .header{
-    background:#000;
     padding:15px;
     font-size:20px;
     font-weight:bold;
     color:#00e676;
+    background:#000;
     border-bottom:2px solid #00e676;
-    box-shadow:0 0 10px #00e676;
 }
 
 /* MARQUEE */
@@ -34,35 +32,24 @@ marquee{
     font-size:14px;
 }
 
-/* GRID */
-.grid{
-    display:grid;
-    grid-template-columns:1fr;
-    gap:15px;
+/* CONTAINER */
+.container{
     padding:20px;
 }
 
-/* CARD */
-.card{
-    background:#111;
-    border:1px solid #222;
-    border-radius:15px;
-    padding:15px;
-    box-shadow:0 0 10px rgba(0,255,0,0.2);
-}
-
-/* BUTTON */
+/* CARD BUTTONS */
 .btn{
     display:block;
     background:#00c853;
     color:white;
     padding:14px;
-    margin-top:10px;
+    margin:10px auto;
     border:none;
     border-radius:10px;
     font-size:16px;
     font-weight:bold;
-    cursor:pointer;
+    width:90%;
+    max-width:320px;
     text-decoration:none;
 }
 
@@ -71,16 +58,15 @@ marquee{
     transform:scale(1.02);
 }
 
-/* CANVAS */
-canvas{
-    background:#000;
-    border:1px solid #00e676;
-    border-radius:10px;
-    margin-top:10px;
-}
-
+/* SECONDARY */
 .back{
     background:#222;
+}
+
+.info{
+    font-size:13px;
+    color:#aaa;
+    margin-top:10px;
 }
 
 </style>
@@ -88,96 +74,39 @@ canvas{
 
 <body>
 
+<!-- 🔥 MONETAG (TOP - HUB PAGE IMPRESSION BOOST) -->
+<script src="https://quge5.com/88/tag.min.js" data-zone="233397" async data-cfasync="false"></script>
+
 <div class="header">
-🎮 HTML5 GAME HUB
+🎮 RENSON GAMING HUB
 </div>
 
 <marquee>
-🔥 Play Snake • Pong • Catch Game • Tap Speed • Offline Browser Games
+🔥 Mobile Games • Snake • Pong • Tap Speed • More Games Coming Soon
 </marquee>
 
-<!-- 🔥 MONETAG (TOP BOOST) -->
-<script src="https://quge5.com/88/tag.min.js" data-zone="233397" async data-cfasync="false"></script>
+<div class="container">
 
-<div class="grid">
+<!-- LINKS ONLY (NO GAME CODE HERE) -->
 
-<!-- SNAKE GAME -->
-<div class="card">
-<h3>🐍 Snake Game</h3>
-<canvas id="snake" width="300" height="300"></canvas>
-<button class="btn" onclick="startSnake()">START SNAKE</button>
+<a class="btn" href="snake/index.html">🐍 Play Snake Game</a>
+
+<a class="btn" href="pong/index.html">🏓 Play Pong Game</a>
+
+<a class="btn" href="tap/index.html">⚡ Tap Speed Game</a>
+
+<a class="btn" href="https://rensonecoparkphil.com/">🌐 Visit Main Site</a>
+
+<a class="btn back" href="index.html">⬅ Back to Home</a>
+
+<div class="info">
+📱 Best viewed on mobile phones<br>
+🎮 Tap a game to start playing instantly
 </div>
-
-<!-- PONG GAME -->
-<div class="card">
-<h3>🏓 Pong Game</h3>
-<canvas id="pong" width="300" height="200"></canvas>
-<button class="btn" onclick="startPong()">START PONG</button>
-</div>
-
-<!-- TAP SPEED GAME -->
-<div class="card">
-<h3>⚡ Tap Speed Game</h3>
-<p>Click as fast as you can in 10 seconds!</p>
-<h2 id="score">0</h2>
-<button class="btn" onclick="tap()">TAP!</button>
-<button class="btn" onclick="resetTap()">RESET</button>
-</div>
-
-<!-- BACK -->
-<a class="btn back" href="index.html">⬅ BACK HOME</a>
 
 </div>
 
-<script>
-
-/* TAP GAME */
-let score = 0;
-let active = false;
-let timeLeft = 10;
-
-function tap(){
-    if(!active){
-        active = true;
-        score = 0;
-        timeLeft = 10;
-
-        let timer = setInterval(()=>{
-            timeLeft--;
-
-            if(timeLeft <= 0){
-                clearInterval(timer);
-                active = false;
-                alert("Time's up! Score: " + score);
-            }
-        },1000);
-    }
-
-    if(active){
-        score++;
-        document.getElementById("score").innerText = score;
-    }
-}
-
-function resetTap(){
-    score = 0;
-    active = false;
-    document.getElementById("score").innerText = 0;
-}
-
-/* SIMPLE SNAKE */
-function startSnake(){
-    alert("Snake Game loading... (upgrade version coming soon)");
-}
-
-/* PONG */
-function startPong(){
-    alert("Pong Game loading... (upgrade version coming soon)");
-}
-
-</script>
-
-<!-- 🔥 MONETAG (BOTTOM BOOST) -->
+<!-- 🔥 MONETAG (BOTTOM - EXIT IMPACT) -->
 <script src="https://quge5.com/88/tag.min.js" data-zone="233397" async data-cfasync="false"></script>
 
 </body>
