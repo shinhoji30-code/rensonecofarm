@@ -21,7 +21,6 @@ h2 {
     color:#00e676;
 }
 
-/* OPERATOR */
 .header {
     font-size:13px;
     color:#aaa;
@@ -72,12 +71,12 @@ h2 {
 /* IFRAME */
 iframe {
     width:100%;
-    height:220px;
+    height:230px;
     border-radius:10px;
     border:1px solid #333;
 }
 
-/* LABEL */
+/* TITLE */
 #title {
     font-size:14px;
     margin-bottom:10px;
@@ -96,24 +95,23 @@ iframe {
 
 <div class="container">
 
-<!-- MAP SELECTION -->
+<!-- CITY SELECTOR -->
 <div class="map">
-    🗺️ Select City Cam<br>
+    🗺️ Select Live Camera<br>
 
-    <button class="btn" onclick="loadCam('tokyo')">🇯🇵 Tokyo</button>
     <button class="btn" onclick="loadCam('newyork')">🇺🇸 New York</button>
-    <button class="btn" onclick="loadCam('london')">🇬🇧 London</button>
-    <button class="btn" onclick="loadCam('paris')">🇫🇷 Paris</button>
-    <button class="btn" onclick="loadCam('dubai')">🇦🇪 Dubai</button>
+    <button class="btn" onclick="loadCam('davao')">🇵🇭 Davao City</button>
+    <button class="btn" onclick="loadCam('losangeles')">🇺🇸 Los Angeles</button>
+    <button class="btn" onclick="loadCam('fremont')">🇺🇸 Fremont</button>
 </div>
 
 <!-- SCREEN -->
 <div class="screen">
 
-<p id="title">📡 Live Feed: Tokyo Street Cam</p>
+<p id="title">📡 Live Feed: New York City</p>
 
 <iframe id="cam"
-src="https://www.youtube.com/embed/5hZsV8h9CzA"
+src="https://www.youtube.com/embed/q-zthUJSghc?si=l0SjJOrqu6vXPdEB"
 allowfullscreen>
 </iframe>
 
@@ -123,27 +121,23 @@ allowfullscreen>
 
 <script>
 
-/* CAMERA DATABASE */
+/* CAM DATABASE */
 const cams = {
-    tokyo: {
-        title: "Tokyo Street Cam",
-        url: "https://www.youtube.com/embed/5hZsV8h9CzA"
-    },
     newyork: {
-        title: "New York City Live Cam",
-        url: "https://www.youtube.com/embed/2D0u4N0W8Gk"
+        title: "New York City Live",
+        url: "https://www.youtube.com/embed/q-zthUJSghc?si=l0SjJOrqu6vXPdEB"
     },
-    london: {
-        title: "London Traffic Cam",
-        url: "https://www.youtube.com/embed/5rYh6Q8X1vA"
+    davao: {
+        title: "Davao City Live",
+        url: "https://www.youtube.com/embed/I_pE-WeOvNs?si=Fz6BOT3EYiugHbT3"
     },
-    paris: {
-        title: "Paris City View Cam",
-        url: "https://www.youtube.com/embed/6s1qv9kP3zA"
+    losangeles: {
+        title: "Los Angeles Live",
+        url: "https://www.youtube.com/embed/EO_1LWqsCNE?si=IG6uUr1wQ_L1Ffdm"
     },
-    dubai: {
-        title: "Dubai Skyline Live Cam",
-        url: "https://www.youtube.com/embed/1i8vQpXk2mQ"
+    fremont: {
+        title: "Fremont Live",
+        url: "https://www.youtube.com/embed/gDcfh-Wm0xE?si=mKkyIV7QpWtQeis-"
     }
 };
 
