@@ -20,6 +20,27 @@ body{
     background:#f7f7f7;
 }
 
+/* TOP BAR */
+.topbar{
+    background:#111;
+    padding:10px;
+    position:sticky;
+    top:0;
+    z-index:999;
+}
+
+.topbar button{
+    padding:10px 16px;
+    background:#00a86b;
+    border:none;
+    border-radius:8px;
+    color:white;
+    font-size:13px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+/* HEADER */
 .header{
     background:#00a86b;
     color:white;
@@ -97,6 +118,11 @@ button{
 
 <body>
 
+<!-- BACK BUTTON -->
+<div class="topbar">
+    <button onclick="goHome()">⬅ Back to Home</button>
+</div>
+
 <div class="header">
     <h1>🏡 Renson EcoFarm Stay</h1>
     <p>Like Airbnb • Nature Escape • Free WiFi 📶</p>
@@ -169,7 +195,12 @@ button{
 
 <script>
 
-// COMPUTE TOTAL
+/* BACK TO HOME */
+function goHome(){
+    window.location.href = "index.html";
+}
+
+/* COMPUTE TOTAL */
 function computeTotal(){
 
     let room = document.getElementById("room").value;
@@ -200,8 +231,7 @@ function computeTotal(){
     return total;
 }
 
-
-// SUBMIT BOOKING
+/* SUBMIT BOOKING */
 function submitBooking(){
 
     let total = computeTotal();
@@ -228,8 +258,7 @@ function submitBooking(){
 
 }
 
-
-// DATE LIMIT
+/* DATE LIMIT */
 let today = new Date().toISOString().split("T")[0];
 document.getElementById("checkin").min = today;
 document.getElementById("checkout").min = today;
