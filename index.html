@@ -54,7 +54,7 @@ h2 {
     font-weight:bold;
 }
 
-/* BOX STYLE (weather/news/system) */
+/* BOX STYLE */
 .box{
     background:#111;
     color:#ccc;
@@ -64,6 +64,31 @@ h2 {
     border:1px solid #222;
     font-size:14px;
     text-align:left;
+}
+
+/* 📰 NEWS TICKER */
+.news-ticker {
+    background:#111;
+    border:1px solid #222;
+    padding:10px;
+    margin-bottom:15px;
+    border-radius:10px;
+    overflow:hidden;
+    white-space:nowrap;
+    position:relative;
+    font-size:13px;
+    color:#00e676;
+}
+
+#newsText {
+    display:inline-block;
+    padding-left:100%;
+    animation: scrollNews 18s linear infinite;
+}
+
+@keyframes scrollNews {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
 }
 
 /* VIDEO */
@@ -158,24 +183,24 @@ video {
 <!-- DATE & TIME -->
 <div id="dateTime"></div>
 
-<!-- MARQUEE -->
-<marquee behavior="scroll" direction="left">
-🔥 Welcome to Renson Barangay WiFi • Fast Internet • EcoFarm Rooms • Free TV • Online Games
-</marquee>
+<!-- 📰 NEWS TICKER (REPLACED MARQUEE) -->
+<div class="news-ticker">
+📰 <span id="newsText">Loading local news...</span>
+</div>
 
 <!-- WEATHER -->
 <div class="box">
 ☀️ Weather Today: Sunny • 31°C
 </div>
 
-<!-- 📰 NEWS PANEL -->
+<!-- NEWS BOX -->
 <div class="box">
 📰 LATEST NEWS (Lopez / Calauag / Quezon)<br><br>
 
 🚧 Road rehabilitation ongoing (Maharlika Highway improvements)<br>
-🌾 Irrigation & agriculture support projects in Lopez<br>
-⚠️ Local security monitoring updates in Quezon province<br>
-🚨 Anti-cybercrime enforcement operations in Calauag<br><br>
+🌾 Agriculture irrigation projects in Lopez<br>
+⚠️ Local security monitoring updates<br>
+🚨 Cybercrime enforcement in Calauag<br><br>
 
 <small>Regional updates feed</small>
 </div>
@@ -215,11 +240,7 @@ video {
 
 <script>
 
-/* UNLOCK BUTTONS */
-let connectBtn = document.getElementById("connectBtn");
-let gameBtn = document.getElementById("gameBtn");
-let bookBtn = document.getElementById("bookBtn");
-
+/* BUTTON UNLOCK */
 setTimeout(() => {
     connectBtn.disabled = false;
     gameBtn.disabled = false;
@@ -230,19 +251,15 @@ setTimeout(() => {
 function goLogin(){
     window.location.href = "http://192.168.22.1/login2.html";
 }
-
 function goGames(){
     window.location.href = "gaming.html";
 }
-
 function goBooking(){
     window.location.href = "booking.html";
 }
-
 function goWatch(){
     window.location.href = "watch.html";
 }
-
 function goTrial(){
     window.location.href = "http://192.168.22.1/login?username=trial";
 }
@@ -283,6 +300,25 @@ setInterval(() => {
     "📅 " + now.toLocaleDateString() +
     "<br>🕒 " + now.toLocaleTimeString();
 }, 1000);
+
+/* 📰 AUTO NEWS ROTATION */
+const newsList = [
+    "Lopez: Road rehabilitation ongoing along Maharlika Highway",
+    "Calauag: Cybercrime enforcement operations continue",
+    "Quezon: Agriculture irrigation projects expanded",
+    "Barangay WiFi system maintenance scheduled",
+    "Local disaster preparedness monitoring active"
+];
+
+let index = 0;
+
+function updateNews(){
+    document.getElementById("newsText").innerText = newsList[index];
+    index = (index + 1) % newsList.length;
+}
+
+updateNews();
+setInterval(updateNews, 6000);
 
 </script>
 
