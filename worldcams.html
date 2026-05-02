@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>World Live Cam Portal</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+    margin:0;
+    font-family: Arial, sans-serif;
+    background:#000;
+    color:#fff;
+    text-align:center;
+}
+
+/* HEADER */
+h2 {
+    margin-top:20px;
+    font-size:18px;
+    color:#00e676;
+}
+
+/* OPERATOR */
+.header {
+    font-size:13px;
+    color:#aaa;
+    margin-bottom:10px;
+}
+
+/* CONTAINER */
+.container {
+    padding:15px;
+}
+
+/* MAP PANEL */
+.map {
+    width:100%;
+    max-width:500px;
+    margin:auto;
+    padding:10px;
+    border:1px solid #222;
+    border-radius:10px;
+    background:#111;
+}
+
+/* BUTTONS */
+.btn {
+    background:#222;
+    color:#fff;
+    border:1px solid #333;
+    padding:10px;
+    margin:5px;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:13px;
+}
+
+.btn:hover {
+    background:#00c853;
+}
+
+/* SCREEN */
+.screen {
+    margin-top:15px;
+    background:#111;
+    border:1px solid #222;
+    border-radius:10px;
+    padding:10px;
+}
+
+/* IFRAME */
+iframe {
+    width:100%;
+    height:220px;
+    border-radius:10px;
+    border:1px solid #333;
+}
+
+/* LABEL */
+#title {
+    font-size:14px;
+    margin-bottom:10px;
+    color:#00e676;
+}
+</style>
+</head>
+
+<body>
+
+<h2>🌍 WORLD LIVE CAM CONTROL CENTER</h2>
+
+<div class="header">
+👤 Operator: <b>Renson</b> | 🛰️ System Online
+</div>
+
+<div class="container">
+
+<!-- MAP SELECTION -->
+<div class="map">
+    🗺️ Select City Cam<br>
+
+    <button class="btn" onclick="loadCam('tokyo')">🇯🇵 Tokyo</button>
+    <button class="btn" onclick="loadCam('newyork')">🇺🇸 New York</button>
+    <button class="btn" onclick="loadCam('london')">🇬🇧 London</button>
+    <button class="btn" onclick="loadCam('paris')">🇫🇷 Paris</button>
+    <button class="btn" onclick="loadCam('dubai')">🇦🇪 Dubai</button>
+</div>
+
+<!-- SCREEN -->
+<div class="screen">
+
+<p id="title">📡 Live Feed: Tokyo Street Cam</p>
+
+<iframe id="cam"
+src="https://www.youtube.com/embed/5hZsV8h9CzA"
+allowfullscreen>
+</iframe>
+
+</div>
+
+</div>
+
+<script>
+
+/* CAMERA DATABASE */
+const cams = {
+    tokyo: {
+        title: "Tokyo Street Cam",
+        url: "https://www.youtube.com/embed/5hZsV8h9CzA"
+    },
+    newyork: {
+        title: "New York City Live Cam",
+        url: "https://www.youtube.com/embed/2D0u4N0W8Gk"
+    },
+    london: {
+        title: "London Traffic Cam",
+        url: "https://www.youtube.com/embed/5rYh6Q8X1vA"
+    },
+    paris: {
+        title: "Paris City View Cam",
+        url: "https://www.youtube.com/embed/6s1qv9kP3zA"
+    },
+    dubai: {
+        title: "Dubai Skyline Live Cam",
+        url: "https://www.youtube.com/embed/1i8vQpXk2mQ"
+    }
+};
+
+/* SWITCH CAMERA */
+function loadCam(city){
+    document.getElementById("cam").src = cams[city].url;
+    document.getElementById("title").innerText = "📡 Live Feed: " + cams[city].title;
+}
+
+</script>
+
+</body>
+</html>
