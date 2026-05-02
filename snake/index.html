@@ -2,85 +2,69 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Renson HTML5 Games</title>
+<title>Renson HTML5 Mobile Gaming Pro</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
 
 body{
     margin:0;
-    font-family:Arial, sans-serif;
+    font-family:Arial;
     background:linear-gradient(to bottom,#000,#111);
     color:white;
     text-align:center;
 }
 
-/* HEADER */
 .header{
-    background:#000;
     padding:15px;
-    font-size:20px;
+    font-size:18px;
     font-weight:bold;
     color:#00e676;
+    background:#000;
     border-bottom:2px solid #00e676;
-    box-shadow:0 0 10px #00e676;
 }
 
-/* MARQUEE */
-marquee{
-    background:#111;
-    padding:10px;
-    color:#00e676;
-    font-size:14px;
+.container{
+    padding:15px;
 }
 
-/* GRID */
-.grid{
-    display:grid;
-    grid-template-columns:1fr;
-    gap:15px;
-    padding:20px;
-}
-
-/* CARD */
 .card{
     background:#111;
     border:1px solid #222;
     border-radius:15px;
+    margin-bottom:20px;
     padding:15px;
-    box-shadow:0 0 10px rgba(0,255,0,0.2);
 }
 
-/* BUTTON */
-.btn{
-    display:block;
-    background:#00c853;
-    color:white;
-    padding:14px;
-    margin-top:10px;
-    border:none;
-    border-radius:10px;
-    font-size:16px;
-    font-weight:bold;
-    cursor:pointer;
-    text-decoration:none;
-}
-
-.btn:hover{
-    opacity:0.9;
-    transform:scale(1.02);
-}
-
-/* CANVAS */
 canvas{
-    background:#000;
+    background:black;
     border:1px solid #00e676;
     border-radius:10px;
+    width:100%;
+    max-width:320px;
+}
+
+.btn{
+    background:#00c853;
+    color:white;
+    border:none;
+    padding:12px;
+    margin-top:10px;
+    border-radius:10px;
+    width:100%;
+    max-width:320px;
+    font-weight:bold;
+}
+
+.score{
     margin-top:10px;
 }
 
-.back{
-    background:#222;
+/* ADS SAFE SPACE */
+.ad-space{
+    margin:10px auto;
+    font-size:12px;
+    color:#777;
 }
 
 </style>
@@ -88,97 +72,85 @@ canvas{
 
 <body>
 
-<div class="header">
-🎮 HTML5 GAME HUB
-</div>
-
-<marquee>
-🔥 Play Snake • Pong • Catch Game • Tap Speed • Offline Browser Games
-</marquee>
-
-<!-- 🔥 MONETAG (TOP BOOST) -->
+<!-- 🔥 MONETAG TOP (HIGH VIEW IMPRESSION) -->
 <script src="https://quge5.com/88/tag.min.js" data-zone="233397" async data-cfasync="false"></script>
 
-<div class="grid">
+<div class="header">🎮 MOBILE GAMING PRO</div>
 
-<!-- SNAKE GAME -->
+<div class="ad-space">📢 Ads help keep games FREE</div>
+
+<div class="container">
+
+<!-- SNAKE -->
 <div class="card">
 <h3>🐍 Snake Game</h3>
 <canvas id="snake" width="300" height="300"></canvas>
-<button class="btn" onclick="startSnake()">START SNAKE</button>
+<button class="btn" onclick="startSnake()">START</button>
+<div class="score">Score: <span id="snakeScore">0</span></div>
 </div>
 
-<!-- PONG GAME -->
+<!-- PONG -->
 <div class="card">
 <h3>🏓 Pong Game</h3>
 <canvas id="pong" width="300" height="200"></canvas>
-<button class="btn" onclick="startPong()">START PONG</button>
+<button class="btn" onclick="startPong()">START</button>
 </div>
 
-<!-- TAP SPEED GAME -->
+<!-- TAP -->
 <div class="card">
-<h3>⚡ Tap Speed Game</h3>
-<p>Click as fast as you can in 10 seconds!</p>
+<h3>⚡ Tap Game</h3>
 <h2 id="score">0</h2>
-<button class="btn" onclick="tap()">TAP!</button>
+<button class="btn" onclick="tap()">TAP</button>
 <button class="btn" onclick="resetTap()">RESET</button>
 </div>
 
-<!-- BACK -->
-<a class="btn back" href="index.html">⬅ BACK HOME</a>
-
 </div>
+
+<!-- 🔥 MONETAG BOTTOM (POPUNDER + EXIT IMPACT) -->
+<script src="https://quge5.com/88/tag.min.js" data-zone="233397" async data-cfasync="false"></script>
 
 <script>
 
 /* TAP GAME */
-let score = 0;
-let active = false;
-let timeLeft = 10;
+let score=0;
+let active=false;
+let timeLeft=10;
 
 function tap(){
     if(!active){
-        active = true;
-        score = 0;
-        timeLeft = 10;
+        active=true;
+        score=0;
+        timeLeft=10;
 
-        let timer = setInterval(()=>{
+        let timer=setInterval(()=>{
             timeLeft--;
-
-            if(timeLeft <= 0){
+            if(timeLeft<=0){
                 clearInterval(timer);
-                active = false;
-                alert("Time's up! Score: " + score);
+                active=false;
+                alert("Score: "+score);
             }
         },1000);
     }
-
     if(active){
         score++;
-        document.getElementById("score").innerText = score;
+        document.getElementById("score").innerText=score;
     }
 }
 
 function resetTap(){
-    score = 0;
-    active = false;
-    document.getElementById("score").innerText = 0;
+    score=0;
+    document.getElementById("score").innerText=0;
 }
 
-/* SIMPLE SNAKE */
 function startSnake(){
-    alert("Snake Game loading... (upgrade version coming soon)");
+    alert("Snake loading...");
 }
 
-/* PONG */
 function startPong(){
-    alert("Pong Game loading... (upgrade version coming soon)");
+    alert("Pong loading...");
 }
 
 </script>
-
-<!-- 🔥 MONETAG (BOTTOM BOOST) -->
-<script src="https://quge5.com/88/tag.min.js" data-zone="233397" async data-cfasync="false"></script>
 
 </body>
 </html>
