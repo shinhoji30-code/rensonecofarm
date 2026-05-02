@@ -14,40 +14,48 @@ body {
     text-align:center;
 }
 
-/* TOP MENU */
+/* TOP MENU FULL */
 .top-menu {
     position: fixed;
     top: 0;
     width: 100%;
-    background: rgba(0,0,0,0.95);
+    background: rgba(0,0,0,0.85);
+    backdrop-filter: blur(10px);
     display: flex;
-    gap: 12px;
-    padding: 12px 10px;
+    gap: 8px;
+    padding: 10px;
     overflow-x: auto;
     white-space: nowrap;
     z-index: 999;
-    border-bottom:1px solid #222;
+    border-bottom:1px solid rgba(255,255,255,0.1);
 }
 
 .top-menu::-webkit-scrollbar{
     display:none;
 }
 
-.top-menu a {
+.top-menu a,
+.top-menu button {
     color: white;
     text-decoration: none;
     font-size: 13px;
     font-weight: bold;
-    padding:8px 12px;
-    border-radius:8px;
-    background:#111;
+    padding:8px 14px;
+    border-radius:20px;
+    background: rgba(255,255,255,0.08);
+    border:none;
+    cursor:pointer;
     transition:0.2s;
 }
 
-.top-menu a:hover{
+.top-menu a:hover,
+.top-menu button:hover {
     background:#00c853;
     color:black;
 }
+
+.connect { background:#00c853 !important; }
+.trial { background:#00e676 !important; color:black !important; }
 
 .container {
     padding:20px;
@@ -57,13 +65,13 @@ body {
 h2 { font-size:18px; }
 
 #dateTime{
-    margin-top:10px;
-    margin-bottom:10px;
+    margin:10px 0;
     color:#00e676;
     font-size:15px;
     font-weight:bold;
 }
 
+/* BOX */
 .box{
     background:#111;
     color:#ccc;
@@ -75,6 +83,7 @@ h2 { font-size:18px; }
     text-align:left;
 }
 
+/* NEWS */
 .news-ticker {
     background:#111;
     border:1px solid #222;
@@ -98,6 +107,7 @@ h2 { font-size:18px; }
     100% { transform: translateX(-100%); }
 }
 
+/* VIDEO */
 video {
     width:100%;
     max-width:420px;
@@ -105,39 +115,7 @@ video {
     margin-top:10px;
 }
 
-/* BUTTONS */
-.btn-group {
-    display:flex;
-    flex-direction:column;
-    gap:12px;
-    margin-top:20px;
-}
-
-.btn {
-    padding:16px;
-    font-size:16px;
-    border:none;
-    border-radius:10px;
-    cursor:pointer;
-    font-weight:bold;
-    width:90%;
-    max-width:320px;
-    margin:auto;
-}
-
-.connect { background:#00c853; }
-.games { background:#2979ff; }
-.booking { background:#ff9800; }
-.watch { background:#e53935; }
-.trial { background:#00e676; color:black; }
-.vision { background:#8e24aa; }
-
-.btn:disabled {
-    background:gray;
-    opacity:0.6;
-}
-
-/* 🔥 NEW TIMER STYLE */
+/* TIMER */
 #statusText {
     margin-top: 12px;
     font-size: 15px;
@@ -174,12 +152,25 @@ video {
 
 <body>
 
+<!-- FULL MENU -->
 <div class="top-menu">
-    <a href="index.html">🏠 Home</a>
-    <a href="watch.html">📺 Watch</a>
-    <a href="rensonchatroom.html">💬 Chat</a>
-    <a href="booking.html">🏡 Booking</a>
-    <a href="vision.html">🌿 Vision</a>
+
+<a href="index.html">🏠 Home</a>
+<a href="watch.html">📺 Watch TV</a>
+<a href="games.html">🎮 Games</a>
+<a href="worldcams.html">🌍 World</a>
+<a href="rensonchatroom.html">💬 Chat</a>
+<a href="booking.html">🏡 Booking</a>
+<a href="vision.html">🌿 Vision</a>
+
+<button id="connectBtn" class="connect" disabled onclick="connectNet()">
+CONNECT 🌐
+</button>
+
+<button class="trial" onclick="freeWifi()">
+FREE WIFI ⚡
+</button>
+
 </div>
 
 <div class="container">
@@ -197,7 +188,7 @@ video {
 <div class="box">
 📰 LATEST NEWS<br><br>
 🚧 Road rehabilitation ongoing<br>
-🌾 Agriculture irrigation projects<br>
+🌾 Agriculture projects<br>
 ⚠️ Security updates<br>
 </div>
 
@@ -205,23 +196,11 @@ video {
     <source src="ad.mp4" type="video/mp4">
 </video>
 
-<!-- 🔥 TIMER UI ADDED -->
+<!-- TIMER -->
 <p id="statusText">Please wait 10 seconds...</p>
 
 <div id="progressContainer">
   <div id="progressBar"></div>
-</div>
-
-<div class="btn-group">
-
-<button class="btn connect" id="connectBtn" disabled>CONNECT INTERNET 🌐</button>
-<button class="btn games" id="gameBtn" disabled>PLAY GAMES 🎮</button>
-<button class="btn booking" id="bookBtn" disabled>BOOK ROOMS 🏡</button>
-
-<button class="btn watch">WATCH FREE TV 📺</button>
-<button class="btn trial">FREE WIFI (15 MIN) ⚡</button>
-<button class="btn vision">🌿 Renson Vision</button>
-
 </div>
 
 </div>
@@ -230,19 +209,27 @@ video {
     <source src="music.mp3" type="audio/mpeg">
 </audio>
 
-<!-- ✅ MONETAG SCRIPT (UNCHANGED) -->
+<!-- MONETAG -->
 <script src="https://n6wxm.com/vignette.min.js" data-zone="10950262" async></script>
 
 <script>
 
-/* unlock buttons */
+/* CONNECT ACTION */
+function connectNet(){
+    alert("Connecting Internet...");
+}
+
+/* FREE WIFI ACTION */
+function freeWifi(){
+    window.location.href = "http://192.168.22.1/login?trial=1";
+}
+
+/* unlock connect */
 setTimeout(() => {
     connectBtn.disabled = false;
-    gameBtn.disabled = false;
-    bookBtn.disabled = false;
 }, 10000);
 
-/* TIMER LOGIC */
+/* TIMER */
 let duration = 10;
 let timeLeft = duration;
 
@@ -266,14 +253,14 @@ let intervalUI = setInterval(() => {
 
 }, 1000);
 
-/* music */
+/* MUSIC */
 document.body.addEventListener("click", function () {
     let music = document.getElementById("bgmusic");
     music.volume = 0.2;
     music.play().catch(()=>{});
 }, { once: true });
 
-/* time */
+/* TIME */
 setInterval(() => {
     let now = new Date();
     document.getElementById("dateTime").innerHTML =
@@ -281,7 +268,7 @@ setInterval(() => {
     "<br>🕒 " + now.toLocaleTimeString();
 }, 1000);
 
-/* news */
+/* NEWS */
 const newsList = [
 "Lopez road improvement ongoing",
 "Calauag cyber operations active",
