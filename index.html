@@ -5,9 +5,16 @@
 <title>Renson Barangay WiFi & EcoFarm Services</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- MONETAG -->
-<script src="https://quge5.com/88/tag.min.js"
-data-zone="233397" async data-cfasync="false"></script>
+<!-- MONETAG (IN-PAGE PUSH ZONE ALREADY CONFIGURED) -->
+<script>
+(function () {
+    var s = document.createElement('script');
+    s.dataset.zone = '10932617';
+    s.src = 'https://nap5k.com/tag.min.js';
+    s.async = true;
+    document.body.appendChild(s);
+})();
+</script>
 
 <style>
 
@@ -20,9 +27,7 @@ body{
     overflow-x:hidden;
 }
 
-/* =========================
-   TOP BAR
-========================= */
+/* TOP BAR */
 .top-bar{
     position:fixed;
     top:0;
@@ -49,9 +54,7 @@ body{
     user-select:none;
 }
 
-/* =========================
-   MENU (MOBILE DEFAULT)
-========================= */
+/* MENU */
 .menu{
     position:fixed;
     top:0;
@@ -95,9 +98,7 @@ body{
     display:block;
 }
 
-/* =========================
-   CONTENT
-========================= */
+/* CONTENT */
 .container{
     padding:20px;
     margin-top:80px;
@@ -168,45 +169,6 @@ button{
 
 .connect{background:#00c853;}
 .trial{background:#00e676;}
-
-/* =========================
-   DESKTOP FIX ONLY (UI)
-========================= */
-@media(min-width:768px){
-
-/* MENU becomes top horizontal bar */
-.menu{
-    position:fixed;
-    top:55px;
-    left:0;
-    width:100%;
-    height:auto;
-    flex-direction:row;
-    justify-content:center;
-    background:rgba(0,0,0,0.85);
-    padding:10px;
-    transition:none;
-}
-
-.menu a{
-    border:none;
-    padding:10px 15px;
-    margin:0 5px;
-    background:rgba(255,255,255,0.08);
-    border-radius:20px;
-    text-align:center;
-    white-space:nowrap;
-}
-
-.menu-toggle{
-    display:none;
-}
-
-.overlay{
-    display:none !important;
-}
-
-}
 
 </style>
 </head>
@@ -291,7 +253,7 @@ function freeWifi(){
 window.location.href="http://192.168.22.1/login?trial=1";
 }
 
-/* TIMER (UNCHANGED LOGIC) */
+/* TIMER */
 let t=10;
 let bar=document.getElementById("progressBar");
 let txt=document.getElementById("statusText");
@@ -309,14 +271,14 @@ btn.disabled=false;
 }
 },1000);
 
-/* TIME DISPLAY */
+/* TIME */
 setInterval(()=>{
 let d=new Date();
 document.getElementById("dateTime").innerHTML=
 "📅 "+d.toLocaleDateString()+"<br>🕒 "+d.toLocaleTimeString();
 },1000);
 
-/* MUSIC AUTOPLAY ON CLICK */
+/* MUSIC */
 document.body.addEventListener("click",()=>{
 let m=document.getElementById("bgmusic");
 m.volume=0.2;
