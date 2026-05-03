@@ -20,30 +20,27 @@ body{
     position:fixed;
     top:0;
     width:100%;
-    background:rgba(0,0,0,0.95);
+    background:rgba(0,0,0,0.9);
+    backdrop-filter: blur(10px);
     display:flex;
-    gap:15px;
-    padding:12px 10px;
+    gap:10px;
+    padding:10px;
     overflow-x:auto;
     white-space:nowrap;
     z-index:999;
     border-bottom:1px solid #222;
 }
-
-.top-menu::-webkit-scrollbar{
-    display:none;
-}
+.top-menu::-webkit-scrollbar{ display:none; }
 
 .top-menu a{
     color:white;
     text-decoration:none;
     font-size:13px;
     font-weight:bold;
-    padding:8px 12px;
-    border-radius:8px;
+    padding:8px 14px;
+    border-radius:20px;
     background:#111;
 }
-
 .top-menu a:hover{
     background:#00c853;
     color:black;
@@ -52,7 +49,8 @@ body{
 /* CONTAINER */
 .container{
     padding:20px;
-    margin-top:80px;
+    margin-top:90px;
+    margin-bottom:40px;
     max-width:900px;
     margin-left:auto;
     margin-right:auto;
@@ -61,15 +59,15 @@ body{
 /* TITLE */
 .title{
     text-align:center;
-    font-size:28px;
+    font-size:26px;
     color:#00e676;
-    margin-bottom:10px;
+    margin-bottom:5px;
 }
-
 .subtitle{
     text-align:center;
     color:#aaa;
-    margin-bottom:30px;
+    font-size:14px;
+    margin-bottom:25px;
 }
 
 /* CARD */
@@ -77,150 +75,157 @@ body{
     background:#111;
     border:1px solid #222;
     border-radius:15px;
-    padding:20px;
-    margin-bottom:20px;
-    box-shadow:0 0 10px rgba(0,0,0,0.5);
+    padding:18px;
+    margin-bottom:15px;
+    box-shadow:0 4px 15px rgba(0,0,0,0.5);
 }
 
 .card h2{
     color:#00e676;
     margin-top:0;
+    font-size:18px;
 }
 
 .card p{
-    line-height:1.8;
+    line-height:1.7;
     color:#ddd;
+    font-size:14px;
 }
 
 /* LIST */
 ul{
     padding-left:20px;
 }
-
 li{
-    margin-bottom:10px;
+    margin-bottom:8px;
+    font-size:14px;
     color:#ddd;
 }
 
-/* FOOTER */
-.footer{
-    text-align:center;
-    padding:30px 20px;
-    color:#777;
-    font-size:13px;
-}
-
+/* QUOTE */
 .quote{
     font-style:italic;
     color:#00e676;
     line-height:1.8;
 }
 
+/* CTA BUTTON */
+.cta{
+    text-align:center;
+    margin-top:20px;
+}
+.cta a{
+    display:inline-block;
+    background:#00c853;
+    color:black;
+    padding:14px 22px;
+    border-radius:30px;
+    text-decoration:none;
+    font-weight:bold;
+    font-size:15px;
+}
+
+/* FOOTER */
+.footer{
+    text-align:center;
+    padding:25px 15px;
+    color:#777;
+    font-size:12px;
+}
+
+/* MOBILE */
+@media (max-width:600px){
+
+    .title{
+        font-size:22px;
+    }
+
+    .card{
+        padding:15px;
+    }
+
+    .card p, li{
+        font-size:13px;
+    }
+
+}
 </style>
 </head>
 
 <body>
 
-<!-- MENU -->
 <div class="top-menu">
-    <a href="index.html">🏠 Home</a>
-    <a href="watch.html">📺 Watch</a>
-    <a href="rensonchatroom.html">💬 Chat</a>
-    <a href="booking.html">🏡 Booking</a>
-    <a href="vision.html">🌿 Vision</a>
+<a href="index.html">🏠 Home</a>
+<a href="watch.html">📺 Watch</a>
+<a href="rensonchatroom.html">💬 Chat</a>
+<a href="booking.html">🏡 Booking</a>
+<a href="vision.html">🌿 Vision</a>
 </div>
 
 <div class="container">
 
 <div class="title">🌿 Renson Ecopark</div>
-<div class="subtitle">Vision • Mission • Personal Inspiration</div>
+<div class="subtitle">Vision • Mission • Inspiration</div>
 
-<!-- STORY -->
 <div class="card">
 <h2>📖 Our Story</h2>
-
 <p>
-Ang Renson Ecopark o Renson Farm ay bunga ng sipag, tiyaga, at dedikasyon
-ni <b>Renson Avila</b>. Sa tulong ng inspirasyon mula sa kanyang pamilya
-at mga mahal sa buhay, unti-unti niyang nabuo ang isang lugar na puno
-ng pangarap, pagkakaisa, at pagmamahal sa kalikasan.
+Ang Renson Ecopark ay bunga ng sipag, tiyaga, at dedikasyon
+ni <b>Renson Avila</b>. Sa tulong ng inspirasyon mula sa pamilya,
+nabuo ang isang lugar na puno ng pangarap at pagmamahal sa kalikasan.
 </p>
-
 <p>
-Hindi naging madali ang kanyang paglalakbay,
-ngunit sa bawat pagsubok ay lalo siyang naging matatag.
-Ang Renson Ecopark ay simbolo ng kanyang determinasyon,
-pananampalataya, at tagumpay sa buhay.
+Sa bawat pagsubok, mas lalo itong tumibay.
+Ngayon, ito ay simbolo ng determinasyon at tagumpay.
 </p>
-
 </div>
 
-<!-- VISION -->
 <div class="card">
-
 <h2>🌟 Vision</h2>
-
 <p>
-Maging inspirasyon sa bawat pamilya at komunidad sa pamamagitan ng
-isang mapayapa, makakalikasan, at makabagong ecofarm destination
-na nagbibigay saya, pahinga, at pag-asa sa bawat bisita.
+Maging inspirasyon sa bawat pamilya sa pamamagitan ng
+isang mapayapa at makakalikasan na destinasyon.
 </p>
-
 </div>
 
-<!-- MISSION -->
 <div class="card">
-
 <h2>🎯 Mission</h2>
-
 <ul>
-<li>Magbigay ng ligtas at magandang pasyalan para sa lahat.</li>
-<li>Itaguyod ang eco-friendly at sustainable farming.</li>
-<li>Magbigay inspirasyon sa kabataan at komunidad.</li>
-<li>Suportahan ang turismo at lokal na kabuhayan.</li>
-<li>Panatilihin ang pagpapahalaga sa pamilya at komunidad.</li>
+<li>Magbigay ng ligtas na pasyalan</li>
+<li>Isulong ang eco-friendly farming</li>
+<li>Magbigay inspirasyon sa komunidad</li>
+<li>Suportahan ang turismo</li>
 </ul>
-
 </div>
 
-<!-- VALUES -->
 <div class="card">
-
 <h2>❤️ Core Values</h2>
-
 <ul>
-<li>🌱 Pagmamahal sa Kalikasan</li>
+<li>🌱 Kalikasan</li>
 <li>💪 Sipag at Tiyaga</li>
 <li>🙏 Pananampalataya</li>
-<li>👨‍👩‍👦 Pagpapahalaga sa Pamilya</li>
-<li>🌟 Inspirasyon sa Komunidad</li>
+<li>👨‍👩‍👦 Pamilya</li>
+<li>🌟 Inspirasyon</li>
 </ul>
-
 </div>
 
-<!-- MESSAGE -->
 <div class="card">
-
 <h2>💬 Message</h2>
-
 <p class="quote">
-“Ang Renson Ecopark ay hindi lamang isang lugar —
-ito ay simbolo ng aking pangarap,
-pagsisikap, at sakripisyo.
-Nawa’y maging inspirasyon ito sa bawat taong bibisita
-at makakaranas ng kapayapaan at ganda ng kalikasan.”
+“Hindi lang ito lugar — ito ay pangarap na naging realidad.”
 </p>
+<p>— Renson Avila</p>
+</div>
 
-<p>
-— Renson Avila
-</p>
-
+<!-- 🔥 CTA -->
+<div class="cta">
+<a href="booking.html">🏡 Book Your Stay Now</a>
 </div>
 
 </div>
 
 <div class="footer">
-© 2026 Renson Ecopark / Renson Farm • All Rights Reserved
+© 2026 Renson Ecopark • All Rights Reserved
 </div>
 
 </body>
