@@ -5,7 +5,7 @@
 <title>Renson Barangay WiFi & EcoFarm Services</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- 🔥 MONETAG POPUNDER (ADDED) -->
+<!-- MONETAG -->
 <script src="https://quge5.com/88/tag.min.js" 
 data-zone="233397" async data-cfasync="false"></script>
 
@@ -28,77 +28,96 @@ body {
     display:flex;
     justify-content:space-between;
     align-items:center;
-    padding:10px;
+    padding:12px;
     z-index:999;
-    border-bottom:1px solid rgba(255,255,255,0.1);
 }
 
 .logo{
-    font-size:14px;
+    font-size:15px;
     font-weight:bold;
-    margin-left:10px;
 }
 
 .menu-toggle{
-    font-size:22px;
+    font-size:24px;
     cursor:pointer;
-    margin-right:15px;
 }
 
-/* MENU */
+/* SIDE MENU (MOBILE) */
 .menu{
     position:fixed;
-    top:50px;
-    left:0;
-    width:100%;
+    top:0;
+    left:-260px;
+    width:260px;
+    height:100%;
     background:#111;
-    display:none;
+    padding-top:60px;
+    display:flex;
     flex-direction:column;
-    padding:5px 0;
+    transition:0.3s ease;
     z-index:998;
 }
 
+.menu.active{
+    left:0;
+}
+
 .menu a{
-    padding:12px;
+    padding:14px;
     border-bottom:1px solid #222;
     text-decoration:none;
     color:white;
-    font-size:14px;
+    text-align:left;
 }
 
-.menu a:hover{
-    background:#00c853;
-    color:black;
+/* OVERLAY */
+.overlay{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.6);
+    display:none;
+    z-index:997;
+}
+.overlay.active{
+    display:block;
 }
 
 /* DESKTOP MENU */
 @media(min-width:768px){
     .menu{
-        display:flex !important;
         position:fixed;
         top:50px;
+        left:0;
+        height:auto;
+        width:100%;
         flex-direction:row;
         justify-content:center;
         background: rgba(0,0,0,0.85);
+        padding:10px;
+    }
+
+    .menu a{
+        border:none;
+        margin:5px;
+        background: rgba(255,255,255,0.08);
+        border-radius:20px;
     }
 
     .menu-toggle{
         display:none;
     }
 
-    .menu a{
-        border:none;
-        padding:10px 15px;
-        background: rgba(255,255,255,0.08);
-        border-radius:20px;
-        margin:5px;
+    .overlay{
+        display:none !important;
     }
 }
 
 /* CONTAINER */
 .container {
     padding:20px;
-    margin-top:110px;
+    margin-top:80px;
     margin-bottom:100px;
 }
 
@@ -119,30 +138,7 @@ h2 { font-size:18px; }
     border-radius:10px;
     margin-bottom:15px;
     border:1px solid #222;
-    font-size:14px;
     text-align:left;
-}
-
-/* NEWS */
-.news-ticker {
-    background:#111;
-    border:1px solid #222;
-    padding:10px;
-    margin-bottom:15px;
-    border-radius:10px;
-    overflow:hidden;
-    white-space:nowrap;
-    font-size:13px;
-    color:#00e676;
-}
-#newsText {
-    display:inline-block;
-    padding-left:100%;
-    animation: scrollNews 18s linear infinite;
-}
-@keyframes scrollNews {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-100%); }
 }
 
 /* VIDEO */
@@ -150,21 +146,13 @@ video {
     width:100%;
     max-width:420px;
     border-radius:12px;
-    margin-top:10px;
 }
 
 /* TIMER */
 #statusText {
     margin-top: 12px;
     font-size: 15px;
-    font-weight: bold;
     color: #00e676;
-    animation: pulseText 1.2s infinite;
-}
-@keyframes pulseText {
-    0% { opacity: 0.6; }
-    50% { opacity: 1; }
-    100% { opacity: 0.6; }
 }
 
 #progressContainer {
@@ -174,61 +162,42 @@ video {
     background: rgba(255,255,255,0.08);
     border-radius: 50px;
     margin: 12px auto;
-    overflow: hidden;
 }
+
 #progressBar {
     width: 0%;
     height: 100%;
-    background: linear-gradient(90deg, #00c853, #00e676);
-    border-radius: 50px;
-    transition: width 0.3s ease;
+    background: #00c853;
 }
 
-/* BOTTOM BUTTONS */
+/* BUTTONS */
 .bottom-buttons {
     position: fixed;
     bottom: 0;
-    left: 0;
     width: 100%;
     display: flex;
-    gap: 10px;
-    padding: 10px;
-    background: rgba(0,0,0,0.85);
-    z-index: 1000;
+    padding:10px;
+    background:#000;
 }
 
-.connect, .trial {
-    flex: 1;
-    padding: 16px;
-    border-radius: 30px;
-    font-size: 16px;
-    font-weight: bold;
-    border: none;
-    cursor: pointer;
+button {
+    flex:1;
+    padding:15px;
+    border:none;
+    border-radius:30px;
+    font-size:16px;
+    font-weight:bold;
 }
 
-.connect {
-    background:#00c853;
-    color:black;
-}
+.connect{ background:#00c853; }
+.trial{ background:#00e676; }
 
-.trial {
-    background:#00e676;
-    color:black;
-}
-
-/* MOBILE */
-@media (max-width: 600px){
-    h2 { font-size:16px; }
-    .box { font-size:13px; }
-    #statusText { font-size:14px; }
-}
 </style>
 </head>
 
 <body>
 
-<!-- TOP BAR -->
+<!-- TOP -->
 <div class="top-bar">
     <div class="logo">🌿 Renson WiFi</div>
     <div class="menu-toggle" onclick="toggleMenu()">☰</div>
@@ -239,124 +208,97 @@ video {
 <a href="index.html">🏠 Home</a>
 <a href="watch.html">📺 Watch TV</a>
 <a href="games.html">🎮 Games</a>
-<a href="worldcams.html">🌍 World</a>
-<a href="rensonchatroom.html">💬 Chat</a>
 <a href="booking.html">🏡 Booking</a>
-<a href="vision.html">🌿 Vision</a>
 </div>
+
+<div id="overlay" class="overlay" onclick="closeMenu()"></div>
 
 <div class="container">
 
-<h2>🎮 Renson Barangay WiFi & EcoFarm Services</h2>
+<h2>🎮 Renson Barangay WiFi</h2>
 
 <div id="dateTime"></div>
 
-<div class="news-ticker">
-📰 <span id="newsText">Loading local news...</span>
-</div>
+<div class="box">☀️ Weather: Sunny • 31°C</div>
 
-<div class="box">☀️ Weather Today: Sunny • 31°C</div>
-
-<div class="box">
-📰 LATEST NEWS<br><br>
-🚧 Road rehabilitation ongoing<br>
-🌾 Agriculture projects<br>
-⚠️ Security updates<br>
-</div>
-
-<video autoplay muted playsinline loop>
-    <source src="ad.mp4" type="video/mp4">
+<video autoplay muted loop>
+<source src="ad.mp4">
 </video>
 
-<p id="statusText">Please wait 10 seconds...</p>
+<p id="statusText">Loading...</p>
 
 <div id="progressContainer">
-  <div id="progressBar"></div>
+<div id="progressBar"></div>
 </div>
 
 </div>
 
 <div class="bottom-buttons">
-<button id="connectBtn" class="connect" disabled onclick="connectNet()">CONNECT 🌐</button>
-<button class="trial" onclick="freeWifi()">FREE WIFI ⚡</button>
+<button id="connectBtn" class="connect" disabled onclick="connectNet()">CONNECT</button>
+<button class="trial" onclick="freeWifi()">FREE WIFI</button>
 </div>
 
 <audio id="bgmusic" loop>
-    <source src="music.mp3" type="audio/mpeg">
+<source src="music.mp3">
 </audio>
 
 <script>
+
+/* MENU */
 function toggleMenu(){
-    let menu = document.getElementById("menu");
-    menu.style.display = (menu.style.display === "flex") ? "none" : "flex";
+    document.getElementById("menu").classList.toggle("active");
+    document.getElementById("overlay").classList.toggle("active");
 }
 
+function closeMenu(){
+    document.getElementById("menu").classList.remove("active");
+    document.getElementById("overlay").classList.remove("active");
+}
+
+/* AUTO CLOSE */
+document.querySelectorAll(".menu a").forEach(link=>{
+    link.addEventListener("click", closeMenu);
+});
+
+/* WIFI */
 function connectNet(){
-    window.location.href = "http://192.168.22.1/login2.html";
+    window.location.href="http://192.168.22.1/login2.html";
 }
-
 function freeWifi(){
-    window.location.href = "http://192.168.22.1/login?trial=1";
+    window.location.href="http://192.168.22.1/login?trial=1";
 }
-
-/* enable CONNECT */
-setTimeout(() => {
-    document.getElementById("connectBtn").disabled = false;
-}, 10000);
 
 /* TIMER */
-let duration = 10;
-let timeLeft = duration;
+let t=10;
+let bar=document.getElementById("progressBar");
+let txt=document.getElementById("statusText");
 
-let progressBar = document.getElementById("progressBar");
-let statusText = document.getElementById("statusText");
+let i=setInterval(()=>{
+t--;
+bar.style.width=(10-t)*10+"%";
+txt.innerText="Please wait "+t+"s";
 
-let intervalUI = setInterval(() => {
-    timeLeft--;
-
-    progressBar.style.width =
-    ((duration - timeLeft) / duration) * 100 + "%";
-
-    statusText.innerText =
-    "System loading... " + timeLeft + "s";
-
-    if(timeLeft <= 0){
-        clearInterval(intervalUI);
-        statusText.innerText = "System Ready!";
-    }
-
-}, 1000);
-
-/* MUSIC */
-document.body.addEventListener("click", function () {
-    let music = document.getElementById("bgmusic");
-    music.volume = 0.2;
-    music.play().catch(()=>{});
-}, { once: true });
+if(t<=0){
+clearInterval(i);
+txt.innerText="Ready!";
+document.getElementById("connectBtn").disabled=false;
+}
+},1000);
 
 /* TIME */
-setInterval(() => {
-    let now = new Date();
-    document.getElementById("dateTime").innerHTML =
-    "📅 " + now.toLocaleDateString() +
-    "<br>🕒 " + now.toLocaleTimeString();
-}, 1000);
+setInterval(()=>{
+let d=new Date();
+document.getElementById("dateTime").innerHTML=
+"📅 "+d.toLocaleDateString()+"<br>🕒 "+d.toLocaleTimeString();
+},1000);
 
-/* NEWS */
-const newsList = [
-"Lopez road improvement ongoing",
-"Calauag cyber operations active",
-"Quezon irrigation expansion",
-"Barangay WiFi maintenance"
-];
+/* MUSIC */
+document.body.addEventListener("click",()=>{
+let m=document.getElementById("bgmusic");
+m.volume=0.2;
+m.play().catch(()=>{});
+},{once:true});
 
-let index = 0;
-function updateNews(){
-    document.getElementById("newsText").innerText = newsList[index];
-    index = (index + 1) % newsList.length;
-}
-updateNews();
-setInterval(updateNews, 6000);
 </script>
 
 </body>
