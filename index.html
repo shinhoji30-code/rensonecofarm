@@ -10,26 +10,13 @@
 data-zone="233397" async data-cfasync="false"></script>
 
 <style>
-
-/* =========================
-   GLOBAL
-========================= */
 body{
     margin:0;
     font-family:Arial, sans-serif;
     background:linear-gradient(to bottom,#000,#111);
     color:white;
-}
-
-/* =========================
-   MOBILE UI
-========================= */
-.mobile-ui{
-    display:block;
-}
-
-.desktop-ui{
-    display:none;
+    text-align:center;
+    overflow-x:hidden;
 }
 
 /* TOP BAR */
@@ -39,62 +26,124 @@ body{
     left:0;
     width:100%;
     background:rgba(0,0,0,0.92);
+    backdrop-filter:blur(10px);
     display:flex;
     justify-content:space-between;
     align-items:center;
-    padding:12px 15px;
+    padding:12px 18px;
     z-index:1000;
     box-sizing:border-box;
 }
 
-.menu-btn{
-    font-size:28px;
-    cursor:pointer;
+.logo{
+    font-size:15px;
+    font-weight:bold;
 }
 
-/* SIDE MENU */
+.menu-toggle{
+    font-size:28px;
+    cursor:pointer;
+    user-select:none;
+}
+
+/* MOBILE MENU */
 .menu{
     position:fixed;
     top:0;
-    left:-260px;
-    width:240px;
+    left:-280px;
+    width:260px;
     height:100%;
     background:#111;
     padding-top:70px;
-    transition:0.3s;
+    display:flex;
+    flex-direction:column;
+    transition:0.3s ease;
     z-index:999;
 }
 
-.menu.active{left:0}
+.menu.active{
+    left:0;
+}
 
 .menu a{
-    display:block;
-    padding:12px;
+    padding:14px;
     border-bottom:1px solid #222;
+    text-decoration:none;
+    color:white;
+    text-align:left;
+}
+
+.menu a:hover{
+    background:#222;
 }
 
 /* OVERLAY */
 .overlay{
     position:fixed;
-    inset:0;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
     background:rgba(0,0,0,0.6);
     display:none;
     z-index:998;
 }
 
-.overlay.active{display:block}
+.overlay.active{
+    display:block;
+}
 
 /* CONTENT */
 .container{
+    padding:20px;
     margin-top:80px;
-    padding:15px;
-    text-align:center;
+    margin-bottom:100px;
+}
+
+h2{font-size:18px;}
+
+#dateTime{
+    margin:10px 0;
+    color:#00e676;
+    font-size:15px;
+    font-weight:bold;
+}
+
+.box{
+    background:#111;
+    color:#ccc;
+    padding:12px;
+    border-radius:10px;
+    margin-bottom:15px;
+    border:1px solid #222;
+    text-align:left;
 }
 
 video{
     width:100%;
     max-width:420px;
     border-radius:12px;
+}
+
+#statusText{
+    margin-top:12px;
+    font-size:15px;
+    color:#00e676;
+}
+
+#progressContainer{
+    width:90%;
+    max-width:320px;
+    height:10px;
+    background:rgba(255,255,255,0.08);
+    border-radius:50px;
+    margin:12px auto;
+}
+
+#progressBar{
+    width:0%;
+    height:100%;
+    background:#00c853;
 }
 
 /* BUTTONS */
@@ -104,84 +153,28 @@ video{
     left:0;
     width:100%;
     display:flex;
+    padding:10px;
+    background:#000;
+    box-sizing:border-box;
 }
 
 button{
     flex:1;
     padding:15px;
     border:none;
+    border-radius:30px;
     font-size:16px;
     font-weight:bold;
 }
 
-.connect{background:#00c853}
-.trial{background:#00e676}
+.connect{background:#00c853;}
+.trial{background:#00e676;}
 
-/* =========================
-   DESKTOP UI
-========================= */
+/* MOBILE MENU FIX FOR DESKTOP */
 @media(min-width:768px){
-
-.mobile-ui{display:none;}
-.desktop-ui{display:block;}
-
-/* LAYOUT */
-.desktop{
-    display:flex;
+.menu{
+    width:300px;
 }
-
-/* SIDEBAR */
-.sidebar{
-    width:220px;
-    height:100vh;
-    background:#0f172a;
-    padding:20px;
-    position:fixed;
-    top:0;
-    left:0;
-}
-
-.sidebar h3{
-    margin-top:0;
-}
-
-.sidebar a{
-    display:block;
-    padding:10px;
-    margin-bottom:6px;
-    background:#111827;
-    border-radius:8px;
-}
-
-/* MAIN */
-.main{
-    margin-left:240px;
-    padding:20px;
-}
-
-.cards{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:15px;
-}
-
-.card{
-    background:#111827;
-    padding:15px;
-    border-radius:10px;
-}
-
-.status{
-    margin-top:20px;
-    background:#1f2937;
-    padding:15px;
-    border-radius:10px;
-}
-
-video{
-    max-width:600px;
-}
-
 }
 
 </style>
@@ -189,25 +182,21 @@ video{
 
 <body>
 
-<!-- =========================
-   MOBILE UI
-========================= -->
-<div class="mobile-ui">
-
-<!-- TOP BAR -->
+<!-- TOP -->
 <div class="top-bar">
-    <div>🌿 Renson WiFi</div>
-    <div class="menu-btn" onclick="toggleMenu()">☰</div>
+    <div class="logo">🌿 Renson WiFi</div>
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
 </div>
 
 <!-- MENU -->
 <div id="menu" class="menu">
-    <a href="#">🏠 Home</a>
-    <a href="#">👁 Vision</a>
-    <a href="#">🌍 World</a>
-    <a href="#">💬 Chat</a>
-    <a href="#">🎮 Games</a>
-    <a href="#">🏡 Booking</a>
+    <a href="index.html">🏠 Home</a>
+    <a href="vision.html">👁 Vision</a>
+    <a href="world.html">🌍 World</a>
+    <a href="chat.html">💬 Chat</a>
+    <a href="watch.html">📺 Watch TV</a>
+    <a href="games.html">🎮 Games</a>
+    <a href="booking.html">🏡 Booking</a>
 </div>
 
 <!-- OVERLAY -->
@@ -216,69 +205,34 @@ video{
 <!-- CONTENT -->
 <div class="container">
 
-<h2>Renson Barangay WiFi</h2>
+<h2>🎮 Renson Barangay WiFi</h2>
+
+<div id="dateTime"></div>
+
+<div class="box">☀️ Weather: Sunny • 31°C</div>
 
 <video autoplay muted loop>
 <source src="ad.mp4">
 </video>
 
-<p id="status">Loading system...</p>
+<p id="statusText">Loading...</p>
+
+<div id="progressContainer">
+<div id="progressBar"></div>
+</div>
 
 </div>
 
 <!-- BUTTONS -->
 <div class="bottom-buttons">
-<button class="connect" id="connectBtn" disabled onclick="connectNet()">CONNECT</button>
+<button id="connectBtn" class="connect" disabled onclick="connectNet()">CONNECT</button>
 <button class="trial" onclick="freeWifi()">FREE WIFI</button>
 </div>
 
-</div>
-
-<!-- =========================
-   DESKTOP UI (ISP DASHBOARD)
-========================= -->
-<div class="desktop-ui">
-
-<div class="desktop">
-
-<!-- SIDEBAR -->
-<div class="sidebar">
-    <h3>ISP CONTROL</h3>
-    <a href="#">Dashboard</a>
-    <a href="#">Users</a>
-    <a href="#">Bandwidth</a>
-    <a href="#">Voucher</a>
-    <a href="#">Revenue</a>
-    <a href="#">Settings</a>
-</div>
-
-<!-- MAIN -->
-<div class="main">
-
-<h2>Network Dashboard</h2>
-
-<div class="cards">
-    <div class="card">👥 Online Users: 128</div>
-    <div class="card">⚡ Bandwidth: 320 Mbps</div>
-    <div class="card">🎟 Active Voucher: 54</div>
-</div>
-
-<div class="status">
-    <h3>System Status</h3>
-    <p>✔ Router Online</p>
-    <p>✔ PPPoE Stable</p>
-    <p>✔ Ads System Running</p>
-</div>
-
-<video autoplay muted loop>
-<source src="ad.mp4">
-</video>
-
-</div>
-
-</div>
-
-</div>
+<!-- MUSIC -->
+<audio id="bgmusic" loop>
+<source src="music.mp3">
+</audio>
 
 <script>
 
@@ -293,7 +247,11 @@ document.getElementById("menu").classList.remove("active");
 document.getElementById("overlay").classList.remove("active");
 }
 
-/* WIFI ACTIONS */
+document.querySelectorAll(".menu a").forEach(a=>{
+a.addEventListener("click", closeMenu);
+});
+
+/* WIFI */
 function connectNet(){
 window.location.href="http://192.168.22.1/login2.html";
 }
@@ -302,20 +260,36 @@ function freeWifi(){
 window.location.href="http://192.168.22.1/login?trial=1";
 }
 
-/* TIMER SYSTEM */
-let t = 10;
-let btn = document.getElementById("connectBtn");
+/* TIMER */
+let t=10;
+let bar=document.getElementById("progressBar");
+let txt=document.getElementById("statusText");
 
-let timer = setInterval(()=>{
+let i=setInterval(()=>{
 t--;
-document.getElementById("status").innerText = "Please wait " + t + "s";
+bar.style.width=((10-t)*10)+"%";
+txt.innerText="Please wait "+t+"s";
 
-if(t <= 0){
-clearInterval(timer);
-document.getElementById("status").innerText = "Ready!";
-btn.disabled = false;
+if(t<=0){
+clearInterval(i);
+txt.innerText="Ready!";
+document.getElementById("connectBtn").disabled=false;
 }
 },1000);
+
+/* TIME */
+setInterval(()=>{
+let d=new Date();
+document.getElementById("dateTime").innerHTML=
+"📅 "+d.toLocaleDateString()+"<br>🕒 "+d.toLocaleTimeString();
+},1000);
+
+/* MUSIC */
+document.body.addEventListener("click",()=>{
+let m=document.getElementById("bgmusic");
+m.volume=0.2;
+m.play().catch(()=>{});
+},{once:true});
 
 </script>
 
