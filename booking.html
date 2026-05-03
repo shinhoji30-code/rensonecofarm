@@ -8,9 +8,9 @@
 <!-- EMAILJS -->
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
-  (function(){
-    emailjs.init("B8StU1WAWPF90ehQU");
-  })();
+(function(){
+  emailjs.init("B8StU1WAWPF90ehQU");
+})();
 </script>
 
 <style>
@@ -28,16 +28,14 @@ body{
     top:0;
     z-index:999;
 }
-
 .topbar button{
     padding:10px 16px;
     background:#00a86b;
     border:none;
     border-radius:8px;
     color:white;
-    font-size:13px;
+    font-size:14px;
     font-weight:bold;
-    cursor:pointer;
 }
 
 /* HEADER */
@@ -47,24 +45,25 @@ body{
     padding:25px;
     text-align:center;
 }
-
 .header h1{
     margin:0;
-    font-size:22px;
+    font-size:20px;
 }
-
 .header p{
     margin:5px 0;
     font-size:13px;
     opacity:0.9;
 }
 
+/* CONTAINER */
 .container{
     max-width:500px;
     margin:auto;
     padding:15px;
+    padding-bottom:100px;
 }
 
+/* CARD */
 .card{
     background:white;
     padding:15px;
@@ -73,13 +72,14 @@ body{
     box-shadow:0 2px 10px rgba(0,0,0,0.08);
 }
 
+/* FORM */
 input, select{
     width:100%;
-    padding:10px;
+    padding:12px;
     margin-top:8px;
     border:1px solid #ddd;
     border-radius:8px;
-    box-sizing:border-box;
+    font-size:14px;
 }
 
 label{
@@ -89,59 +89,79 @@ label{
     display:block;
 }
 
-button{
+/* BUTTON */
+.reserve-btn{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background:#fff;
+    padding:10px;
+    box-shadow:0 -2px 10px rgba(0,0,0,0.1);
+}
+
+.reserve-btn button{
     width:100%;
-    padding:14px;
-    margin-top:15px;
+    padding:16px;
     background:#ff5a5f;
     color:white;
     border:none;
-    border-radius:10px;
-    font-size:15px;
+    border-radius:30px;
+    font-size:16px;
     font-weight:bold;
-    cursor:pointer;
 }
 
+/* TEXT */
 .info{
-    font-size:12px;
-    color:#666;
-    line-height:1.5;
+    font-size:13px;
+    color:#555;
+    line-height:1.6;
 }
-
 .price{
-    font-size:14px;
+    font-size:15px;
     color:#00a86b;
     font-weight:bold;
+}
+
+/* TOTAL */
+#totalDisplay{
+    font-size:14px;
+    font-weight:bold;
+    color:#111;
+    white-space: pre-line;
+}
+
+/* MOBILE */
+@media (max-width:600px){
+    .header h1{ font-size:18px; }
+    input, select{ font-size:15px; }
 }
 </style>
 </head>
 
 <body>
 
-<!-- BACK BUTTON -->
 <div class="topbar">
-    <button onclick="goHome()">⬅ Back to Home</button>
+    <button onclick="goHome()">⬅ Back</button>
 </div>
 
 <div class="header">
     <h1>🏡 Renson EcoFarm Stay</h1>
-    <p>Like Airbnb • Nature Escape • Free WiFi 📶</p>
+    <p>Nature Escape • Free WiFi 📶</p>
 </div>
 
 <div class="container">
 
-<!-- INFO -->
 <div class="card">
     <div class="price">💰 Rates</div>
     <div class="info">
         🏠 Non-Aircon: ₱500 (4 pax)<br>
         ❄️ Aircon: ₱800 (4 pax)<br>
-        ➕ Extra pax: ₱100 each / per night<br>
+        ➕ Extra pax: ₱100 / head / night<br>
         🍳 Cooking fee: ₱200
     </div>
 </div>
 
-<!-- FORM -->
 <div class="card">
 
 <label>Full Name</label>
@@ -152,24 +172,24 @@ button{
 
 <label>Room Type</label>
 <select id="room">
-    <option value="Non-Aircon ₱500">Non-Aircon Room - ₱500</option>
-    <option value="Aircon ₱800">Aircon Room - ₱800</option>
+<option value="Non-Aircon ₱500">Non-Aircon - ₱500</option>
+<option value="Aircon ₱800">Aircon - ₱800</option>
 </select>
 
-<label>Check-in Date</label>
+<label>Check-in</label>
 <input id="checkin" type="date">
 
-<label>Check-out Date</label>
+<label>Check-out</label>
 <input id="checkout" type="date">
 
-<label>Number of Guests</label>
+<label>Guests</label>
 <input id="pax" type="number" value="4" oninput="computeTotal()">
 
-<label>Payment Method</label>
+<label>Payment</label>
 <select id="payment">
-    <option>Cash</option>
-    <option>GCash</option>
-    <option>Bank Transfer</option>
+<option>Cash</option>
+<option>GCash</option>
+<option>Bank Transfer</option>
 </select>
 
 <label>
@@ -178,100 +198,90 @@ button{
 
 </div>
 
-<!-- TOTAL -->
 <div class="card">
-    <div class="price">💵 Total Computation</div>
-    <div class="info" id="totalDisplay">
-        Total: ₱0
-    </div>
+    <div class="price">💵 Total</div>
+    <div id="totalDisplay">Total: ₱0</div>
 </div>
 
-<!-- BUTTON -->
-<div class="card">
-<button onclick="submitBooking()">Reserve Now</button>
 </div>
 
+<div class="reserve-btn">
+<button onclick="submitBooking()">RESERVE NOW</button>
 </div>
 
 <script>
-
-/* BACK TO HOME */
 function goHome(){
-    window.location.href = "index.html";
+    window.location.href="index.html";
 }
 
-/* COMPUTE TOTAL */
 function computeTotal(){
 
-    let room = document.getElementById("room").value;
-    let pax = parseInt(document.getElementById("pax").value || 4);
-    let cook = document.getElementById("cook").checked;
+let room = document.getElementById("room").value;
+let pax = parseInt(document.getElementById("pax").value || 4);
+let cook = document.getElementById("cook").checked;
 
-    let checkin = document.getElementById("checkin").value;
-    let checkout = document.getElementById("checkout").value;
+let checkin = document.getElementById("checkin").value;
+let checkout = document.getElementById("checkout").value;
 
-    let basePrice = room.includes("800") ? 800 : 500;
+let base = room.includes("800") ? 800 : 500;
 
-    let days = 1;
-    if(checkin && checkout){
-        let start = new Date(checkin);
-        let end = new Date(checkout);
-        let diff = (end - start) / (1000 * 60 * 60 * 24);
-        if(diff > 0) days = diff;
-    }
-
-    let extraPax = (pax > 4) ? (pax - 4) * 100 * days : 0;
-    let cookingFee = cook ? 200 : 0;
-
-    let total = (basePrice * days) + extraPax + cookingFee;
-
-    document.getElementById("totalDisplay").innerText =
-        "Stay: " + days + " night(s)\nTotal Payment: ₱" + total;
-
-    return total;
+let days = 1;
+if(checkin && checkout){
+    let start = new Date(checkin);
+    let end = new Date(checkout);
+    let diff = (end-start)/(1000*60*60*24);
+    if(diff>0) days=diff;
 }
 
-/* SUBMIT BOOKING */
+let extra = (pax>4)?(pax-4)*100*days:0;
+let cooking = cook?200:0;
+
+let total = (base*days)+extra+cooking;
+
+document.getElementById("totalDisplay").innerText =
+"Stay: "+days+" night(s)\nTotal: ₱"+total;
+
+return total;
+}
+
 function submitBooking(){
 
-    let total = computeTotal();
+let total = computeTotal();
 
-    emailjs.send("service_43fy2w9", "template_fj8bq3s", {
-        name: document.getElementById("name").value,
-        phone: document.getElementById("phone").value,
-        room: document.getElementById("room").value,
-        pax: document.getElementById("pax").value,
-        payment: document.getElementById("payment").value,
-        cook: document.getElementById("cook").checked ? "Yes (+₱200)" : "No",
-        total: total,
-        checkin: document.getElementById("checkin").value,
-        checkout: document.getElementById("checkout").value,
-        time: new Date().toLocaleString()
-    })
-    .then(function(){
-        alert("✅ Booking sent!");
-    })
-    .catch(function(error){
-        alert("❌ Failed to send booking");
-        console.log(error);
-    });
+emailjs.send("service_43fy2w9","template_fj8bq3s",{
+name: name.value,
+phone: phone.value,
+room: room.value,
+pax: pax.value,
+payment: payment.value,
+cook: cook.checked?"Yes":"No",
+total: total,
+checkin: checkin.value,
+checkout: checkout.value,
+time: new Date().toLocaleString()
+})
+.then(()=>{
+alert("✅ Booking sent!");
+})
+.catch(()=>{
+alert("❌ Failed to send");
+});
 
 }
 
 /* DATE LIMIT */
 let today = new Date().toISOString().split("T")[0];
-document.getElementById("checkin").min = today;
-document.getElementById("checkout").min = today;
+checkin.min = today;
+checkout.min = today;
 
-document.getElementById("checkin").addEventListener("change", function(){
-    document.getElementById("checkout").min = this.value;
-    computeTotal();
+checkin.addEventListener("change",()=>{
+checkout.min = checkin.value;
+computeTotal();
 });
 
-document.getElementById("checkout").addEventListener("change", computeTotal);
+checkout.addEventListener("change",computeTotal);
 
 computeTotal();
-
 </script>
 
 </body>
