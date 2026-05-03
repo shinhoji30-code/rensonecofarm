@@ -11,82 +11,99 @@ body {
     font-family: Arial, sans-serif;
     background:#000;
     color:#fff;
-    text-align:center;
 }
 
-h2 {
-    margin-top:20px;
-    font-size:18px;
-    color:#00e676;
-}
-
+/* HEADER */
 .header {
-    font-size:13px;
+    text-align:center;
+    padding:12px;
+    font-size:16px;
+    color:#00e676;
+    background:#111;
+}
+
+/* STATUS */
+.status {
+    text-align:center;
+    font-size:12px;
     color:#aaa;
     margin-bottom:10px;
 }
 
-.container {
-    padding:15px;
-}
-
-/* PANEL */
-.map {
-    width:100%;
-    max-width:500px;
-    margin:auto;
-    padding:10px;
-    border:1px solid #222;
-    border-radius:10px;
-    background:#111;
-}
-
-.btn {
-    background:#222;
-    color:#fff;
-    border:1px solid #333;
-    padding:10px;
-    margin:5px;
-    border-radius:8px;
-    cursor:pointer;
-    font-size:13px;
-}
-
-.btn:hover {
-    background:#00c853;
-}
-
-/* SCREEN */
+/* CAM PLAYER */
 .screen {
-    margin-top:15px;
-    background:#111;
-    border:1px solid #222;
-    border-radius:10px;
     padding:10px;
 }
 
 iframe {
     width:100%;
-    height:230px;
-    border-radius:10px;
-    border:1px solid #333;
-}
-
-#title {
-    font-size:14px;
-    margin-bottom:10px;
-    color:#00e676;
-}
-
-/* SOUND BUTTON */
-.soundBtn {
-    margin-top:10px;
-    background:#00c853;
-    color:#000;
+    height:220px;
+    border-radius:12px;
     border:none;
+}
+
+/* TITLE */
+#title {
+    text-align:center;
+    font-size:14px;
+    color:#00e676;
+    margin:10px 0;
+}
+
+/* BUTTON GRID */
+.grid {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
     padding:10px;
-    border-radius:8px;
+}
+
+.btn {
+    background:#111;
+    border:1px solid #222;
+    color:white;
+    padding:14px;
+    border-radius:12px;
+    font-size:13px;
+    text-align:center;
     cursor:pointer;
+}
+
+.btn:active{
+    background:#00c853;
+    color:black;
+}
+
+/* SOUND */
+.sound {
+    width:95%;
+    margin:10px auto;
+    display:block;
+    background:#00c853;
+    color:black;
+    padding:14px;
+    border:none;
+    border-radius:30px;
+    font-weight:bold;
+}
+
+/* BACK */
+.back {
+    position:fixed;
+    bottom:10px;
+    left:50%;
+    transform:translateX(-50%);
+    width:90%;
+}
+
+.back a {
+    display:block;
+    background:#00c853;
+    color:black;
+    text-decoration:none;
+    text-align:center;
+    padding:14px;
+    border-radius:30px;
     font-weight:bold;
 }
 </style>
@@ -94,31 +111,13 @@ iframe {
 
 <body>
 
-<h2>🌍 WORLD LIVE CAM CONTROL CENTER</h2>
+<div class="header">🌍 WORLD LIVE CAM</div>
 
-<div class="header">
-👤 Operator: <b>Renson</b> | 🛰️ System Online
-</div>
+<div class="status">🛰️ System Online • Operator: Renson</div>
 
-<div class="container">
-
-<!-- SELECTOR -->
-<div class="map">
-    🗺️ Select Camera<br>
-
-    <button class="btn" onclick="loadCam('newyork')">🇺🇸 New York</button>
-    <button class="btn" onclick="loadCam('davao')">🇵🇭 Davao City</button>
-    <button class="btn" onclick="loadCam('losangeles')">🇺🇸 Los Angeles</button>
-    <button class="btn" onclick="loadCam('fremont')">🇺🇸 Fremont</button>
-
-    <br>
-    <button class="soundBtn" onclick="toggleSound()">🔊 SOUND</button>
-</div>
-
-<!-- SCREEN -->
 <div class="screen">
 
-<p id="title">📡 Live Feed: New York City</p>
+<p id="title">📡 New York City Live</p>
 
 <iframe id="cam"
 src="https://www.youtube.com/embed/q-zthUJSghc?autoplay=1&mute=1"
@@ -128,64 +127,62 @@ allowfullscreen>
 
 </div>
 
+<!-- SOUND -->
+<button class="sound" onclick="toggleSound()">🔊 TOGGLE SOUND</button>
+
+<!-- CAM BUTTONS -->
+<div class="grid">
+
+<div class="btn" onclick="loadCam('newyork')">🇺🇸 New York</div>
+<div class="btn" onclick="loadCam('davao')">🇵🇭 Davao</div>
+<div class="btn" onclick="loadCam('losangeles')">🇺🇸 LA</div>
+<div class="btn" onclick="loadCam('fremont')">🇺🇸 Fremont</div>
+
 </div>
 
-<!-- 🎧 BACKGROUND SOUND -->
-<audio id="bgSound" loop>
-    <source src="ambient.mp3" type="audio/mpeg">
-</audio>
+<!-- BACK -->
+<div class="back">
+<a href="index.html">⬅ Back to Home</a>
+</div>
 
 <script>
 
-/* CAMS */
 const cams = {
-    newyork: {
-        title: "New York City Live",
-        url: "https://www.youtube.com/embed/q-zthUJSghc?autoplay=1&mute=1"
-    },
-    davao: {
-        title: "Davao City Live",
-        url: "https://www.youtube.com/embed/I_pE-WeOvNs?autoplay=1&mute=1"
-    },
-    losangeles: {
-        title: "Los Angeles Live",
-        url: "https://www.youtube.com/embed/EO_1LWqsCNE?autoplay=1&mute=1"
-    },
-    fremont: {
-        title: "Fremont Live",
-        url: "https://www.youtube.com/embed/gDcfh-Wm0xE?autoplay=1&mute=1"
-    }
+newyork:{
+title:"New York City",
+url:"https://www.youtube.com/embed/q-zthUJSghc?autoplay=1&mute=1"
+},
+davao:{
+title:"Davao City",
+url:"https://www.youtube.com/embed/I_pE-WeOvNs?autoplay=1&mute=1"
+},
+losangeles:{
+title:"Los Angeles",
+url:"https://www.youtube.com/embed/EO_1LWqsCNE?autoplay=1&mute=1"
+},
+fremont:{
+title:"Fremont",
+url:"https://www.youtube.com/embed/gDcfh-Wm0xE?autoplay=1&mute=1"
+}
 };
 
-/* SWITCH CAM */
 function loadCam(city){
-    document.getElementById("cam").src = cams[city].url;
-    document.getElementById("title").innerText =
-    "📡 Live Feed: " + cams[city].title;
+document.getElementById("cam").src = cams[city].url;
+document.getElementById("title").innerText = "📡 " + cams[city].title;
 }
 
-/* SOUND CONTROL */
+/* SOUND */
 let soundOn = false;
 
 function toggleSound(){
-    let sound = document.getElementById("bgSound");
+let cam = document.getElementById("cam");
 
-    if(soundOn){
-        sound.pause();
-        soundOn = false;
-    } else {
-        sound.volume = 0.3;
-        sound.play().catch(()=>{});
-        soundOn = true;
-    }
+if(cam.src.includes("mute=1")){
+cam.src = cam.src.replace("mute=1","mute=0");
+} else {
+cam.src += "&mute=0";
 }
-
-/* AUTO SOUND START (after click anywhere) */
-document.body.addEventListener("click", function () {
-    let sound = document.getElementById("bgSound");
-    sound.volume = 0.2;
-    sound.play().catch(()=>{});
-}, { once: true });
+}
 
 </script>
 
