@@ -6,30 +6,33 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- MONETAG -->
-<script src="https://quge5.com/88/tag.min.js" 
+<script src="https://quge5.com/88/tag.min.js"
 data-zone="233397" async data-cfasync="false"></script>
 
 <style>
-body {
+body{
     margin:0;
-    font-family: Arial, sans-serif;
-    background: linear-gradient(to bottom, #000, #111);
+    font-family:Arial, sans-serif;
+    background:linear-gradient(to bottom,#000,#111);
     color:white;
     text-align:center;
+    overflow-x:hidden;
 }
 
 /* TOP BAR */
 .top-bar{
     position:fixed;
     top:0;
+    left:0;
     width:100%;
-    background: rgba(0,0,0,0.92);
-    backdrop-filter: blur(10px);
+    background:rgba(0,0,0,0.92);
+    backdrop-filter:blur(10px);
     display:flex;
     justify-content:space-between;
     align-items:center;
-    padding:12px;
+    padding:12px 18px;
     z-index:1000;
+    box-sizing:border-box;
 }
 
 .logo{
@@ -37,13 +40,16 @@ body {
     font-weight:bold;
 }
 
+/* BURGER */
 .menu-toggle{
-    font-size:26px;
+    font-size:28px;
     cursor:pointer;
     user-select:none;
+    position:relative;
+    right:5px;
 }
 
-/* MENU (DEFAULT MOBILE SIDE) */
+/* MOBILE MENU */
 .menu{
     position:fixed;
     top:0;
@@ -90,48 +96,48 @@ body {
     display:block;
 }
 
-/* DESKTOP FIX */
+/* DESKTOP MENU */
 @media(min-width:768px){
 
-    .menu{
-        position:fixed;
-        top:55px;
-        left:0;
-        width:100%;
-        height:auto;
-        flex-direction:row;
-        justify-content:center;
-        background: rgba(0,0,0,0.85);
-        padding:10px;
-        transform:none !important;
-        transition:none;
-    }
+.menu{
+    position:fixed;
+    top:55px;
+    left:0;
+    width:100%;
+    height:auto;
+    flex-direction:row;
+    justify-content:center;
+    background:rgba(0,0,0,0.85);
+    padding:10px;
+}
 
-    .menu a{
-        border:none;
-        margin:5px;
-        background: rgba(255,255,255,0.08);
-        border-radius:20px;
-        text-align:center;
-    }
+.menu a{
+    border:none;
+    margin:5px;
+    padding:10px 15px;
+    background:rgba(255,255,255,0.08);
+    border-radius:20px;
+    text-align:center;
+}
 
-    .menu-toggle{
-        display:none;
-    }
+.menu-toggle{
+    display:none;
+}
 
-    .overlay{
-        display:none !important;
-    }
+.overlay{
+    display:none !important;
+}
+
 }
 
 /* CONTENT */
-.container {
+.container{
     padding:20px;
     margin-top:80px;
     margin-bottom:100px;
 }
 
-h2 { font-size:18px; }
+h2{font-size:18px;}
 
 #dateTime{
     margin:10px 0;
@@ -150,46 +156,46 @@ h2 { font-size:18px; }
     text-align:left;
 }
 
-/* VIDEO */
-video {
+video{
     width:100%;
     max-width:420px;
     border-radius:12px;
 }
 
-/* TIMER */
-#statusText {
-    margin-top: 12px;
-    font-size: 15px;
-    color: #00e676;
+#statusText{
+    margin-top:12px;
+    font-size:15px;
+    color:#00e676;
 }
 
-#progressContainer {
-    width: 90%;
-    max-width: 320px;
-    height: 10px;
-    background: rgba(255,255,255,0.08);
-    border-radius: 50px;
-    margin: 12px auto;
+#progressContainer{
+    width:90%;
+    max-width:320px;
+    height:10px;
+    background:rgba(255,255,255,0.08);
+    border-radius:50px;
+    margin:12px auto;
 }
 
-#progressBar {
-    width: 0%;
-    height: 100%;
-    background: #00c853;
+#progressBar{
+    width:0%;
+    height:100%;
+    background:#00c853;
 }
 
 /* BUTTONS */
-.bottom-buttons {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    display: flex;
+.bottom-buttons{
+    position:fixed;
+    bottom:0;
+    left:0;
+    width:100%;
+    display:flex;
     padding:10px;
     background:#000;
+    box-sizing:border-box;
 }
 
-button {
+button{
     flex:1;
     padding:15px;
     border:none;
@@ -198,8 +204,8 @@ button {
     font-weight:bold;
 }
 
-.connect{ background:#00c853; }
-.trial{ background:#00e676; }
+.connect{background:#00c853;}
+.trial{background:#00e676;}
 
 </style>
 </head>
@@ -257,7 +263,7 @@ button {
 
 <script>
 
-/* MENU FIX */
+/* MENU */
 function toggleMenu(){
     document.getElementById("menu").classList.toggle("active");
     document.getElementById("overlay").classList.toggle("active");
@@ -268,9 +274,8 @@ function closeMenu(){
     document.getElementById("overlay").classList.remove("active");
 }
 
-/* CLOSE MENU ON CLICK */
-document.querySelectorAll(".menu a").forEach(link=>{
-    link.addEventListener("click", closeMenu);
+document.querySelectorAll(".menu a").forEach(a=>{
+    a.addEventListener("click", closeMenu);
 });
 
 /* WIFI */
@@ -306,7 +311,7 @@ document.getElementById("dateTime").innerHTML=
 "📅 "+d.toLocaleDateString()+"<br>🕒 "+d.toLocaleTimeString();
 },1000);
 
-/* MUSIC AUTOPLAY */
+/* MUSIC */
 document.body.addEventListener("click",()=>{
 let m=document.getElementById("bgmusic");
 m.volume=0.2;
