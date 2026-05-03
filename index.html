@@ -23,13 +23,13 @@ body {
     position:fixed;
     top:0;
     width:100%;
-    background: rgba(0,0,0,0.9);
+    background: rgba(0,0,0,0.92);
     backdrop-filter: blur(10px);
     display:flex;
     justify-content:space-between;
     align-items:center;
     padding:12px;
-    z-index:999;
+    z-index:1000;
 }
 
 .logo{
@@ -38,23 +38,24 @@ body {
 }
 
 .menu-toggle{
-    font-size:24px;
+    font-size:26px;
     cursor:pointer;
+    user-select:none;
 }
 
-/* SIDE MENU (MOBILE) */
+/* MENU (DEFAULT MOBILE SIDE) */
 .menu{
     position:fixed;
     top:0;
-    left:-260px;
+    left:-280px;
     width:260px;
     height:100%;
     background:#111;
-    padding-top:60px;
+    padding-top:70px;
     display:flex;
     flex-direction:column;
     transition:0.3s ease;
-    z-index:998;
+    z-index:999;
 }
 
 .menu.active{
@@ -69,6 +70,10 @@ body {
     text-align:left;
 }
 
+.menu a:hover{
+    background:#222;
+}
+
 /* OVERLAY */
 .overlay{
     position:fixed;
@@ -78,24 +83,28 @@ body {
     height:100%;
     background:rgba(0,0,0,0.6);
     display:none;
-    z-index:997;
+    z-index:998;
 }
+
 .overlay.active{
     display:block;
 }
 
-/* DESKTOP MENU */
+/* DESKTOP FIX */
 @media(min-width:768px){
+
     .menu{
         position:fixed;
-        top:50px;
+        top:55px;
         left:0;
-        height:auto;
         width:100%;
+        height:auto;
         flex-direction:row;
         justify-content:center;
         background: rgba(0,0,0,0.85);
         padding:10px;
+        transform:none !important;
+        transition:none;
     }
 
     .menu a{
@@ -103,6 +112,7 @@ body {
         margin:5px;
         background: rgba(255,255,255,0.08);
         border-radius:20px;
+        text-align:center;
     }
 
     .menu-toggle{
@@ -114,7 +124,7 @@ body {
     }
 }
 
-/* CONTAINER */
+/* CONTENT */
 .container {
     padding:20px;
     margin-top:80px;
@@ -130,7 +140,6 @@ h2 { font-size:18px; }
     font-weight:bold;
 }
 
-/* BOX */
 .box{
     background:#111;
     color:#ccc;
@@ -205,14 +214,16 @@ button {
 
 <!-- MENU -->
 <div id="menu" class="menu">
-<a href="index.html">🏠 Home</a>
-<a href="watch.html">📺 Watch TV</a>
-<a href="games.html">🎮 Games</a>
-<a href="booking.html">🏡 Booking</a>
+    <a href="index.html">🏠 Home</a>
+    <a href="watch.html">📺 Watch TV</a>
+    <a href="games.html">🎮 Games</a>
+    <a href="booking.html">🏡 Booking</a>
 </div>
 
+<!-- OVERLAY -->
 <div id="overlay" class="overlay" onclick="closeMenu()"></div>
 
+<!-- CONTENT -->
 <div class="container">
 
 <h2>🎮 Renson Barangay WiFi</h2>
@@ -233,18 +244,20 @@ button {
 
 </div>
 
+<!-- BUTTONS -->
 <div class="bottom-buttons">
 <button id="connectBtn" class="connect" disabled onclick="connectNet()">CONNECT</button>
 <button class="trial" onclick="freeWifi()">FREE WIFI</button>
 </div>
 
+<!-- MUSIC -->
 <audio id="bgmusic" loop>
 <source src="music.mp3">
 </audio>
 
 <script>
 
-/* MENU */
+/* MENU FIX */
 function toggleMenu(){
     document.getElementById("menu").classList.toggle("active");
     document.getElementById("overlay").classList.toggle("active");
@@ -255,7 +268,7 @@ function closeMenu(){
     document.getElementById("overlay").classList.remove("active");
 }
 
-/* AUTO CLOSE */
+/* CLOSE MENU ON CLICK */
 document.querySelectorAll(".menu a").forEach(link=>{
     link.addEventListener("click", closeMenu);
 });
@@ -264,6 +277,7 @@ document.querySelectorAll(".menu a").forEach(link=>{
 function connectNet(){
     window.location.href="http://192.168.22.1/login2.html";
 }
+
 function freeWifi(){
     window.location.href="http://192.168.22.1/login?trial=1";
 }
@@ -275,7 +289,7 @@ let txt=document.getElementById("statusText");
 
 let i=setInterval(()=>{
 t--;
-bar.style.width=(10-t)*10+"%";
+bar.style.width=((10-t)*10)+"%";
 txt.innerText="Please wait "+t+"s";
 
 if(t<=0){
@@ -292,7 +306,7 @@ document.getElementById("dateTime").innerHTML=
 "📅 "+d.toLocaleDateString()+"<br>🕒 "+d.toLocaleTimeString();
 },1000);
 
-/* MUSIC */
+/* MUSIC AUTOPLAY */
 document.body.addEventListener("click",()=>{
 let m=document.getElementById("bgmusic");
 m.volume=0.2;
