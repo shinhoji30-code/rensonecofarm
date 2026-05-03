@@ -16,7 +16,7 @@ body{
 
 /* HEADER */
 .header{
-    padding:15px;
+    padding:16px;
     font-size:20px;
     font-weight:bold;
     color:#00e676;
@@ -24,38 +24,56 @@ body{
     border-bottom:2px solid #00e676;
 }
 
-/* MARQUEE */
-marquee{
+/* NEWS BAR (REPLACE MARQUEE) */
+.news{
     background:#111;
     padding:10px;
+    font-size:13px;
     color:#00e676;
-    font-size:14px;
+    overflow:hidden;
+    white-space:nowrap;
+}
+
+#newsText{
+    display:inline-block;
+    padding-left:100%;
+    animation:scroll 15s linear infinite;
+}
+
+@keyframes scroll{
+    0%{transform:translateX(0);}
+    100%{transform:translateX(-100%);}
 }
 
 /* CONTAINER */
 .container{
     padding:20px;
+    padding-bottom:100px;
 }
 
-/* CARD BUTTONS */
+/* BUTTON GRID */
+.grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:12px;
+}
+
+/* BUTTON */
 .btn{
     display:block;
     background:#00c853;
     color:white;
-    padding:14px;
-    margin:10px auto;
-    border:none;
-    border-radius:10px;
+    padding:16px;
+    border-radius:14px;
     font-size:16px;
     font-weight:bold;
-    width:90%;
-    max-width:320px;
     text-decoration:none;
+    box-shadow:0 4px 12px rgba(0,0,0,0.5);
+    transition:0.2s;
 }
 
-.btn:hover{
-    opacity:0.9;
-    transform:scale(1.02);
+.btn:active{
+    transform:scale(0.96);
 }
 
 /* SECONDARY */
@@ -63,51 +81,73 @@ marquee{
     background:#222;
 }
 
+/* INFO */
 .info{
     font-size:13px;
     color:#aaa;
-    margin-top:10px;
+    margin-top:15px;
 }
 
+/* MOBILE GRID UPGRADE */
+@media (min-width:600px){
+    .grid{
+        grid-template-columns:1fr 1fr;
+    }
+}
 </style>
 </head>
 
 <body>
 
-<!-- 🔥 MONETAG (TOP - HUB PAGE IMPRESSION BOOST) -->
-<script src="https://quge5.com/88/tag.min.js" data-zone="233397" async data-cfasync="false"></script>
+<!-- 🔥 MONETAG -->
+<script src="https://quge5.com/88/tag.min.js" data-zone="233397" async></script>
 
 <div class="header">
 🎮 RENSON GAMING HUB
 </div>
 
-<marquee>
-🔥 Mobile Games • Snake • Pong • Tap Speed • More Games Coming Soon
-</marquee>
+<div class="news">
+🔥 <span id="newsText">Mobile Games • Snake • Pong • Tap Speed • More Games Coming Soon</span>
+</div>
 
 <div class="container">
 
-<!-- LINKS ONLY (NO GAME CODE HERE) -->
+<div class="grid">
 
-<a class="btn" href="snake/index.html">🐍 Play Snake Game</a>
+<a class="btn" href="snake/index.html">🐍 Snake Game</a>
 
-<a class="btn" href="pong/index.html">🏓 Play Pong Game</a>
+<a class="btn" href="pong/index.html">🏓 Pong Game</a>
 
-<a class="btn" href="tap/index.html">⚡ Tap Speed Game</a>
+<a class="btn" href="tap/index.html">⚡ Tap Speed</a>
 
-<a class="btn" href="https://rensonecoparkphil.com/">🌐 Visit Main Site</a>
+<a class="btn" href="https://rensonecoparkphil.com/">🌐 Main Site</a>
 
-<a class="btn back" href="index.html">⬅ Back to Home</a>
+<a class="btn back" href="index.html">⬅ Back</a>
+
+</div>
 
 <div class="info">
-📱 Best viewed on mobile phones<br>
-🎮 Tap a game to start playing instantly
+📱 Optimized for mobile users<br>
+🎮 Tap any game to play instantly
 </div>
 
 </div>
 
-<!-- 🔥 MONETAG (BOTTOM - EXIT IMPACT) -->
-<script src="https://quge5.com/88/tag.min.js" data-zone="233397" async data-cfasync="false"></script>
+<script>
+const newsList = [
+"Play Snake now!",
+"Challenge Pong game!",
+"Test your speed in Tap Game!",
+"More games coming soon!"
+];
+
+let i = 0;
+function updateNews(){
+    document.getElementById("newsText").innerText = newsList[i];
+    i = (i + 1) % newsList.length;
+}
+setInterval(updateNews,4000);
+</script>
 
 </body>
 </html>
