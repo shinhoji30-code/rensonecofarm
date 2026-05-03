@@ -10,6 +10,7 @@
 data-zone="233397" async data-cfasync="false"></script>
 
 <style>
+
 body{
     margin:0;
     font-family:Arial, sans-serif;
@@ -19,7 +20,9 @@ body{
     overflow-x:hidden;
 }
 
-/* TOP BAR */
+/* =========================
+   TOP BAR
+========================= */
 .top-bar{
     position:fixed;
     top:0;
@@ -46,7 +49,9 @@ body{
     user-select:none;
 }
 
-/* MOBILE MENU */
+/* =========================
+   MENU (MOBILE DEFAULT)
+========================= */
 .menu{
     position:fixed;
     top:0;
@@ -80,10 +85,7 @@ body{
 /* OVERLAY */
 .overlay{
     position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
+    inset:0;
     background:rgba(0,0,0,0.6);
     display:none;
     z-index:998;
@@ -93,7 +95,9 @@ body{
     display:block;
 }
 
-/* CONTENT */
+/* =========================
+   CONTENT
+========================= */
 .container{
     padding:20px;
     margin-top:80px;
@@ -125,12 +129,7 @@ video{
     border-radius:12px;
 }
 
-#statusText{
-    margin-top:12px;
-    font-size:15px;
-    color:#00e676;
-}
-
+/* PROGRESS BAR */
 #progressContainer{
     width:90%;
     max-width:320px;
@@ -170,11 +169,43 @@ button{
 .connect{background:#00c853;}
 .trial{background:#00e676;}
 
-/* MOBILE MENU FIX FOR DESKTOP */
+/* =========================
+   DESKTOP FIX ONLY (UI)
+========================= */
 @media(min-width:768px){
+
+/* MENU becomes top horizontal bar */
 .menu{
-    width:300px;
+    position:fixed;
+    top:55px;
+    left:0;
+    width:100%;
+    height:auto;
+    flex-direction:row;
+    justify-content:center;
+    background:rgba(0,0,0,0.85);
+    padding:10px;
+    transition:none;
 }
+
+.menu a{
+    border:none;
+    padding:10px 15px;
+    margin:0 5px;
+    background:rgba(255,255,255,0.08);
+    border-radius:20px;
+    text-align:center;
+    white-space:nowrap;
+}
+
+.menu-toggle{
+    display:none;
+}
+
+.overlay{
+    display:none !important;
+}
+
 }
 
 </style>
@@ -182,7 +213,7 @@ button{
 
 <body>
 
-<!-- TOP -->
+<!-- TOP BAR -->
 <div class="top-bar">
     <div class="logo">🌿 Renson WiFi</div>
     <div class="menu-toggle" onclick="toggleMenu()">☰</div>
@@ -251,7 +282,7 @@ document.querySelectorAll(".menu a").forEach(a=>{
 a.addEventListener("click", closeMenu);
 });
 
-/* WIFI */
+/* WIFI ACTIONS */
 function connectNet(){
 window.location.href="http://192.168.22.1/login2.html";
 }
@@ -260,10 +291,11 @@ function freeWifi(){
 window.location.href="http://192.168.22.1/login?trial=1";
 }
 
-/* TIMER */
+/* TIMER (UNCHANGED LOGIC) */
 let t=10;
 let bar=document.getElementById("progressBar");
 let txt=document.getElementById("statusText");
+let btn=document.getElementById("connectBtn");
 
 let i=setInterval(()=>{
 t--;
@@ -273,18 +305,18 @@ txt.innerText="Please wait "+t+"s";
 if(t<=0){
 clearInterval(i);
 txt.innerText="Ready!";
-document.getElementById("connectBtn").disabled=false;
+btn.disabled=false;
 }
 },1000);
 
-/* TIME */
+/* TIME DISPLAY */
 setInterval(()=>{
 let d=new Date();
 document.getElementById("dateTime").innerHTML=
 "📅 "+d.toLocaleDateString()+"<br>🕒 "+d.toLocaleTimeString();
 },1000);
 
-/* MUSIC */
+/* MUSIC AUTOPLAY ON CLICK */
 document.body.addEventListener("click",()=>{
 let m=document.getElementById("bgmusic");
 m.volume=0.2;
