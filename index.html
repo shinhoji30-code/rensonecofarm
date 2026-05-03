@@ -40,13 +40,10 @@ body{
     font-weight:bold;
 }
 
-/* BURGER */
 .menu-toggle{
     font-size:28px;
     cursor:pointer;
     user-select:none;
-    position:relative;
-    right:5px;
 }
 
 /* MOBILE MENU */
@@ -96,7 +93,7 @@ body{
     display:block;
 }
 
-/* DESKTOP MENU */
+/* DESKTOP FIX (IMPORTANT) */
 @media(min-width:768px){
 
 .menu{
@@ -104,20 +101,23 @@ body{
     top:55px;
     left:0;
     width:100%;
-    height:auto;
-    flex-direction:row;
+    display:flex;
+    flex-wrap:wrap;      /* 🔥 FIX: para di mawala items */
     justify-content:center;
+    gap:8px;
     background:rgba(0,0,0,0.85);
     padding:10px;
+    height:auto;
 }
 
 .menu a{
     border:none;
-    margin:5px;
-    padding:10px 15px;
+    margin:0;
+    padding:10px 14px;
     background:rgba(255,255,255,0.08);
     border-radius:20px;
     text-align:center;
+    white-space:nowrap;  /* 🔥 FIX text hindi puputol */
 }
 
 .menu-toggle{
@@ -221,6 +221,9 @@ button{
 <!-- MENU -->
 <div id="menu" class="menu">
     <a href="index.html">🏠 Home</a>
+    <a href="vision.html">👁 Vision</a>
+    <a href="world.html">🌍 World</a>
+    <a href="chat.html">💬 Chat</a>
     <a href="watch.html">📺 Watch TV</a>
     <a href="games.html">🎮 Games</a>
     <a href="booking.html">🏡 Booking</a>
