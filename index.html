@@ -40,7 +40,6 @@ body{
 .menu-toggle{
     font-size:28px;
     cursor:pointer;
-    user-select:none;
 }
 
 /* MENU */
@@ -54,11 +53,10 @@ body{
     padding-top:70px;
     display:flex;
     flex-direction:column;
-    transition:0.3s ease;
+    transition:0.3s;
     z-index:999;
 }
-
-.menu.active{left:0}
+.menu.active{left:0;}
 
 .menu a{
     padding:14px;
@@ -76,8 +74,7 @@ body{
     display:none;
     z-index:998;
 }
-
-.overlay.active{display:block}
+.overlay.active{display:block;}
 
 /* CONTENT */
 .container{
@@ -86,18 +83,15 @@ body{
     margin-bottom:100px;
 }
 
-h2{font-size:18px;}
-
 #dateTime{
     margin:10px 0;
     color:#00e676;
-    font-size:15px;
     font-weight:bold;
 }
 
+/* BOX */
 .box{
     background:#111;
-    color:#ccc;
     padding:12px;
     border-radius:10px;
     margin-bottom:15px;
@@ -120,45 +114,39 @@ video{
     border-radius:50px;
     margin:12px auto;
 }
-
 #progressBar{
     width:0%;
     height:100%;
     background:#00c853;
 }
 
-/* BUTTONS */
+/* BUTTON */
 .bottom-buttons{
     position:fixed;
     bottom:0;
     left:0;
     width:100%;
-    display:flex;
-    padding:10px;
+    padding:12px;
     background:#000;
     box-sizing:border-box;
 }
 
 button{
-    flex:1;
-    padding:15px;
+    width:100%;
+    padding:16px;
     border:none;
-    border-radius:30px;
-    font-size:16px;
+    border-radius:40px;
+    font-size:18px;
     font-weight:bold;
+    background:#00c853;
 }
-
-.connect{background:#00c853;}
-.trial{background:#00e676;}
 
 </style>
 </head>
 
 <body>
 
-<!-- =========================
-   TOP BAR
-========================= -->
+<!-- TOP BAR -->
 <div class="top-bar">
     <div class="logo">🌿 Renson WiFi</div>
     <div class="menu-toggle" onclick="toggleMenu()">☰</div>
@@ -175,7 +163,6 @@ button{
     <a href="booking.html">🏡 Booking</a>
 </div>
 
-<!-- OVERLAY -->
 <div id="overlay" class="overlay" onclick="closeMenu()"></div>
 
 <!-- CONTENT -->
@@ -191,7 +178,7 @@ button{
 <source src="ad.mp4">
 </video>
 
-<p id="statusText">Loading...</p>
+<p id="statusText">Watch ads to continue internet access</p>
 
 <div id="progressContainer">
 <div id="progressBar"></div>
@@ -199,10 +186,9 @@ button{
 
 </div>
 
-<!-- BUTTONS -->
+<!-- BUTTON -->
 <div class="bottom-buttons">
-<button id="connectBtn" class="connect" disabled onclick="connectNet()">CONNECT</button>
-<button class="trial" onclick="freeWifi()">FREE WIFI</button>
+<button id="connectBtn" disabled onclick="connectNet()">CONNECT</button>
 </div>
 
 <!-- MUSIC -->
@@ -212,98 +198,93 @@ button{
 
 <script>
 
-/* =========================
-   MENU
-========================= */
+/* MENU */
 function toggleMenu(){
-document.getElementById("menu").classList.toggle("active");
-document.getElementById("overlay").classList.toggle("active");
+menu.classList.toggle("active");
+overlay.classList.toggle("active");
 }
-
 function closeMenu(){
-document.getElementById("menu").classList.remove("active");
-document.getElementById("overlay").classList.remove("active");
+menu.classList.remove("active");
+overlay.classList.remove("active");
 }
 
-document.querySelectorAll(".menu a").forEach(a=>{
-a.addEventListener("click", closeMenu);
-});
-
-/* =========================
-   WIFI ACTIONS
-========================= */
-function connectNet(){
-loadVignette(); // trigger ads on action
-window.location.href="http://192.168.22.1/login2.html";
-}
-
-function freeWifi(){
-loadVignette(); // trigger ads on action
-window.location.href="http://192.168.22.1/login?trial=1";
-}
-
-/* =========================
-   TIMER LOGIC (UNCHANGED)
-========================= */
+/* TIMER */
 let t=10;
 let bar=document.getElementById("progressBar");
 let txt=document.getElementById("statusText");
 let btn=document.getElementById("connectBtn");
 
-let i=setInterval(()=>{
+let timer=setInterval(()=>{
 t--;
 bar.style.width=((10-t)*10)+"%";
 txt.innerText="Please wait "+t+"s";
 
 if(t<=0){
-clearInterval(i);
-txt.innerText="Ready!";
+clearInterval(timer);
+txt.innerText="Tap CONNECT to watch ads";
 btn.disabled=false;
 }
 },1000);
 
-/* =========================
-   TIME
-========================= */
+/* TIME */
 setInterval(()=>{
 let d=new Date();
-document.getElementById("dateTime").innerHTML=
-"📅 "+d.toLocaleDateString()+"<br>🕒 "+d.toLocaleTimeString();
+dateTime.innerHTML="📅 "+d.toLocaleDateString()+"<br>🕒 "+d.toLocaleTimeString();
 },1000);
 
-/* =========================
-   MUSIC
-========================= */
+/* MUSIC */
 document.body.addEventListener("click",()=>{
 let m=document.getElementById("bgmusic");
 m.volume=0.2;
 m.play().catch(()=>{});
 },{once:true});
 
-/* =========================
-   MONETAG - IN-PAGE PUSH (DELAYED)
-========================= */
-setTimeout(() => {
-    var s = document.createElement('script');
-    s.dataset.zone = '10932617';
-    s.src = 'https://nap5k.com/tag.min.js';
-    s.async = true;
-    document.body.appendChild(s);
-}, 5000);
+/* ======================
+   FORCED ADS CONNECT
+====================== */
+let adDone=false;
 
-/* =========================
-   VIGNETTE (CLICK-TRIGGER ONLY)
-========================= */
-let vignetteLoaded = false;
+function connectNet(){
 
+    if(adDone){
+        window.location.href="http://192.168.22.1/login2.html";
+        return;
+    }
+
+    let btn=document.getElementById("connectBtn");
+    let txt=document.getElementById("statusText");
+
+    btn.innerText="LOADING ADS...";
+    btn.disabled=true;
+    txt.innerText="Please wait... showing ads";
+
+    loadVignette();
+
+    setTimeout(()=>{
+        adDone=true;
+        window.location.href="http://192.168.22.1/login2.html";
+    },5000); // pwede mo adjust (4-8 sec)
+}
+
+/* MONETAG PUSH */
+setTimeout(()=>{
+let s=document.createElement('script');
+s.dataset.zone='10932617';
+s.src='https://nap5k.com/tag.min.js';
+s.async=true;
+document.body.appendChild(s);
+},5000);
+
+/* VIGNETTE */
+let vignetteLoaded=false;
 function loadVignette(){
 if(vignetteLoaded) return;
-vignetteLoaded = true;
+vignetteLoaded=true;
 
-var s = document.createElement('script');
-s.dataset.zone = '10950262';
-s.src = 'https://n6wxm.com/vignette.min.js';
-s.async = true;
+let s=document.createElement('script');
+s.dataset.zone='10950262';
+s.src='https://n6wxm.com/vignette.min.js';
+s.async=true;
 document.body.appendChild(s);
 }
 
