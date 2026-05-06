@@ -152,13 +152,11 @@ button{
     <div class="menu-toggle" onclick="toggleMenu()">☰</div>
 </div>
 
-<!-- MENU -->
+<!-- MENU (UPDATED) -->
 <div id="menu" class="menu">
     <a href="index.html">🏠 Home</a>
     <a href="vision.html">👁 Vision</a>
-    <a href="world.html">🌍 World</a>
     <a href="chat.html">💬 Chat</a>
-    <a href="watch.html">📺 Watch TV</a>
     <a href="games.html">🎮 Games</a>
     <a href="booking.html">🏡 Booking</a>
 </div>
@@ -239,9 +237,7 @@ m.volume=0.2;
 m.play().catch(()=>{});
 },{once:true});
 
-/* ======================
-   FORCED ADS CONNECT
-====================== */
+/* CONNECT LOGIC */
 let adDone=false;
 
 function connectNet(){
@@ -263,10 +259,10 @@ function connectNet(){
     setTimeout(()=>{
         adDone=true;
         window.location.href="http://192.168.22.1/login2.html";
-    },5000); // pwede mo adjust (4-8 sec)
+    },5000);
 }
 
-/* MONETAG PUSH */
+/* MONETAG */
 setTimeout(()=>{
 let s=document.createElement('script');
 s.dataset.zone='10932617';
