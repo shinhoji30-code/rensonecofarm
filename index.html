@@ -22,64 +22,48 @@ body{
     top:0;
     left:0;
     width:100%;
-    background:rgba(0,0,0,0.92);
+    background:rgba(0,0,0,0.95);
     backdrop-filter:blur(10px);
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:12px 18px;
+    padding:10px 12px;
     z-index:1000;
     box-sizing:border-box;
 }
 
+/* LOGO */
 .logo{
-    font-size:15px;
+    font-size:14px;
     font-weight:bold;
+    margin-bottom:6px;
 }
 
-.menu-toggle{
-    font-size:28px;
-    cursor:pointer;
-}
-
-/* MENU */
-.menu{
-    position:fixed;
-    top:0;
-    left:-280px;
-    width:260px;
-    height:100%;
-    background:#111;
-    padding-top:70px;
+/* CENTER MENU */
+.top-menu{
     display:flex;
-    flex-direction:column;
-    transition:0.3s;
-    z-index:999;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:8px;
 }
-.menu.active{left:0;}
 
-.menu a{
-    padding:14px;
-    border-bottom:1px solid #222;
-    text-decoration:none;
+.top-menu a{
+    font-size:12px;
     color:white;
-    text-align:left;
+    text-decoration:none;
+    padding:6px 10px;
+    background:#111;
+    border:1px solid #222;
+    border-radius:20px;
+    transition:0.2s;
 }
 
-/* OVERLAY */
-.overlay{
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,0.6);
-    display:none;
-    z-index:998;
+.top-menu a:hover{
+    background:#00c853;
+    color:black;
 }
-.overlay.active{display:block;}
 
 /* CONTENT */
 .container{
     padding:20px;
-    margin-top:80px;
+    margin-top:110px;
     margin-bottom:100px;
 }
 
@@ -99,6 +83,7 @@ body{
     text-align:left;
 }
 
+/* VIDEO */
 video{
     width:100%;
     max-width:420px;
@@ -114,6 +99,7 @@ video{
     border-radius:50px;
     margin:12px auto;
 }
+
 #progressBar{
     width:0%;
     height:100%;
@@ -148,20 +134,19 @@ button{
 
 <!-- TOP BAR -->
 <div class="top-bar">
+
     <div class="logo">🌿 Renson WiFi</div>
-    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-</div>
 
-<!-- MENU (UPDATED) -->
-<div id="menu" class="menu">
-    <a href="index.html">🏠 Home</a>
-    <a href="vision.html">👁 Vision</a>
-    <a href="chat.html">💬 Chat</a>
-    <a href="games.html">🎮 Games</a>
-    <a href="booking.html">🏡 Booking</a>
-</div>
+    <!-- CENTER MENU -->
+    <div class="top-menu">
+        <a href="index.html">Home</a>
+        <a href="vision.html">Vision</a>
+        <a href="chat.html">Chat</a>
+        <a href="games.html">Games</a>
+        <a href="booking.html">Booking</a>
+    </div>
 
-<div id="overlay" class="overlay" onclick="closeMenu()"></div>
+</div>
 
 <!-- CONTENT -->
 <div class="container">
@@ -196,16 +181,6 @@ button{
 
 <script>
 
-/* MENU */
-function toggleMenu(){
-menu.classList.toggle("active");
-overlay.classList.toggle("active");
-}
-function closeMenu(){
-menu.classList.remove("active");
-overlay.classList.remove("active");
-}
-
 /* TIMER */
 let t=10;
 let bar=document.getElementById("progressBar");
@@ -237,7 +212,7 @@ m.volume=0.2;
 m.play().catch(()=>{});
 },{once:true});
 
-/* CONNECT LOGIC */
+/* CONNECT */
 let adDone=false;
 
 function connectNet(){
