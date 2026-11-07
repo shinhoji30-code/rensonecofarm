@@ -6,15 +6,6 @@
 <title>RENSON WiFiHUB - Internet Access Portal</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- MONETAG -->
-<meta name="d0e2610e97c851827429ef663e58fb89317eb36c"
-content="d0e2610e97c851827429ef663e58fb89317eb36c">
-
-<script src="https://quge5.com/88/tag.min.js"
-data-zone="233397"
-async
-data-cfasync="false"></script>
-
 <style>
 *{
     margin:0;
@@ -39,6 +30,7 @@ body{
     100%{background-position:0% 50%;}
 }
 
+/* PARTICLES */
 .particles{
     position:fixed;
     width:100%;
@@ -78,6 +70,7 @@ body{
     text-shadow:0 0 10px #00e676,0 0 20px #00e676;
 }
 
+/* MENU */
 .top-menu{
     display:flex;
     justify-content:center;
@@ -93,6 +86,7 @@ body{
     background:#111;
     border:1px solid #222;
     border-radius:30px;
+    transition:.3s;
 }
 
 .top-menu a:hover{
@@ -122,6 +116,7 @@ h2{
     font-size:15px;
 }
 
+/* BOX */
 .box{
     background:rgba(17,17,17,.85);
     padding:18px;
@@ -129,9 +124,10 @@ h2{
     margin-bottom:15px;
     border:1px solid #222;
     box-shadow:0 0 15px rgba(0,255,100,.08);
+    backdrop-filter:blur(5px);
 }
 
-/* BARANGAY SELECTION */
+/* BARANGAY */
 .barangay-title{
     color:#00e676;
     font-size:19px;
@@ -159,7 +155,6 @@ h2{
     color:white;
     cursor:pointer;
     transition:.3s;
-    box-shadow:0 0 12px rgba(0,230,118,.08);
 }
 
 .barangay-btn .icon{
@@ -181,7 +176,8 @@ h2{
 }
 
 .barangay-btn:disabled{
-    opacity:.5;
+    opacity:.6;
+    cursor:not-allowed;
 }
 
 /* VIDEO */
@@ -222,29 +218,14 @@ video{
     transition:.5s;
 }
 
-/* ADS */
-.ad-box{
-    margin-top:20px;
-    background:rgba(17,17,17,.85);
-    border:1px solid #222;
-    border-radius:18px;
-    padding:15px;
-}
-
-.ad-title{
-    color:#00e676;
-    margin-bottom:10px;
-    font-weight:bold;
-    font-size:18px;
-}
-
+/* FOOTER */
 .footer{
     margin-top:20px;
     font-size:12px;
     color:#777;
 }
 
-/* BUTTON */
+/* BOTTOM BUTTON */
 .bottom-buttons{
     position:fixed;
     bottom:0;
@@ -256,7 +237,7 @@ video{
     z-index:1000;
 }
 
-button#connectBtn{
+#connectBtn{
     width:100%;
     padding:17px;
     border:none;
@@ -266,11 +247,12 @@ button#connectBtn{
     background:linear-gradient(to right,#00e676,#00c853);
     color:black;
     cursor:pointer;
+    transition:.3s;
     box-shadow:0 0 20px rgba(0,255,100,.4);
     animation:pulse 1.5s infinite;
 }
 
-button#connectBtn:disabled{
+#connectBtn:disabled{
     opacity:.4;
     cursor:not-allowed;
     animation:none;
@@ -329,7 +311,9 @@ button#connectBtn:disabled{
 
     <div class="barangay-options">
 
-        <button class="barangay-btn" id="concepcionBtn"
+        <button type="button"
+        class="barangay-btn"
+        id="concepcionBtn"
         onclick="selectBarangay('concepcion')">
 
             <span class="icon">🏡</span>
@@ -337,7 +321,9 @@ button#connectBtn:disabled{
 
         </button>
 
-        <button class="barangay-btn" id="bigajoBtn"
+        <button type="button"
+        class="barangay-btn"
+        id="bigajoBtn"
         onclick="selectBarangay('bigajo')">
 
             <span class="icon">🏡</span>
@@ -354,14 +340,16 @@ button#connectBtn:disabled{
 
 </div>
 
+<!-- OPTIONAL VIDEO -->
 <div class="box">
-    ☀️ Weather: Sunny • 31°C
-</div>
 
-<!-- VIDEO ADVERTISEMENT -->
-<video autoplay muted loop playsinline>
-    <source src="ad.mp4" type="video/mp4">
-</video>
+    <h3 style="color:#00e676;">🌿 Welcome to Renson WiFiHUB</h3>
+
+    <video autoplay muted loop playsinline>
+        <source src="ad.mp4" type="video/mp4">
+    </video>
+
+</div>
 
 <p id="statusText">
 Please select your barangay to continue.
@@ -369,19 +357,6 @@ Please select your barangay to continue.
 
 <div id="progressContainer">
     <div id="progressBar"></div>
-</div>
-
-<!-- ADS -->
-<div class="ad-box">
-
-    <div class="ad-title">
-        📢 Sponsored Ads
-    </div>
-
-    <p>
-        🔥 Watch ads and enjoy internet access!
-    </p>
-
 </div>
 
 <div class="footer">
@@ -393,7 +368,8 @@ Please select your barangay to continue.
 <!-- CONNECT BUTTON -->
 <div class="bottom-buttons">
 
-    <button id="connectBtn" disabled onclick="connectNet()">
+    <button type="button" id="connectBtn" disabled
+    onclick="connectNet()">
         SELECT BARANGAY FIRST
     </button>
 
@@ -404,15 +380,18 @@ Please select your barangay to continue.
     <source src="music.mp3" type="audio/mp3">
 </audio>
 
+<!-- CLICK SOUND -->
 <audio id="clickSound">
     <source src="click.mp3" type="audio/mp3">
 </audio>
 
 <script>
 
-/* CONFIGURATION */
+/* MIKROTIK PORTAL CONFIGURATION */
 const portals = {
+
     concepcion: "http://192.168.22.1/login2.html",
+
     bigajo: "http://192.168.22.1/login3.html"
 
 };
@@ -431,12 +410,13 @@ const btn = document.getElementById("connectBtn");
 const concepcionBtn = document.getElementById("concepcionBtn");
 const bigajoBtn = document.getElementById("bigajoBtn");
 
+/* STATUS MESSAGES */
 const msgs = [
     "📡 Scanning nearby network...",
     "🔐 Securing connection...",
-    "⚡ Optimizing internet speed...",
-    "📺 Loading sponsored ads...",
-    "🌐 Preparing hotspot access..."
+    "⚡ Preparing internet access...",
+    "🌐 Checking network connection...",
+    "🚀 Getting your hotspot ready..."
 ];
 
 /* SELECT BARANGAY */
@@ -447,11 +427,11 @@ function selectBarangay(place){
     selected = place;
 
     concepcionBtn.classList.toggle(
-        "selected", place === "concepcion"
+        "selected",place === "concepcion"
     );
 
     bigajoBtn.classList.toggle(
-        "selected", place === "bigajo"
+        "selected",place === "bigajo"
     );
 
     document.getElementById("selectedBarangay").innerText =
@@ -528,6 +508,7 @@ document.body.addEventListener("click",()=>{
     const music = document.getElementById("bgmusic");
 
     music.volume = 0.2;
+
     music.play().catch(()=>{});
 
 },{once:true});
@@ -542,12 +523,12 @@ function connectNet(){
 
     if(t > 0) return;
 
+    btn.innerText = "CONNECTING...";
+    btn.disabled = true;
+
     const sound = document.getElementById("clickSound");
 
     sound.play().catch(()=>{});
-
-    btn.innerText = "CONNECTING...";
-    btn.disabled = true;
 
     txt.innerText = "🚀 Connecting to " +
         (selected === "concepcion"
