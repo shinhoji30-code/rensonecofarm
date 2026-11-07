@@ -1,12 +1,14 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Renson Barangay WiFi & EcoFarm Services</title>
+<title>RENSON WiFiHUB - Internet Access Portal</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- MONETAG -->
-<meta name="d0e2610e97c851827429ef663e58fb89317eb36c" content="d0e2610e97c851827429ef663e58fb89317eb36c" />
+<meta name="d0e2610e97c851827429ef663e58fb89317eb36c"
+content="d0e2610e97c851827429ef663e58fb89317eb36c">
 
 <script src="https://quge5.com/88/tag.min.js"
 data-zone="233397"
@@ -14,7 +16,6 @@ async
 data-cfasync="false"></script>
 
 <style>
-
 *{
     margin:0;
     padding:0;
@@ -32,14 +33,12 @@ body{
     min-height:100vh;
 }
 
-/* BACKGROUND ANIMATION */
 @keyframes bgmove{
     0%{background-position:0% 50%;}
     50%{background-position:100% 50%;}
     100%{background-position:0% 50%;}
 }
 
-/* PARTICLES */
 .particles{
     position:fixed;
     width:100%;
@@ -47,8 +46,7 @@ body{
     top:0;
     left:0;
     pointer-events:none;
-    background-image:
-    radial-gradient(#00e676 1px, transparent 1px);
+    background-image:radial-gradient(#00e676 1px,transparent 1px);
     background-size:35px 35px;
     opacity:.08;
     animation:moveParticles 20s linear infinite;
@@ -59,31 +57,27 @@ body{
     to{transform:translateY(-200px);}
 }
 
-/* TOP BAR */
+/* HEADER */
 .top-bar{
     position:fixed;
     top:0;
     left:0;
     width:100%;
-    background:rgba(0,0,0,0.9);
+    background:rgba(0,0,0,.95);
     backdrop-filter:blur(10px);
-    padding:10px 12px;
+    padding:12px;
     z-index:1000;
     border-bottom:1px solid #222;
 }
 
-/* LOGO */
 .logo{
-    font-size:18px;
+    font-size:23px;
     font-weight:bold;
     margin-bottom:10px;
     color:#00e676;
-    text-shadow:
-    0 0 10px #00e676,
-    0 0 20px #00e676;
+    text-shadow:0 0 10px #00e676,0 0 20px #00e676;
 }
 
-/* MENU */
 .top-menu{
     display:flex;
     justify-content:center;
@@ -99,23 +93,18 @@ body{
     background:#111;
     border:1px solid #222;
     border-radius:30px;
-    transition:.3s;
 }
 
 .top-menu a:hover{
     background:#00e676;
     color:black;
-    box-shadow:
-    0 0 10px #00e676,
-    0 0 20px #00e676,
-    0 0 40px #00e676;
 }
 
-/* CONTAINER */
+/* MAIN */
 .container{
     padding:20px;
-    margin-top:130px;
-    margin-bottom:120px;
+    margin-top:145px;
+    margin-bottom:110px;
     position:relative;
     z-index:10;
 }
@@ -126,7 +115,6 @@ h2{
     text-shadow:0 0 15px #00e676;
 }
 
-/* DATE */
 #dateTime{
     margin:12px 0;
     color:#00e676;
@@ -134,15 +122,66 @@ h2{
     font-size:15px;
 }
 
-/* BOX */
 .box{
     background:rgba(17,17,17,.85);
-    padding:15px;
+    padding:18px;
     border-radius:18px;
     margin-bottom:15px;
     border:1px solid #222;
     box-shadow:0 0 15px rgba(0,255,100,.08);
-    backdrop-filter:blur(5px);
+}
+
+/* BARANGAY SELECTION */
+.barangay-title{
+    color:#00e676;
+    font-size:19px;
+    font-weight:bold;
+    margin-bottom:8px;
+}
+
+.barangay-subtitle{
+    color:#bbb;
+    font-size:13px;
+    margin-bottom:18px;
+}
+
+.barangay-options{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+}
+
+.barangay-btn{
+    padding:20px 8px;
+    background:linear-gradient(145deg,#102b1b,#06150c);
+    border:2px solid #245b38;
+    border-radius:16px;
+    color:white;
+    cursor:pointer;
+    transition:.3s;
+    box-shadow:0 0 12px rgba(0,230,118,.08);
+}
+
+.barangay-btn .icon{
+    font-size:32px;
+    display:block;
+    margin-bottom:10px;
+}
+
+.barangay-btn strong{
+    display:block;
+    font-size:14px;
+}
+
+.barangay-btn.selected{
+    background:linear-gradient(to right,#00e676,#00c853);
+    border-color:#00e676;
+    color:black;
+    box-shadow:0 0 20px rgba(0,230,118,.5);
+}
+
+.barangay-btn:disabled{
+    opacity:.5;
 }
 
 /* VIDEO */
@@ -168,7 +207,7 @@ video{
     width:90%;
     max-width:320px;
     height:14px;
-    background:rgba(255,255,255,0.08);
+    background:rgba(255,255,255,.08);
     border-radius:50px;
     margin:18px auto;
     overflow:hidden;
@@ -180,26 +219,7 @@ video{
     height:100%;
     background:linear-gradient(to right,#00e676,#00c853);
     border-radius:50px;
-    position:relative;
-    overflow:hidden;
     transition:.5s;
-}
-
-#progressBar::after{
-    content:'';
-    position:absolute;
-    top:0;
-    left:-100%;
-    width:100%;
-    height:100%;
-    background:rgba(255,255,255,.3);
-    animation:shine 1.5s infinite;
-}
-
-@keyframes shine{
-    to{
-        left:100%;
-    }
 }
 
 /* ADS */
@@ -209,7 +229,6 @@ video{
     border:1px solid #222;
     border-radius:18px;
     padding:15px;
-    box-shadow:0 0 15px rgba(0,255,100,.08);
 }
 
 .ad-title{
@@ -219,7 +238,13 @@ video{
     font-size:18px;
 }
 
-/* BUTTON AREA */
+.footer{
+    margin-top:20px;
+    font-size:12px;
+    color:#777;
+}
+
+/* BUTTON */
 .bottom-buttons{
     position:fixed;
     bottom:0;
@@ -231,8 +256,7 @@ video{
     z-index:1000;
 }
 
-/* BUTTON */
-button{
+button#connectBtn{
     width:100%;
     padding:17px;
     border:none;
@@ -242,53 +266,38 @@ button{
     background:linear-gradient(to right,#00e676,#00c853);
     color:black;
     cursor:pointer;
-    transition:.3s;
     box-shadow:0 0 20px rgba(0,255,100,.4);
     animation:pulse 1.5s infinite;
 }
 
-button:hover{
-    transform:scale(1.02);
-}
-
-button:disabled{
-    opacity:.6;
+button#connectBtn:disabled{
+    opacity:.4;
     cursor:not-allowed;
+    animation:none;
 }
 
 @keyframes pulse{
-    0%{
-        box-shadow:0 0 0 0 rgba(0,255,100,.6);
-    }
-    70%{
-        box-shadow:0 0 0 18px rgba(0,255,100,0);
-    }
-    100%{
-        box-shadow:0 0 0 0 rgba(0,255,100,0);
-    }
+    0%{box-shadow:0 0 0 0 rgba(0,255,100,.6);}
+    70%{box-shadow:0 0 0 18px rgba(0,255,100,0);}
+    100%{box-shadow:0 0 0 0 rgba(0,255,100,0);}
 }
 
-/* FOOTER */
-.footer{
-    margin-top:20px;
-    font-size:12px;
-    color:#777;
+@media(max-width:400px){
+    .logo{font-size:20px;}
+    .container{margin-top:150px;}
+    .barangay-btn{padding:16px 5px;}
 }
-
 </style>
 </head>
 
 <body>
 
-<!-- PARTICLES -->
 <div class="particles"></div>
 
-<!-- TOP BAR -->
+<!-- HEADER -->
 <div class="top-bar">
 
-    <div class="logo">
-        🌿 Renson Barangay WiFi
-    </div>
+    <div class="logo">🌿 RENSON WiFiHUB</div>
 
     <div class="top-menu">
         <a href="index.html">Home</a>
@@ -303,151 +312,253 @@ button:disabled{
 <!-- CONTENT -->
 <div class="container">
 
-<h2>🎮 Welcome to Renson WiFi</h2>
+<h2>🌐 Welcome to RENSON WiFiHUB</h2>
 
 <div id="dateTime"></div>
 
+<!-- BARANGAY SELECTION -->
 <div class="box">
-☀️ Weather: Sunny • 31°C
+
+    <div class="barangay-title">
+        📍 SELECT YOUR BARANGAY
+    </div>
+
+    <div class="barangay-subtitle">
+        Piliin ang inyong barangay para magpatuloy.
+    </div>
+
+    <div class="barangay-options">
+
+        <button class="barangay-btn" id="concepcionBtn"
+        onclick="selectBarangay('concepcion')">
+
+            <span class="icon">🏡</span>
+            <strong>BRGY. CONCEPCION</strong>
+
+        </button>
+
+        <button class="barangay-btn" id="bigajoBtn"
+        onclick="selectBarangay('bigajo')">
+
+            <span class="icon">🏡</span>
+            <strong>BRGY. BIGAJO</strong>
+
+        </button>
+
+    </div>
+
+    <p id="selectedBarangay"
+    style="margin-top:15px;color:#00e676;font-weight:bold;">
+        No barangay selected
+    </p>
+
 </div>
 
+<div class="box">
+    ☀️ Weather: Sunny • 31°C
+</div>
+
+<!-- VIDEO ADVERTISEMENT -->
 <video autoplay muted loop playsinline>
-<source src="ad.mp4" type="video/mp4">
+    <source src="ad.mp4" type="video/mp4">
 </video>
 
 <p id="statusText">
-Initializing system...
+Please select your barangay to continue.
 </p>
 
 <div id="progressContainer">
-<div id="progressBar"></div>
+    <div id="progressBar"></div>
 </div>
 
 <!-- ADS -->
 <div class="ad-box">
 
-<div class="ad-title">
-📢 Sponsored Ads
-</div>
+    <div class="ad-title">
+        📢 Sponsored Ads
+    </div>
 
-<p>
-🔥 Watch ads and enjoy faster internet access.
-</p>
+    <p>
+        🔥 Watch ads and enjoy internet access!
+    </p>
 
 </div>
 
 <div class="footer">
-Powered by Renson EcoFarm Services
+    Powered by Renson EcoFarm Services
 </div>
 
 </div>
 
-<!-- BUTTON -->
+<!-- CONNECT BUTTON -->
 <div class="bottom-buttons">
-<button id="connectBtn" disabled onclick="connectNet()">
-CONNECT INTERNET
-</button>
+
+    <button id="connectBtn" disabled onclick="connectNet()">
+        SELECT BARANGAY FIRST
+    </button>
+
 </div>
 
 <!-- MUSIC -->
 <audio id="bgmusic" loop>
-<source src="music.mp3" type="audio/mp3">
+    <source src="music.mp3" type="audio/mp3">
 </audio>
 
-<!-- CLICK SOUND -->
 <audio id="clickSound">
-<source src="click.mp3" type="audio/mp3">
+    <source src="click.mp3" type="audio/mp3">
 </audio>
 
 <script>
 
+/* CONFIGURATION */
+const portals = {
+    concepcion: "http://192.168.22.1/login2.html",
+    bigajo: "http://192.168.22.1/login3.html"
+
+};
+
 /* ELEMENTS */
 let t = 10;
+let selected = "";
+let timer = null;
+let msgTimer = null;
+let countdownStarted = false;
 
-let bar = document.getElementById("progressBar");
-let txt = document.getElementById("statusText");
-let btn = document.getElementById("connectBtn");
+const bar = document.getElementById("progressBar");
+const txt = document.getElementById("statusText");
+const btn = document.getElementById("connectBtn");
 
-/* STATUS MESSAGES */
-let msgs = [
-"📡 Scanning nearby network...",
-"🔐 Securing connection...",
-"⚡ Optimizing internet speed...",
-"📺 Loading sponsored ads...",
-"🌐 Preparing hotspot access..."
+const concepcionBtn = document.getElementById("concepcionBtn");
+const bigajoBtn = document.getElementById("bigajoBtn");
+
+const msgs = [
+    "📡 Scanning nearby network...",
+    "🔐 Securing connection...",
+    "⚡ Optimizing internet speed...",
+    "📺 Loading sponsored ads...",
+    "🌐 Preparing hotspot access..."
 ];
 
-let msgIndex = 0;
+/* SELECT BARANGAY */
+function selectBarangay(place){
 
-/* MESSAGE ROTATOR */
-let msgTimer = setInterval(()=>{
+    if(countdownStarted) return;
 
-    if(t > 0){
-        txt.innerText = msgs[msgIndex];
-        msgIndex = (msgIndex + 1) % msgs.length;
-    }
+    selected = place;
 
-},2000);
+    concepcionBtn.classList.toggle(
+        "selected", place === "concepcion"
+    );
 
-/* PROGRESS TIMER */
-let timer = setInterval(()=>{
+    bigajoBtn.classList.toggle(
+        "selected", place === "bigajo"
+    );
 
-    t--;
+    document.getElementById("selectedBarangay").innerText =
+        place === "concepcion"
+        ? "✅ Selected: BRGY. CONCEPCION"
+        : "✅ Selected: BRGY. BIGAJO";
 
-    bar.style.width = ((10 - t) * 10) + "%";
+    startCountdown();
 
-    if(t <= 0){
+}
 
-        clearInterval(timer);
+/* START COUNTDOWN */
+function startCountdown(){
 
-        clearInterval(msgTimer);
+    if(countdownStarted) return;
 
-        txt.innerText = "✅ Tap CONNECT to continue";
+    countdownStarted = true;
 
-        btn.disabled = false;
+    concepcionBtn.disabled = true;
+    bigajoBtn.disabled = true;
 
-    }
+    txt.innerText = "Preparing your internet access...";
 
-},1000);
+    let msgIndex = 0;
 
-/* DATE & TIME */
-setInterval(()=>{
+    msgTimer = setInterval(()=>{
 
-    let d = new Date();
+        if(t > 0){
+            txt.innerText = msgs[msgIndex];
+            msgIndex = (msgIndex + 1) % msgs.length;
+        }
+
+    },2000);
+
+    timer = setInterval(()=>{
+
+        t--;
+
+        bar.style.width = ((10-t)*10)+"%";
+
+        if(t <= 0){
+
+            clearInterval(timer);
+            clearInterval(msgTimer);
+
+            txt.innerText = "✅ Ready! Tap CONNECT to continue.";
+
+            btn.disabled = false;
+            btn.innerText = "🚀 CONNECT INTERNET";
+
+        }
+
+    },1000);
+
+}
+
+/* DATE AND TIME */
+function updateDateTime(){
+
+    const d = new Date();
 
     document.getElementById("dateTime").innerHTML =
-    "📅 " + d.toLocaleDateString() +
-    "<br>🕒 " + d.toLocaleTimeString();
+        "📅 " + d.toLocaleDateString() +
+        "<br>🕒 " + d.toLocaleTimeString();
 
-},1000);
+}
 
-/* MUSIC AUTOPLAY */
+updateDateTime();
+setInterval(updateDateTime,1000);
+
+/* MUSIC */
 document.body.addEventListener("click",()=>{
 
-    let m = document.getElementById("bgmusic");
+    const music = document.getElementById("bgmusic");
 
-    m.volume = 0.2;
-
-    m.play().catch(()=>{});
+    music.volume = 0.2;
+    music.play().catch(()=>{});
 
 },{once:true});
 
 /* CONNECT */
 function connectNet(){
 
-    document.getElementById("clickSound").play();
+    if(!selected){
+        alert("Please select your barangay first.");
+        return;
+    }
+
+    if(t > 0) return;
+
+    const sound = document.getElementById("clickSound");
+
+    sound.play().catch(()=>{});
 
     btn.innerText = "CONNECTING...";
     btn.disabled = true;
 
-    txt.innerText = "🚀 Connecting to hotspot...";
+    txt.innerText = "🚀 Connecting to " +
+        (selected === "concepcion"
+        ? "BRGY. CONCEPCION"
+        : "BRGY. BIGAJO") + "...";
 
     setTimeout(()=>{
 
-        window.location.href =
-        "http://192.168.22.1/login2.html";
+        window.location.href = portals[selected];
 
-    },5000);
+    },1500);
 
 }
 
